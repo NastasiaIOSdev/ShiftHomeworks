@@ -6,3 +6,41 @@
 //
 
 import Foundation
+
+struct ThreadSafeArray<T> {
+    
+    var count: Int {
+        let countArray = safeArray.count
+        return countArray
+    }
+    private var safeArray = [T]()
+}
+
+
+extension ThreadSafeArray {
+    
+    mutating func append(_ item: T) {
+        safeArray.append(item)
+    }
+    
+    private var isEmpty: Bool {
+        let arrayIsEmpty = safeArray.isEmpty
+        return arrayIsEmpty
+    }
+    
+    private mutating func remove(at index: Int) {
+        safeArray.remove(at: index)
+    }
+    
+    private func contains(_ element: T) -> Bool where T:Equatable {
+        let containsElement = safeArray.contains { _ in element as! Bool }
+        return containsElement
+    }
+    
+    private subscript(index: Int) -> T {
+        return safeArray[index]
+    }
+}
+
+
+
