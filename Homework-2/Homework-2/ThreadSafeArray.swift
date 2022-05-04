@@ -14,13 +14,16 @@ struct ThreadSafeArray<T> {
         return countArray
     }
     private var safeArray = [T]()
+    private let semafore = DispatchSemaphore(value: 1)
 }
 
 
 extension ThreadSafeArray {
     
     mutating func append(_ item: T) {
+        semafore.wait()
         safeArray.append(item)
+        semafore.signal()
     }
     
     private var isEmpty: Bool {
