@@ -10,7 +10,9 @@ import Foundation
 struct ThreadSafeArray<T> {
     
     var count: Int {
+        semafore.wait()
         let countArray = safeArray.count
+        semafore.signal()
         return countArray
     }
     private var safeArray = [T]()
@@ -26,22 +28,31 @@ extension ThreadSafeArray {
         semafore.signal()
     }
     
-    private var isEmpty: Bool {
+    var isEmpty: Bool {
+        semafore.wait()
         let arrayIsEmpty = safeArray.isEmpty
+        semafore.signal()
         return arrayIsEmpty
     }
     
-    private mutating func remove(at index: Int) {
+    mutating func remove(at index: Int) {
+        semafore.wait()
         safeArray.remove(at: index)
+        semafore.signal()
     }
     
-    private func contains(_ element: T) -> Bool where T:Equatable {
+    func contains(_ element: T) -> Bool where T:Equatable {
+        semafore.wait()
         let containsElement = safeArray.contains { _ in element as! Bool }
+        semafore.signal()
         return containsElement
     }
     
-    private subscript(index: Int) -> T {
-        return safeArray[index]
+    subscript(index: Int) -> T {
+        semafore.wait()
+        let element = safeArray[index]
+        semafore.signal()
+        return element
     }
 }
 
