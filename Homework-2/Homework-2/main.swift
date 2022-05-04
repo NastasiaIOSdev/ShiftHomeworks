@@ -11,16 +11,12 @@ var safeArray = ThreadSafeArray<Int>()
 
 let queue = DispatchQueue(label: "Save", attributes: .concurrent)
 
-let semafore = DispatchSemaphore(value: 1)
-
 let group1 = DispatchGroup()
 
 group1.enter()
 queue.async {
     for number in 0...1000 {
-        semafore.wait()
         safeArray.append(number)
-        semafore.signal()
     }
     group1.leave()
 }
@@ -28,9 +24,7 @@ queue.async {
 group1.enter()
 queue.async {
     for number in 0...1000 {
-        semafore.wait()
         safeArray.append(number)
-        semafore.signal()
     }
     group1.leave()
 }
