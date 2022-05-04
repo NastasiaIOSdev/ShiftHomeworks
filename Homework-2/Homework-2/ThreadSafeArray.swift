@@ -37,7 +37,9 @@ extension ThreadSafeArray {
     
     mutating func remove(at index: Int) {
         semafore.wait()
-        safeArray.remove(at: index)
+        if index < safeArray.count {
+            safeArray.remove(at: index)
+        }
         semafore.signal()
     }
     
