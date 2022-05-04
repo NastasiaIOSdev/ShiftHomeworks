@@ -45,7 +45,7 @@ extension ThreadSafeArray {
     
     func contains(_ element: T) -> Bool where T:Equatable {
         semafore.wait()
-        let containsElement = safeArray.contains { _ in element as! Bool }
+        let containsElement = safeArray.contains(element)
         semafore.signal()
         return containsElement
     }
