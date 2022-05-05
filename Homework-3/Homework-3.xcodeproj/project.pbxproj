@@ -9,20 +9,26 @@
 /* Begin PBXBuildFile section */
 		2EE78DC32823D3D90045927A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DC22823D3D90045927A /* AppDelegate.swift */; };
 		2EE78DC52823D3D90045927A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DC42823D3D90045927A /* SceneDelegate.swift */; };
-		2EE78DC72823D3D90045927A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DC62823D3D90045927A /* ViewController.swift */; };
+		2EE78DC72823D3D90045927A /* AboutMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DC62823D3D90045927A /* AboutMeViewController.swift */; };
 		2EE78DCC2823D3DD0045927A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EE78DCB2823D3DD0045927A /* Assets.xcassets */; };
 		2EE78DCF2823D3DD0045927A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EE78DCD2823D3DD0045927A /* LaunchScreen.storyboard */; };
 		2EE78DD82823DD4A0045927A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE78DD72823DD4A0045927A /* SnapKit */; };
+		2EE78DE2282428790045927A /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DE1282428790045927A /* CustomUITabBarController.swift */; };
+		2EE78DE42824328D0045927A /* HardSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DE32824328D0045927A /* HardSkillsViewController.swift */; };
+		2EE78DE6282432A20045927A /* SoftSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DE5282432A20045927A /* SoftSkillsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2EE78DBF2823D3D90045927A /* Homework-3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Homework-3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EE78DC22823D3D90045927A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EE78DC42823D3D90045927A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2EE78DC62823D3D90045927A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2EE78DC62823D3D90045927A /* AboutMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeViewController.swift; sourceTree = "<group>"; };
 		2EE78DCB2823D3DD0045927A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EE78DCE2823D3DD0045927A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EE78DD02823D3DD0045927A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EE78DE1282428790045927A /* CustomUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
+		2EE78DE32824328D0045927A /* HardSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardSkillsViewController.swift; sourceTree = "<group>"; };
+		2EE78DE5282432A20045927A /* SoftSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftSkillsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +64,10 @@
 			children = (
 				2EE78DC22823D3D90045927A /* AppDelegate.swift */,
 				2EE78DC42823D3D90045927A /* SceneDelegate.swift */,
-				2EE78DC62823D3D90045927A /* ViewController.swift */,
+				2EE78DE1282428790045927A /* CustomUITabBarController.swift */,
+				2EE78DC62823D3D90045927A /* AboutMeViewController.swift */,
+				2EE78DE32824328D0045927A /* HardSkillsViewController.swift */,
+				2EE78DE5282432A20045927A /* SoftSkillsViewController.swift */,
 				2EE78DCB2823D3DD0045927A /* Assets.xcassets */,
 				2EE78DCD2823D3DD0045927A /* LaunchScreen.storyboard */,
 				2EE78DD02823D3DD0045927A /* Info.plist */,
@@ -142,8 +151,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EE78DC72823D3D90045927A /* ViewController.swift in Sources */,
+				2EE78DC72823D3D90045927A /* AboutMeViewController.swift in Sources */,
 				2EE78DC32823D3D90045927A /* AppDelegate.swift in Sources */,
+				2EE78DE2282428790045927A /* CustomUITabBarController.swift in Sources */,
+				2EE78DE42824328D0045927A /* HardSkillsViewController.swift in Sources */,
+				2EE78DE6282432A20045927A /* SoftSkillsViewController.swift in Sources */,
 				2EE78DC52823D3D90045927A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
