@@ -61,6 +61,7 @@ private extension AboutMeViewController {
         self.setupBackGroundView()
         self.setupCommonData()
         self.setupLayout()
+        self.setupAnimation()
     }
     
     func setupBackGroundView() {
@@ -140,6 +141,41 @@ private extension AboutMeViewController {
         self.cityLabel.snp.makeConstraints { make in
             make.top.equalTo(self.educationLabel.snp.bottom).offset(Constraints.topLineOffset)
             make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+        }
+    }
+    
+    // MARK: - Animation
+    
+    func setupAnimation() {
+        animateImage()
+        animateLabels()
+    }
+    
+    func animateImage() {
+       let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = 1
+        animation.beginTime = CACurrentMediaTime() + 1
+        animation.fillMode = .backwards
+        
+        avatarImage.layer.add(animation, forKey: nil)
+    }
+    
+    func animateLabels() {
+        let offset = view.bounds.width
+        nameLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        surnameLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        ageLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        educationLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        cityLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        
+        UIView.animate(withDuration: 1, delay: 0.5, options: .curveEaseOut) {
+            self.nameLabel.transform = .identity
+            self.surnameLabel.transform = .identity
+            self.ageLabel.transform = .identity
+            self.educationLabel.transform = .identity
+            self.cityLabel.transform = .identity
         }
     }
 }

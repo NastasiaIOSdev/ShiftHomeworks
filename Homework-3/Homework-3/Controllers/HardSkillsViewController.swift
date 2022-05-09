@@ -55,6 +55,7 @@ private extension HardSkillsViewController {
         self.setupBackGroundView()
         self.setupCommonData()
         self.setupLayout()
+        self.animateLabels()
     }
     func setupBackGroundView() {
         self.view.backgroundColor = UIColor(displayP3Red: 241/255, green: 221/255, blue: 201/255, alpha: 1)
@@ -142,7 +143,28 @@ private extension HardSkillsViewController {
         self.expectationsLabel.snp.makeConstraints { make in
             make.top.equalTo(self.experienceLabel.snp.bottom).offset(Constraints.topLineOffset)
             make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
-//            make.bottom.equalTo(self.view.safeAreaInsets).offset(Constraints.topHeaderOffset)
+        }
+    }
+    
+    // MARK: - Animation
+    
+    func animateLabels() {
+        let offset = view.bounds.width
+        skill1Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        skill2Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        skill3Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        skill4Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        experienceLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        expectationsLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        
+        
+        UIView.animate(withDuration: 1, delay: 0.5, options: .curveEaseOut) {
+            self.skill1Label.transform = .identity
+            self.skill2Label.transform = .identity
+            self.skill3Label.transform = .identity
+            self.skill4Label.transform = .identity
+            self.experienceLabel.transform = .identity
+            self.expectationsLabel.transform = .identity
         }
     }
 }

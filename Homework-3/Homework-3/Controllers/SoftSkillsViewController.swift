@@ -59,6 +59,7 @@ private extension SoftSkillsViewController {
         self.setupBackGroundView()
         self.setupCommonData()
         self.setupLayout()
+        self.setupAnimation()
     }
     
     func setupBackGroundView() {
@@ -140,6 +141,44 @@ private extension SoftSkillsViewController {
             make.centerX.equalToSuperview()
             make.height.equalTo(Constants.imageHeight)
             make.width.equalTo(Constants.imageWidth)
+        }
+    }
+    
+    // MARK: - Animation
+    
+    func setupAnimation() {
+        self.animateImage()
+        self.animateLabels()
+    }
+    
+    func animateImage() {
+        self.avatarImage.transform = CGAffineTransform(translationX: 0, y: view.bounds.height/2)
+        UIView.animate(
+                       withDuration: 1,
+                       delay: 1,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseOut)
+        {
+            self.avatarImage.transform = .identity
+        }
+
+    }
+    
+    func animateLabels() {
+        let offset = view.bounds.width
+        skill1Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        skill2Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        skill3Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        skill4Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        hobbyLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        
+        UIView.animate(withDuration: 1, delay: 0.5, options: .curveEaseOut) {
+            self.skill1Label.transform = .identity
+            self.skill2Label.transform = .identity
+            self.skill3Label.transform = .identity
+            self.skill4Label.transform = .identity
+            self.hobbyLabel.transform = .identity
         }
     }
 }
