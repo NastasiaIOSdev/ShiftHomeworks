@@ -23,7 +23,6 @@
 		2EFAA493282909070095B9E4 /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA492282909070095B9E4 /* AboutMeModel.swift */; };
 		2EFAA4952829091F0095B9E4 /* HardSkillsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA4942829091F0095B9E4 /* HardSkillsModel.swift */; };
 		2EFAA497282909330095B9E4 /* SoftSkillsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA496282909330095B9E4 /* SoftSkillsModel.swift */; };
-		2EFAA4992829812F0095B9E4 /* TabbarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA4982829812F0095B9E4 /* TabbarModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +43,6 @@
 		2EFAA492282909070095B9E4 /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
 		2EFAA4942829091F0095B9E4 /* HardSkillsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardSkillsModel.swift; sourceTree = "<group>"; };
 		2EFAA496282909330095B9E4 /* SoftSkillsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftSkillsModel.swift; sourceTree = "<group>"; };
-		2EFAA4982829812F0095B9E4 /* TabbarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +112,6 @@
 				2EFAA492282909070095B9E4 /* AboutMeModel.swift */,
 				2EFAA4942829091F0095B9E4 /* HardSkillsModel.swift */,
 				2EFAA496282909330095B9E4 /* SoftSkillsModel.swift */,
-				2EFAA4982829812F0095B9E4 /* TabbarModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EFAA497282909330095B9E4 /* SoftSkillsModel.swift in Sources */,
-				2EFAA4992829812F0095B9E4 /* TabbarModel.swift in Sources */,
 				2EE78DC72823D3D90045927A /* AboutMeViewController.swift in Sources */,
 				2EFAA493282909070095B9E4 /* AboutMeModel.swift in Sources */,
 				2EE78DC32823D3D90045927A /* AppDelegate.swift in Sources */,
