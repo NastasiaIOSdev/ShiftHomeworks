@@ -15,17 +15,19 @@ struct SoftSkillsModel {
     let softSkill3: String
     let softSkill4: String
     let hobby: String
+    let avatar: UIImage?
 }
 
 extension SoftSkillsModel {
     init(
-    
+        
     ) {
         self.header = "📝 Soft skills :"
         self.softSkill1 = "→  Procreate"
         self.softSkill2 = "→  AdobyPhotoShop"
         self.softSkill3 = "→  IMovie"
-        self.softSkill4 = "→  2D Anination & Illustration"
-        self.hobby = "→ Велосипед, Иога, Походы, English"
+        self.softSkill4 = "→  2D Animation & Illustration"
+        self.hobby = "→  Велосипед, Йога, Походы, English"
+        self.avatar = UIImage(named: "myAvatar2")
     }
 }

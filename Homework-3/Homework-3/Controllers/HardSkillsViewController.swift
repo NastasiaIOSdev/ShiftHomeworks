@@ -10,12 +10,16 @@ import SnapKit
 
 class HardSkillsViewController: UIViewController {
     
+    // MARK: - Constants & Constraints
+    
     private enum Constraints {
         static let topHeaderOffset = 60
         static let topSkillOffset = 30
         static let topLineOffset = 7
         static let horisontalLeadingOffset = 30
     }
+    
+    // MARK: - Properties
     
     private let headerLabel = UILabel()
     private let skill1Label = UILabel()
@@ -24,13 +28,16 @@ class HardSkillsViewController: UIViewController {
     private let skill4Label = UILabel()
     private let experienceLabel = UILabel()
     private let expectationsLabel = UILabel()
-
-
+    
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupHardSkillsData(HardSkillsModel())
         self.setupHardSkillsView()
     }
+    
+    // MARK: - SetupData
     
     func setupHardSkillsData(_ viewModel: HardSkillsModel) {
         self.headerLabel.text = viewModel.header
@@ -45,43 +52,54 @@ class HardSkillsViewController: UIViewController {
 
 private extension HardSkillsViewController {
     func setupHardSkillsView() {
-        setupBackGroundView()
-        setupCommonData()
-        setupLayout()
+        self.setupBackGroundView()
+        self.setupCommonData()
+        self.setupLayout()
     }
     func setupBackGroundView() {
         self.view.backgroundColor = UIColor(displayP3Red: 241/255, green: 221/255, blue: 201/255, alpha: 1)
     }
     
+    // MARK: - SetupCommonData
+    
     func setupCommonData() {
         self.headerLabel.numberOfLines = 1
         self.headerLabel.font = AppFonts.bold32.font
+        self.experienceLabel.adjustsFontSizeToFitWidth = true
         self.headerLabel.textColor = .black
         
         self.skill1Label.numberOfLines = 1
-        self.skill1Label.font = AppFonts.light20.font
+        self.skill1Label.font = AppFonts.light16.font
+        self.experienceLabel.adjustsFontSizeToFitWidth = true
         self.skill1Label.textColor = .black
         
         self.skill2Label.numberOfLines = 1
-        self.skill2Label.font = AppFonts.light20.font
+        self.skill2Label.font = AppFonts.light16.font
+        self.experienceLabel.adjustsFontSizeToFitWidth = true
         self.skill2Label.textColor = .black
         
         self.skill3Label.numberOfLines = 1
-        self.skill3Label.font = AppFonts.light20.font
+        self.skill3Label.font = AppFonts.light16.font
+        self.experienceLabel.adjustsFontSizeToFitWidth = true
         self.skill3Label.textColor = .black
         
         self.skill4Label.numberOfLines = 1
-        self.skill4Label.font = AppFonts.light20.font
+        self.skill4Label.font = AppFonts.light16.font
+        self.experienceLabel.adjustsFontSizeToFitWidth = true
         self.skill4Label.textColor = .black
         
         self.experienceLabel.numberOfLines = 0
-        self.experienceLabel.font = AppFonts.light18.font
+        self.experienceLabel.adjustsFontSizeToFitWidth = true
+        self.experienceLabel.font = AppFonts.light16.font
         self.experienceLabel.textColor = .black
         
         self.expectationsLabel.numberOfLines = 0
-        self.expectationsLabel.font = AppFonts.light18.font
+        self.expectationsLabel.font = AppFonts.light16.font
+        self.expectationsLabel.adjustsFontSizeToFitWidth = true
         self.expectationsLabel.textColor = .black
     }
+    
+    // MARK: - Layouts
     
     func setupLayout() {
         self.view.addSubview(self.headerLabel)
@@ -124,6 +142,7 @@ private extension HardSkillsViewController {
         self.expectationsLabel.snp.makeConstraints { make in
             make.top.equalTo(self.experienceLabel.snp.bottom).offset(Constraints.topLineOffset)
             make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
+//            make.bottom.equalTo(self.view.safeAreaInsets).offset(Constraints.topHeaderOffset)
         }
     }
 }

@@ -20,7 +20,7 @@ struct HardSkillsModel {
 
 extension HardSkillsModel {
     init(
-    
+        
     ) {
         self.header = "🛠 Hard skills :"
         self.hardSkill1 = "→  Swift"

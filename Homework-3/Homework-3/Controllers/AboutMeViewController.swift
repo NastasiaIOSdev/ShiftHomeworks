@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 class AboutMeViewController: UIViewController {
-
+    
+    // MARK: - Constants & Constraints
+    
     private enum Constants {
         static let imageWidth = 150
         static let imageHeight = 200
@@ -18,10 +20,12 @@ class AboutMeViewController: UIViewController {
     private enum Constraints {
         static let topHeaderOffset = 60
         static let topAvatarOffset = 40
-        static let topNameOffset = 30
+        static let topNameOffset = 10
         static let topLineOffset = 7
         static let horisontalLeadingOffset = 30
     }
+    
+    // MARK: - Properties
     
     private let headerLabel = UILabel()
     private let avatarImage = UIImageView()
@@ -31,12 +35,16 @@ class AboutMeViewController: UIViewController {
     private let educationLabel = UILabel()
     private let cityLabel = UILabel()
     
+    // MARK: - Life Cycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupAboutMeData(AboutMeModel())
         self.setupAboutMeView()
     }
-  
+    
+    // MARK: - SetupData
+    
     func setupAboutMeData(_ viewModel: AboutMeModel) {
         self.headerLabel.text = viewModel.header
         self.avatarImage.image = viewModel.avatar
@@ -50,14 +58,16 @@ class AboutMeViewController: UIViewController {
 
 private extension AboutMeViewController {
     func setupAboutMeView() {
-        setupBackGroundView()
-        setupCommonData()
-        setupLayout()
+        self.setupBackGroundView()
+        self.setupCommonData()
+        self.setupLayout()
     }
     
     func setupBackGroundView() {
         self.view.backgroundColor = UIColor(displayP3Red: 241/255, green: 221/255, blue: 201/255, alpha: 1)
     }
+    
+    // MARK: - SetupCommonData
     
     func setupCommonData() {
         self.headerLabel.numberOfLines = 1
@@ -65,27 +75,29 @@ private extension AboutMeViewController {
         self.headerLabel.textColor = .black
         
         self.nameLabel.numberOfLines = 1
-        self.nameLabel.font = AppFonts.light20.font
+        self.nameLabel.font = AppFonts.light16.font
         self.nameLabel.textColor = .black
         
         self.surnameLabel.numberOfLines = 1
-        self.surnameLabel.font = AppFonts.light20.font
+        self.surnameLabel.font = AppFonts.light16.font
         self.surnameLabel.textColor = .black
         
         self.ageLabel.numberOfLines = 1
-        self.ageLabel.font = AppFonts.light20.font
+        self.ageLabel.font = AppFonts.light16.font
         self.ageLabel.textColor = .black
         
-        self.educationLabel.numberOfLines = 1
-        self.educationLabel.font = AppFonts.light20.font
+        self.educationLabel.numberOfLines = 0
+        self.educationLabel.font = AppFonts.light16.font
         self.educationLabel.textColor = .black
         
         self.cityLabel.numberOfLines = 1
-        self.cityLabel.font = AppFonts.light20.font
+        self.cityLabel.font = AppFonts.light16.font
         self.cityLabel.textColor = .black
     }
     
-       func setupLayout() {
+    // MARK: - Layouts
+    
+    func setupLayout() {
         self.view.addSubview(self.headerLabel)
         self.headerLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constraints.topHeaderOffset)
@@ -121,7 +133,7 @@ private extension AboutMeViewController {
         self.view.addSubview(educationLabel)
         self.educationLabel.snp.makeConstraints { make in
             make.top.equalTo(self.ageLabel.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(cityLabel)

@@ -9,15 +9,15 @@ import UIKit
 
 enum AppFonts {
     
-    case light18
+    case light16
     case light20
     case bold32
     
     var font: UIFont? {
         switch self {
         
-        case .light18:
-            return UIFont(name: "Montserrat-Light", size: 18)
+        case .light16:
+            return UIFont(name: "Montserrat-Light", size: 16)
         case .light20:
             return UIFont(name: "Montserrat-Light", size: 20)
         case .bold32:
