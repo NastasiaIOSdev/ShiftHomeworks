@@ -22,7 +22,7 @@ extension AboutMeModel {
     init(
     
     ) {
-        self.header = "Обо мне"
+        self.header = "Обо мне :"
         self.avatar = UIImage(named: "myAvatar")
         self.name = "Имя: Анастасия"
         self.surname = "Фамилия: Ларина"

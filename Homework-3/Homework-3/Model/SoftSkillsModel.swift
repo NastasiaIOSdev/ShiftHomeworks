@@ -22,10 +22,10 @@ extension SoftSkillsModel {
     
     ) {
         self.header = "📝 Soft skills :"
-        self.softSkill1 = "→ Procreate"
-        self.softSkill2 = "→ AdobyPhotoShop"
-        self.softSkill3 = "→ IMovie"
-        self.softSkill4 = "→ 2D Anination & Illustration"
+        self.softSkill1 = "→  Procreate"
+        self.softSkill2 = "→  AdobyPhotoShop"
+        self.softSkill3 = "→  IMovie"
+        self.softSkill4 = "→  2D Anination & Illustration"
         self.hobby = "→ Велосипед, Иога, Походы, English"
     }
 }
