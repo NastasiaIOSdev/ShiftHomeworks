@@ -16,6 +16,13 @@
 		2EE78DE2282428790045927A /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DE1282428790045927A /* CustomUITabBarController.swift */; };
 		2EE78DE42824328D0045927A /* HardSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DE32824328D0045927A /* HardSkillsViewController.swift */; };
 		2EE78DE6282432A20045927A /* SoftSkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE78DE5282432A20045927A /* SoftSkillsViewController.swift */; };
+		2EFAA486282902E30095B9E4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA485282902E30095B9E4 /* Colors.swift */; };
+		2EFAA488282902F40095B9E4 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA487282902F40095B9E4 /* AppFonts.swift */; };
+		2EFAA4902829072C0095B9E4 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EFAA48A282903120095B9E4 /* Montserrat-Light.ttf */; };
+		2EFAA491282907310095B9E4 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EFAA48B2829031C0095B9E4 /* Montserrat-Bold.ttf */; };
+		2EFAA493282909070095B9E4 /* AboutMeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA492282909070095B9E4 /* AboutMeModel.swift */; };
+		2EFAA4952829091F0095B9E4 /* HardSkillsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA4942829091F0095B9E4 /* HardSkillsModel.swift */; };
+		2EFAA497282909330095B9E4 /* SoftSkillsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAA496282909330095B9E4 /* SoftSkillsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +36,13 @@
 		2EE78DE1282428790045927A /* CustomUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
 		2EE78DE32824328D0045927A /* HardSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardSkillsViewController.swift; sourceTree = "<group>"; };
 		2EE78DE5282432A20045927A /* SoftSkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftSkillsViewController.swift; sourceTree = "<group>"; };
+		2EFAA485282902E30095B9E4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2EFAA487282902F40095B9E4 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		2EFAA48A282903120095B9E4 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		2EFAA48B2829031C0095B9E4 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		2EFAA492282909070095B9E4 /* AboutMeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeModel.swift; sourceTree = "<group>"; };
+		2EFAA4942829091F0095B9E4 /* HardSkillsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardSkillsModel.swift; sourceTree = "<group>"; };
+		2EFAA496282909330095B9E4 /* SoftSkillsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftSkillsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,17 +76,64 @@
 		2EE78DC12823D3D90045927A /* Homework-3 */ = {
 			isa = PBXGroup;
 			children = (
-				2EE78DC22823D3D90045927A /* AppDelegate.swift */,
-				2EE78DC42823D3D90045927A /* SceneDelegate.swift */,
-				2EE78DE1282428790045927A /* CustomUITabBarController.swift */,
+				2EE78DD02823D3DD0045927A /* Info.plist */,
+				2EFAA48E282903410095B9E4 /* App */,
+				2EFAA48D282903340095B9E4 /* Controllers */,
+				2EFAA48C282903290095B9E4 /* Model */,
+				2EFAA484282902CB0095B9E4 /* Design */,
+				2EE78DCD2823D3DD0045927A /* LaunchScreen.storyboard */,
+			);
+			path = "Homework-3";
+			sourceTree = "<group>";
+		};
+		2EFAA484282902CB0095B9E4 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				2EE78DCB2823D3DD0045927A /* Assets.xcassets */,
+				2EFAA485282902E30095B9E4 /* Colors.swift */,
+				2EFAA487282902F40095B9E4 /* AppFonts.swift */,
+				2EFAA489282902FB0095B9E4 /* Fonts */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		2EFAA489282902FB0095B9E4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2EFAA48A282903120095B9E4 /* Montserrat-Light.ttf */,
+				2EFAA48B2829031C0095B9E4 /* Montserrat-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2EFAA48C282903290095B9E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2EFAA492282909070095B9E4 /* AboutMeModel.swift */,
+				2EFAA4942829091F0095B9E4 /* HardSkillsModel.swift */,
+				2EFAA496282909330095B9E4 /* SoftSkillsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2EFAA48D282903340095B9E4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				2EE78DC62823D3D90045927A /* AboutMeViewController.swift */,
 				2EE78DE32824328D0045927A /* HardSkillsViewController.swift */,
 				2EE78DE5282432A20045927A /* SoftSkillsViewController.swift */,
-				2EE78DCB2823D3DD0045927A /* Assets.xcassets */,
-				2EE78DCD2823D3DD0045927A /* LaunchScreen.storyboard */,
-				2EE78DD02823D3DD0045927A /* Info.plist */,
+				2EE78DE1282428790045927A /* CustomUITabBarController.swift */,
 			);
-			path = "Homework-3";
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2EFAA48E282903410095B9E4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2EE78DC22823D3D90045927A /* AppDelegate.swift */,
+				2EE78DC42823D3D90045927A /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +200,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EFAA491282907310095B9E4 /* Montserrat-Bold.ttf in Resources */,
+				2EFAA4902829072C0095B9E4 /* Montserrat-Light.ttf in Resources */,
 				2EE78DCF2823D3DD0045927A /* LaunchScreen.storyboard in Resources */,
 				2EE78DCC2823D3DD0045927A /* Assets.xcassets in Resources */,
 			);
@@ -151,9 +214,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EFAA497282909330095B9E4 /* SoftSkillsModel.swift in Sources */,
 				2EE78DC72823D3D90045927A /* AboutMeViewController.swift in Sources */,
+				2EFAA493282909070095B9E4 /* AboutMeModel.swift in Sources */,
 				2EE78DC32823D3D90045927A /* AppDelegate.swift in Sources */,
 				2EE78DE2282428790045927A /* CustomUITabBarController.swift in Sources */,
+				2EFAA486282902E30095B9E4 /* Colors.swift in Sources */,
+				2EFAA488282902F40095B9E4 /* AppFonts.swift in Sources */,
+				2EFAA4952829091F0095B9E4 /* HardSkillsModel.swift in Sources */,
 				2EE78DE42824328D0045927A /* HardSkillsViewController.swift in Sources */,
 				2EE78DE6282432A20045927A /* SoftSkillsViewController.swift in Sources */,
 				2EE78DC52823D3D90045927A /* SceneDelegate.swift in Sources */,
