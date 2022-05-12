@@ -12,8 +12,8 @@ class CustomUITabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationTabBar()
-        configureTabBarControllerColor()
+        self.configureNavigationTabBar()
+        self.configureTabBarControllerColor()
     }
 }
 

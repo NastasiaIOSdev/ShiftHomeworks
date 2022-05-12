@@ -24,10 +24,10 @@ extension AboutMeModel {
     ) {
         self.header = "Обо мне :"
         self.avatar = UIImage(named: "myAvatar")
-        self.name = "Имя: Анастасия"
-        self.surname = "Фамилия: Ларина"
-        self.age = "Возраст: 37 лет"
-        self.education = "Образование: ЧелГУ\n- Магистр: Финансы и кредит\n- Бакалавр: Прикладная информатика, студент"
-        self.city = "Город: Челябинск"
+        self.name = "✓  Имя: Анастасия"
+        self.surname = "✓  Фамилия: Ларина"
+        self.age = "✓  Возраст: 37 лет"
+        self.education = "✓  Образование: ЧелГУ\n- Магистр: Финансы и кредит\n- Бакалавр: Прикладная информатика, студент"
+        self.city = "✓  Город: Челябинск"
     }
 }

@@ -23,6 +23,7 @@ class AboutMeViewController: UIViewController {
         static let topNameOffset = 10
         static let topLineOffset = 7
         static let horisontalLeadingOffset = 30
+        static let bottomCityLabelOffset = 7
     }
     
     // MARK: - Properties
@@ -43,6 +44,10 @@ class AboutMeViewController: UIViewController {
         self.setupAboutMeView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupAnimationUI()
+    }
+    
     // MARK: - SetupData
     
     func setupAboutMeData(_ viewModel: AboutMeModel) {
@@ -61,7 +66,7 @@ private extension AboutMeViewController {
         self.setupBackGroundView()
         self.setupCommonData()
         self.setupLayout()
-        self.setupAnimation()
+        self.setupAnimationUI()
     }
     
     func setupBackGroundView() {
@@ -73,26 +78,32 @@ private extension AboutMeViewController {
     func setupCommonData() {
         self.headerLabel.numberOfLines = 1
         self.headerLabel.font = AppFonts.bold32.font
+        self.headerLabel.textAlignment = .center
         self.headerLabel.textColor = .black
         
         self.nameLabel.numberOfLines = 1
         self.nameLabel.font = AppFonts.light16.font
+        self.nameLabel.textAlignment = .left
         self.nameLabel.textColor = .black
         
         self.surnameLabel.numberOfLines = 1
         self.surnameLabel.font = AppFonts.light16.font
+        self.surnameLabel.textAlignment = .left
         self.surnameLabel.textColor = .black
         
         self.ageLabel.numberOfLines = 1
         self.ageLabel.font = AppFonts.light16.font
+        self.ageLabel.textAlignment = .left
         self.ageLabel.textColor = .black
         
         self.educationLabel.numberOfLines = 0
         self.educationLabel.font = AppFonts.light16.font
+        self.educationLabel.textAlignment = .left
         self.educationLabel.textColor = .black
         
         self.cityLabel.numberOfLines = 1
         self.cityLabel.font = AppFonts.light16.font
+        self.cityLabel.textAlignment = .left
         self.cityLabel.textColor = .black
     }
     
@@ -102,6 +113,7 @@ private extension AboutMeViewController {
         self.view.addSubview(self.headerLabel)
         self.headerLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constraints.topHeaderOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
             make.centerX.equalToSuperview()
         }
         
@@ -116,59 +128,60 @@ private extension AboutMeViewController {
         self.view.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
             make.top.equalTo(self.avatarImage.snp.bottom).offset(Constraints.topNameOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(surnameLabel)
         self.surnameLabel.snp.makeConstraints { make in
             make.top.equalTo(self.nameLabel.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(ageLabel)
         self.ageLabel.snp.makeConstraints { make in
             make.top.equalTo(self.surnameLabel.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(educationLabel)
         self.educationLabel.snp.makeConstraints { make in
             make.top.equalTo(self.ageLabel.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.trailing.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(cityLabel)
         self.cityLabel.snp.makeConstraints { make in
             make.top.equalTo(self.educationLabel.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
+            make.bottom.equalTo(self.cityLabel.snp.bottom).offset(Constraints.bottomCityLabelOffset)
         }
     }
     
     // MARK: - Animation
     
-    func setupAnimation() {
-        animateImage()
-        animateLabels()
+    func setupAnimationUI() {
+        self.animateUIAvatarImage()
+        self.animateUIAllSkillsLabels()
     }
     
-    func animateImage() {
-       let animation = CABasicAnimation(keyPath: "opacity")
+    func animateUIAvatarImage() {
+        let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = 0
         animation.toValue = 1
         animation.duration = 1
         animation.beginTime = CACurrentMediaTime() + 1
         animation.fillMode = .backwards
         
-        avatarImage.layer.add(animation, forKey: nil)
+        self.avatarImage.layer.add(animation, forKey: nil)
     }
     
-    func animateLabels() {
+    func animateUIAllSkillsLabels() {
         let offset = view.bounds.width
-        nameLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
-        surnameLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
-        ageLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
-        educationLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
-        cityLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.nameLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.surnameLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.ageLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.educationLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.cityLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
         
         UIView.animate(withDuration: 1, delay: 0.5, options: .curveEaseOut) {
             self.nameLabel.transform = .identity

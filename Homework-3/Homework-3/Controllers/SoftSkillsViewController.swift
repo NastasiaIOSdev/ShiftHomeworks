@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SoftSkillsViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class SoftSkillsViewController: UIViewController {
         static let topSkillOffset = 30
         static let topLineOffset = 7
         static let horisontalLeadingOffset = 30
+        static let bottomImageOffset = 7
     }
     
     // MARK: - Properties
@@ -41,6 +43,10 @@ class SoftSkillsViewController: UIViewController {
         self.setupSoftSkillsView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupAnimationUI()
+    }
+    
     // MARK: - SetupData
     
     func setupSoftSkillsData(_ viewModel: SoftSkillsModel) {
@@ -59,7 +65,7 @@ private extension SoftSkillsViewController {
         self.setupBackGroundView()
         self.setupCommonData()
         self.setupLayout()
-        self.setupAnimation()
+        self.setupAnimationUI()
     }
     
     func setupBackGroundView() {
@@ -71,26 +77,32 @@ private extension SoftSkillsViewController {
     func setupCommonData() {
         self.headerLabel.numberOfLines = 1
         self.headerLabel.font = AppFonts.bold32.font
+        self.headerLabel.textAlignment = .center
         self.headerLabel.textColor = .black
         
         self.skill1Label.numberOfLines = 1
         self.skill1Label.font = AppFonts.light16.font
+        self.skill1Label.textAlignment = .left
         self.skill1Label.textColor = .black
         
         self.skill2Label.numberOfLines = 1
         self.skill2Label.font = AppFonts.light16.font
+        self.skill3Label.textAlignment = .left
         self.skill2Label.textColor = .black
         
         self.skill3Label.numberOfLines = 1
         self.skill3Label.font = AppFonts.light16.font
+        self.skill3Label.textAlignment = .left
         self.skill3Label.textColor = .black
         
         self.skill4Label.numberOfLines = 1
         self.skill4Label.font = AppFonts.light16.font
+        self.skill4Label.textAlignment = .left
         self.skill4Label.textColor = .black
         
         self.hobbyLabel.numberOfLines = 0
         self.hobbyLabel.font = AppFonts.light16.font
+        self.hobbyLabel.textAlignment = .left
         self.hobbyLabel.textColor = .black
     }
     
@@ -100,39 +112,38 @@ private extension SoftSkillsViewController {
         self.view.addSubview(self.headerLabel)
         self.headerLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constraints.topHeaderOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
             make.centerX.equalToSuperview()
         }
         
         self.view.addSubview(self.skill1Label)
         self.skill1Label.snp.makeConstraints { make in
             make.top.equalTo(self.headerLabel.snp.bottom).offset(Constraints.topSkillOffset)
-            make.leading.equalToSuperview()
-                .offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(self.skill2Label)
         self.skill2Label.snp.makeConstraints { make in
             make.top.equalTo(self.skill1Label.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(self.skill3Label)
         self.skill3Label.snp.makeConstraints { make in
             make.top.equalTo(self.skill2Label.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(self.skill4Label)
         self.skill4Label.snp.makeConstraints { make in
             make.top.equalTo(self.skill3Label.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.trailing.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(self.hobbyLabel)
         self.hobbyLabel.snp.makeConstraints { make in
             make.top.equalTo(self.skill4Label.snp.bottom).offset(Constraints.topLineOffset)
-            make.leading.equalToSuperview().offset(Constraints.horisontalLeadingOffset)
-            make.trailing.equalTo(self.view.safeAreaInsets)
+            make.leading.trailing.equalToSuperview().inset(Constraints.horisontalLeadingOffset)
         }
         
         self.view.addSubview(self.avatarImage)
@@ -141,37 +152,38 @@ private extension SoftSkillsViewController {
             make.centerX.equalToSuperview()
             make.height.equalTo(Constants.imageHeight)
             make.width.equalTo(Constants.imageWidth)
+            make.bottom.equalTo(self.avatarImage.snp.bottom).offset(Constraints.bottomImageOffset)
         }
     }
     
     // MARK: - Animation
     
-    func setupAnimation() {
-        self.animateImage()
-        self.animateLabels()
+    func setupAnimationUI() {
+        self.animateUIAvatarImage()
+        self.animateUIAllSkillsLabel()
     }
     
-    func animateImage() {
+    func animateUIAvatarImage() {
         self.avatarImage.transform = CGAffineTransform(translationX: 0, y: view.bounds.height/2)
         UIView.animate(
-                       withDuration: 1,
-                       delay: 1,
-                       usingSpringWithDamping: 0.5,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut)
+            withDuration: 1,
+            delay: 1,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0,
+            options: .curveEaseOut)
         {
             self.avatarImage.transform = .identity
         }
-
+        
     }
     
-    func animateLabels() {
+    func animateUIAllSkillsLabel() {
         let offset = view.bounds.width
-        skill1Label.transform = CGAffineTransform(translationX: -offset, y: 0)
-        skill2Label.transform = CGAffineTransform(translationX: -offset, y: 0)
-        skill3Label.transform = CGAffineTransform(translationX: -offset, y: 0)
-        skill4Label.transform = CGAffineTransform(translationX: -offset, y: 0)
-        hobbyLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.skill1Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.skill2Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.skill3Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.skill4Label.transform = CGAffineTransform(translationX: -offset, y: 0)
+        self.hobbyLabel.transform = CGAffineTransform(translationX: -offset, y: 0)
         
         UIView.animate(withDuration: 1, delay: 0.5, options: .curveEaseOut) {
             self.skill1Label.transform = .identity
