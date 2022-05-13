@@ -45,6 +45,7 @@ class AboutMeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.setupAnimationUI()
     }
     
