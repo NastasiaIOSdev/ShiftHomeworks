@@ -44,7 +44,7 @@ class DetailViewController: UIViewController {
     
     @objc
     func buttonTapped(_sender: Any) {
-        let vc = DetailViewController(nibName: nil, bundle: nil)
+        let vc = ModalViewController(nibName: nil, bundle: nil)
         self.present(vc, animated: true)
     }
 }
