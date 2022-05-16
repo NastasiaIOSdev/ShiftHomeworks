@@ -40,6 +40,11 @@ extension CollectionViewController: UICollectionViewDataSource {
 }
 
 extension CollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        detailVC.cell = itemCellArray[indexPath.row]
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
     
 }
 
