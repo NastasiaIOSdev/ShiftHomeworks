@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class ModalViewController: UIViewController {
-
+    
     private enum Constants {
         static let heightButton = 50
         static let widthButton = 150
@@ -34,8 +35,8 @@ class ModalViewController: UIViewController {
 }
 private extension ModalViewController {
     func setupUI() {
-        setuoCommonData()
-        setupLayout()
+        self.setuoCommonData()
+        self.setupLayout()
     }
     
     func setuoCommonData() {

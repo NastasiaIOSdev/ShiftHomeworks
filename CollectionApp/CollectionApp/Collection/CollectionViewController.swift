@@ -48,7 +48,7 @@ extension CollectionViewController: UICollectionViewDelegate {
     
 }
 
-extension CollectionViewController {
+private extension CollectionViewController {
     static func setupLayout() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -86,6 +86,11 @@ extension CollectionViewController {
                 heightDimension: .fractionalHeight(1)
             )
         )
+        fourItems.contentInsets = NSDirectionalEdgeInsets(
+            top: 2,
+            leading: 2,
+            bottom: 2,
+            trailing: 2)
         
         let fourthGorizontalGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(

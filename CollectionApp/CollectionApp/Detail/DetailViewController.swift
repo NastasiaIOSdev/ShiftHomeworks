@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 
 class DetailViewController: UIViewController {
-
+    
     var cell: Cell?
     
     private enum Constants {
@@ -32,14 +33,6 @@ class DetailViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.tintColor = .black
         self.setupUI()
-        self.setupCellData(Cell())
-    }
-    
-    func setupCellData(_ viewModel: Cell) {
-        self.nameLabel.text = cell?.name
-        if let image = cell?.image {
-            self.imageView.image = UIImage(named: image)
-        }
     }
     
     @objc
@@ -51,8 +44,16 @@ class DetailViewController: UIViewController {
 
 private extension DetailViewController {
     func setupUI() {
-        setupCommonData()
-        setupLayout()
+        self.setupCommonData()
+        self.setupLayout()
+        self.setupCellData(Cell())
+    }
+    
+    func setupCellData(_ viewModel: Cell) {
+        self.nameLabel.text = cell?.name
+        if let image = cell?.image {
+            self.imageView.image = UIImage(named: image)
+        }
     }
     
     func setupCommonData() {
