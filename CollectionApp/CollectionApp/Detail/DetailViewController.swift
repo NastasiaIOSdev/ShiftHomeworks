@@ -10,6 +10,8 @@ import SnapKit
 
 class DetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var cell: Cell?
     
     private enum Constants {
@@ -22,11 +24,19 @@ class DetailViewController: UIViewController {
         static let horizontalLblImageInset = 30
         static let topImageOffset = 50
         static let topButtonOffset = 30
+        static let bottomImageOffset = -100
+    }
+    
+    private enum Texts {
+        static let buttonDetailText = "Detail"
+        static let buttonFontName = "Avenir Next"
     }
     
     private var nameLabel = UILabel()
     private var imageView = UIImageView()
     private let button = UIButton()
+    
+    // MARK: - Life cyclea
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,29 +73,31 @@ private extension DetailViewController {
         
         self.nameLabel.textAlignment = .left
         self.nameLabel.numberOfLines = 1
-        self.nameLabel.font = UIFont(name: "Avenir Next", size: 20)
+        self.nameLabel.font = UIFont(name: Texts.buttonFontName, size: 20)
         self.nameLabel.textColor = .black
         self.nameLabel.adjustsFontSizeToFitWidth = true
         
-        self.button.setTitle("Detail", for: .normal)
+        self.button.setTitle(Texts.buttonDetailText, for: .normal)
         self.button.tintColor = .white
         self.button.backgroundColor = .black
         self.button.layer.cornerRadius = Constants.cornerRadius
         self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
+    // MARK - setupLayout
+    
     func setupLayout() {
         self.view.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview().inset(30)
+            make.leading.trailing.equalToSuperview().inset(Constrints.horizontalLblImageInset)
         }
         
         self.view.addSubview(self.imageView)
         self.imageView.snp.makeConstraints { make in
-            make.top.equalTo(self.nameLabel).offset(50)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-100)
+            make.top.equalTo(self.nameLabel).offset(Constrints.topImageOffset)
+            make.leading.trailing.equalToSuperview().inset(Constrints.horizontalLblImageInset)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(Constrints.bottomImageOffset)
         }
         
         self.view.addSubview(self.button)

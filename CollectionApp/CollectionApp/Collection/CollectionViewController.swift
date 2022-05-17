@@ -9,20 +9,38 @@ import UIKit
 
 class CollectionViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private var cells: [Cell] = itemCellArray
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewController.setupLayout())
+    
+    // MARK: - Life cyclea
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(collectionView)
+        self.setupCollectionCommonSettings()
+        self.setupNavigationItem()
+       
+    }
+}
+
+private extension CollectionViewController {
+    
+    func setupCollectionCommonSettings() {
         self.collectionView.frame = view.bounds
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
+    func setupNavigationItem() {
         self.navigationController?.navigationBar.topItem?.title = "Business topics"
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
+
+    // MARK - Collection DataSource
 
 extension CollectionViewController: UICollectionViewDataSource {
     
@@ -39,6 +57,8 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
 }
 
+    // MARK - Collection Delegate
+
 extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
@@ -47,6 +67,8 @@ extension CollectionViewController: UICollectionViewDelegate {
     }
     
 }
+
+// MARK - setupLayout
 
 private extension CollectionViewController {
     static func setupLayout() -> UICollectionViewCompositionalLayout {

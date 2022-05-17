@@ -10,7 +10,10 @@ import SnapKit
 
 class CollectionViewCell: UICollectionViewCell {
    
+    // MARK: - Properties
+    
     static let identifier = "cell"
+    
     var cell: Cell? {
         didSet {
             nameLabel.text = cell?.name ?? ""
@@ -24,6 +27,8 @@ class CollectionViewCell: UICollectionViewCell {
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
     
+    // MARK: - init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupUI()
@@ -35,6 +40,8 @@ class CollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - LayoutSubviews
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -63,6 +70,8 @@ private extension CollectionViewCell {
         self.nameLabel.adjustsFontSizeToFitWidth = true
         self.nameLabel.minimumScaleFactor = 0.5
     }
+    
+    // MARK - setupLayout
     
     func setupLayout() {
         self.addSubview(self.cellView)

@@ -10,6 +10,8 @@ import SnapKit
 
 class ModalViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private enum Constants {
         static let heightButton = 50
         static let widthButton = 150
@@ -20,13 +22,20 @@ class ModalViewController: UIViewController {
         static let topButtonOffset = 50
     }
     
+    private enum Texts {
+        static let buttonText = "Dismiss"
+    }
+    
     private let dismissButton = UIButton()
+    
+    // MARK: - Life cyclea
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.setupUI()
     }
+    
     @objc
     func buttonTapped(_ sender: Any) {
         self.dismiss(animated: true)
@@ -40,12 +49,14 @@ private extension ModalViewController {
     }
     
     func setuoCommonData() {
-        self.dismissButton.setTitle("Dismiss", for: .normal)
+        self.dismissButton.setTitle(Texts.buttonText, for: .normal)
         self.dismissButton.tintColor = .white
         self.dismissButton.backgroundColor = .black
         self.dismissButton.layer.cornerRadius = Constants.cornerRadius
         self.dismissButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
+    
+    // MARK - setupLayout
     
     func setupLayout() {
         self.view.addSubview(self.dismissButton)
