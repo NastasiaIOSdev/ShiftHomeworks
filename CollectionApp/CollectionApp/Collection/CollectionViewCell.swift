@@ -35,9 +35,9 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(cellView)
-        contentView.addSubview(imageView)
-        contentView.addSubview(nameLabel)
+        self.contentView.addSubview(cellView)
+        self.contentView.addSubview(imageView)
+        self.contentView.addSubview(nameLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -54,8 +54,8 @@ class CollectionViewCell: UICollectionViewCell {
 
 private extension CollectionViewCell {
     func setupUI() {
-        setupCommonData()
-        setupLayout()
+        self.setupCommonData()
+        self.setupLayout()
     }
     
     func setupCommonData() {

@@ -12,6 +12,8 @@
 		2ECCF56A2832BFCB0081D3A6 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCF5692832BFCB0081D3A6 /* CollectionViewCell.swift */; };
 		2ECCF56F2832DB3E0081D3A6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCF56E2832DB3E0081D3A6 /* DetailViewController.swift */; };
 		2ECCF5712832DB4D0081D3A6 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECCF5702832DB4D0081D3A6 /* ModalViewController.swift */; };
+		2EDFA056283561F2004E9016 /* CollectionAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDFA055283561F1004E9016 /* CollectionAssemly.swift */; };
+		2EDFA05828356211004E9016 /* DetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDFA05728356211004E9016 /* DetailAssembly.swift */; };
 		2EEA1BF0282EB6AE00776D3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA1BEF282EB6AE00776D3A /* AppDelegate.swift */; };
 		2EEA1BF2282EB6AE00776D3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA1BF1282EB6AE00776D3A /* SceneDelegate.swift */; };
 		2EEA1BF4282EB6AE00776D3A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEA1BF3282EB6AE00776D3A /* CollectionViewController.swift */; };
@@ -26,6 +28,8 @@
 		2ECCF5692832BFCB0081D3A6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2ECCF56E2832DB3E0081D3A6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		2ECCF5702832DB4D0081D3A6 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		2EDFA055283561F1004E9016 /* CollectionAssemly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAssemly.swift; sourceTree = "<group>"; };
+		2EDFA05728356211004E9016 /* DetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembly.swift; sourceTree = "<group>"; };
 		2EEA1BEC282EB6AE00776D3A /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EEA1BEF282EB6AE00776D3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EEA1BF1282EB6AE00776D3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,20 +62,21 @@
 		2ECCF5682832BF910081D3A6 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				2EDFA055283561F1004E9016 /* CollectionAssemly.swift */,
 				2EEA1BF3282EB6AE00776D3A /* CollectionViewController.swift */,
 				2ECCF5692832BFCB0081D3A6 /* CollectionViewCell.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
 		};
-		2ECCF56B2832C0470081D3A6 /* New Group */ = {
+		2ECCF56B2832C0470081D3A6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				2EEA1BF1282EB6AE00776D3A /* SceneDelegate.swift */,
 				2EEA1BEF282EB6AE00776D3A /* AppDelegate.swift */,
 				2EEA1BFA282EB6B100776D3A /* LaunchScreen.storyboard */,
 			);
-			path = "New Group";
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		2ECCF56C2832C05A0081D3A6 /* Design */ = {
@@ -85,6 +90,7 @@
 		2ECCF56D2832C0730081D3A6 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				2EDFA05728356211004E9016 /* DetailAssembly.swift */,
 				2ECCF56E2832DB3E0081D3A6 /* DetailViewController.swift */,
 				2ECCF5702832DB4D0081D3A6 /* ModalViewController.swift */,
 			);
@@ -111,11 +117,11 @@
 			isa = PBXGroup;
 			children = (
 				2EEA1BFD282EB6B100776D3A /* Info.plist */,
-				2ECCF56B2832C0470081D3A6 /* New Group */,
-				2ECCF5652832BF6F0081D3A6 /* CellData.swift */,
+				2ECCF56B2832C0470081D3A6 /* SupportingFiles */,
 				2ECCF5682832BF910081D3A6 /* Collection */,
 				2ECCF56D2832C0730081D3A6 /* Detail */,
 				2ECCF5672832BF7E0081D3A6 /* Model */,
+				2ECCF5652832BF6F0081D3A6 /* CellData.swift */,
 				2ECCF56C2832C05A0081D3A6 /* Design */,
 			);
 			path = CollectionApp;
@@ -199,11 +205,13 @@
 			files = (
 				2ECCF5712832DB4D0081D3A6 /* ModalViewController.swift in Sources */,
 				2EEA1BF4282EB6AE00776D3A /* CollectionViewController.swift in Sources */,
+				2EDFA05828356211004E9016 /* DetailAssembly.swift in Sources */,
 				2EEA1BF0282EB6AE00776D3A /* AppDelegate.swift in Sources */,
 				2ECCF56A2832BFCB0081D3A6 /* CollectionViewCell.swift in Sources */,
 				2EEA1BF2282EB6AE00776D3A /* SceneDelegate.swift in Sources */,
 				2ECCF5662832BF6F0081D3A6 /* CellData.swift in Sources */,
 				2ECCF5642832BF2A0081D3A6 /* Cell.swift in Sources */,
+				2EDFA056283561F2004E9016 /* CollectionAssemly.swift in Sources */,
 				2ECCF56F2832DB3E0081D3A6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
