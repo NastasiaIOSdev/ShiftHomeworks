@@ -10,7 +10,7 @@ import SnapKit
 
 class DetailViewController: UIViewController {
     
-    // MARK: - Properties
+// MARK: - Properties
     
     var cell: Cell?
     
@@ -36,7 +36,7 @@ class DetailViewController: UIViewController {
     private var imageView = UIImageView()
     private let button = UIButton()
     
-    // MARK: - Life cyclea
+// MARK: - Life cyclea
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +84,7 @@ private extension DetailViewController {
         self.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    // MARK - setupLayout
+// MARK - setupLayout
     
     func setupLayout() {
         self.view.addSubview(self.nameLabel)

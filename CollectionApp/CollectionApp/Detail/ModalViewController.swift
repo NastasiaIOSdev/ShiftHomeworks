@@ -10,7 +10,7 @@ import SnapKit
 
 class ModalViewController: UIViewController {
     
-    // MARK: - Properties
+// MARK: - Properties
     
     private enum Constants {
         static let heightButton = 50
@@ -28,7 +28,7 @@ class ModalViewController: UIViewController {
     
     private let dismissButton = UIButton()
     
-    // MARK: - Life cyclea
+// MARK: - Life cyclea
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ private extension ModalViewController {
         self.dismissButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    // MARK - setupLayout
+// MARK - setupLayout
     
     func setupLayout() {
         self.view.addSubview(self.dismissButton)

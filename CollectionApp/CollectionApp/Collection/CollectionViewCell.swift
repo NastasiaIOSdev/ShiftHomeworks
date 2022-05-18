@@ -9,10 +9,14 @@ import UIKit
 import SnapKit
 
 class CollectionViewCell: UICollectionViewCell {
-   
+    
     // MARK: - Properties
     
     static let identifier = "cell"
+    
+    private enum Texts {
+        static let buttonFontName = "Avenir Next"
+    }
     
     var cell: Cell? {
         didSet {
@@ -31,10 +35,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupUI()
-        self.contentView.addSubview(cellView)
-        self.contentView.addSubview(imageView)
-        self.contentView.addSubview(nameLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -46,9 +46,6 @@ class CollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.setupUI()
-        self.cellView.frame = contentView.bounds
-        self.imageView.frame = contentView.bounds
-        self.nameLabel.frame = contentView.bounds
     }
 }
 
@@ -64,7 +61,7 @@ private extension CollectionViewCell {
         
         self.nameLabel.textAlignment = .center
         self.nameLabel.numberOfLines = 1
-        self.nameLabel.font = UIFont(name: "Avenir Next", size: 12)
+        self.nameLabel.font = UIFont(name: Texts.buttonFontName, size: 12)
         self.nameLabel.textColor = .black
         self.nameLabel.backgroundColor = .systemGray5
         self.nameLabel.adjustsFontSizeToFitWidth = true

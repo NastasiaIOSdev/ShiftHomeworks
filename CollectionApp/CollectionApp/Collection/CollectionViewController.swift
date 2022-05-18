@@ -9,19 +9,24 @@ import UIKit
 
 class CollectionViewController: UIViewController {
     
-    // MARK: - Properties
+    private enum Texts {
+        static let cellIdentifier = "cell"
+        static let navigationBarTopItemTitle = "Business topics"
+    }
+
+// MARK: - Properties
     
     private var cells: [Cell] = itemCellArray
-    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: CollectionViewController.setupLayout())
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.setupLayout())
     
-    // MARK: - Life cyclea
+// MARK: - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(collectionView)
         self.setupCollectionCommonSettings()
         self.setupNavigationItem()
-       
+        
     }
 }
 
@@ -29,18 +34,19 @@ private extension CollectionViewController {
     
     func setupCollectionCommonSettings() {
         self.collectionView.frame = view.bounds
+        self.collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: Texts.cellIdentifier)
     }
     
     func setupNavigationItem() {
-        self.navigationController?.navigationBar.topItem?.title = "Business topics"
+        self.navigationController?.navigationBar.topItem?.title = Texts.navigationBarTopItemTitle
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
-    // MARK - Collection DataSource
+// MARK: - Collection DataSource
 
 extension CollectionViewController: UICollectionViewDataSource {
     
@@ -49,15 +55,15 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CollectionViewCell {
+        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: Texts.cellIdentifier, for: indexPath) as? CollectionViewCell {
             itemCell.cell = itemCellArray[indexPath.row]
             return itemCell
         }
         return UICollectionViewCell()
     }
 }
-
-    // MARK - Collection Delegate
+    
+// MARK: - Collection Delegate
 
 extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -68,10 +74,10 @@ extension CollectionViewController: UICollectionViewDelegate {
     
 }
 
-// MARK - setupLayout
+// MARK: - setupLayout
 
 private extension CollectionViewController {
-    static func setupLayout() -> UICollectionViewCompositionalLayout {
+    func setupLayout() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(2/3),
