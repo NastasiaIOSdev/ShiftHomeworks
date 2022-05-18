@@ -6,43 +6,56 @@
 //
 
 import UIKit
+import SnapKit
 
 class CollectionViewController: UIViewController {
     
     private enum Texts {
-        static let cellIdentifier = "cell"
         static let navigationBarTopItemTitle = "Business topics"
+    }
+    
+    private enum Constants {
+        static let itemsPerRow: CGFloat = 2
+        static let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 
 // MARK: - Properties
     
     private var cells: [Cell] = itemCellArray
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.setupLayout())
+    fileprivate let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
+        return collectionView
+    }()
     
 // MARK: - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(collectionView)
-        self.setupCollectionCommonSettings()
-        self.setupNavigationItem()
-        
+        self.setupUI()
     }
 }
 
 private extension CollectionViewController {
-    
-    func setupCollectionCommonSettings() {
-        self.collectionView.frame = view.bounds
-        self.collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    func setupUI() {
+        self.view.addSubview(collectionView)
+        self.setupNavigationItem()
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: Texts.cellIdentifier)
+        self.setupCollectionLayout()
     }
     
     func setupNavigationItem() {
         self.navigationController?.navigationBar.topItem?.title = Texts.navigationBarTopItemTitle
         self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func setupCollectionLayout() {
+        self.view.addSubview(collectionView)
+        self.collectionView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
     }
 }
 
@@ -55,7 +68,7 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: Texts.cellIdentifier, for: indexPath) as? CollectionViewCell {
+        if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as? CollectionViewCell {
             itemCell.cell = itemCellArray[indexPath.row]
             return itemCell
         }
@@ -71,113 +84,19 @@ extension CollectionViewController: UICollectionViewDelegate {
         detailVC.cell = itemCellArray[indexPath.row]
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
-    
 }
 
-// MARK: - setupLayout
+// MARK: - CollectionViewFlowLayout
 
-private extension CollectionViewController {
-    func setupLayout() -> UICollectionViewCompositionalLayout {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(2/3),
-                heightDimension: .fractionalHeight(1))
-        )
+extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = Constants.sectionInsets.left * (Constants.itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widtherItem = availableWidth / Constants.itemsPerRow
         
-        item.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 2,
-            bottom: 2,
-            trailing: 2)
-        
-        let verticalStackItem = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.5)))
-        
-        verticalStackItem.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 2,
-            bottom: 2,
-            trailing: 2)
-        
-        let verticalStackGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1/3),
-                heightDimension: .fractionalHeight(1)),
-            subitem: verticalStackItem,
-            count: 2)
-        
-        let fourItems = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)
-            )
-        )
-        fourItems.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 2,
-            bottom: 2,
-            trailing: 2)
-        
-        let fourthGorizontalGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(0.3)
-            ),
-            subitem: fourItems,
-            count: 4
-        )
-        let horizontalGroup = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(0.7)
-            ),
-            subitems: [
-                item,
-                verticalStackGroup
-            ])
-        
-        horizontalGroup.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 2,
-            bottom: 2,
-            trailing: 2)
-        
-        let horizontalGroup2 = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(0.7)
-            ),
-            subitems: [
-                verticalStackGroup,
-                item
-            ])
-        
-        horizontalGroup2.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 2,
-            bottom: 2,
-            trailing: 2)
-        
-        let verticalGroup = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
-            ),
-            subitems: [
-                horizontalGroup,
-                fourthGorizontalGroup,
-                horizontalGroup2
-            ])
-        verticalGroup.contentInsets = NSDirectionalEdgeInsets(
-            top: 2,
-            leading: 2,
-            bottom: 2,
-            trailing: 2)
-        
-        let section = NSCollectionLayoutSection(group: verticalGroup)
-        
-        return UICollectionViewCompositionalLayout(section: section)
+        return CGSize(width: widtherItem, height: widtherItem)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return Constants.sectionInsets
     }
 }

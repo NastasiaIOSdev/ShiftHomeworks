@@ -12,7 +12,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "cell"
+    static let identifier = "NewCollectionViewCell"
     
     private enum Texts {
         static let buttonFontName = "Avenir Next"
@@ -35,6 +35,9 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.addSubview(cellView)
+        contentView.addSubview(imageView)
+        contentView.addSubview(nameLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -56,12 +59,16 @@ private extension CollectionViewCell {
     }
     
     func setupCommonData() {
+        self.cellView.translatesAutoresizingMaskIntoConstraints = false
+        
         self.imageView.clipsToBounds = true
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.contentMode = .scaleAspectFill
         
         self.nameLabel.textAlignment = .center
         self.nameLabel.numberOfLines = 1
         self.nameLabel.font = UIFont(name: Texts.buttonFontName, size: 12)
+        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.nameLabel.textColor = .black
         self.nameLabel.backgroundColor = .systemGray5
         self.nameLabel.adjustsFontSizeToFitWidth = true
