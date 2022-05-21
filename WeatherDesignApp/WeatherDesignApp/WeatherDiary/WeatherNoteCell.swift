@@ -7,8 +7,11 @@
 
 import UIKit
 import SnapKit
+import XCTest
 
-class WeatherNoteCell: UITableViewCell {
+final class WeatherNoteCell: UITableViewCell {
+    
+    // MARK: - Properties
     
     static let id = String(describing: WeatherNoteCell.self)
     
@@ -36,7 +39,7 @@ class WeatherNoteCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
-        
+    
     private let degreeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -50,10 +53,10 @@ class WeatherNoteCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.setupLayout()
+        self.setupUI()
     }
     
-    //@available(*, unavailable)
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -69,24 +72,42 @@ extension WeatherNoteCell {
 }
 
 private extension WeatherNoteCell {
-    func setupLayout() {
+    
+    func setupUI() {
+        self.setupLayout()
+        self.setupCommonData()
+    }
+    
+    func setupCommonData() {
         self.backgroundColor = .clear
         self.selectionStyle = .none
-        
+    }
+    func setupLayout() {
+        self.setupCityLabelLayout()
+        self.setupDateLabelLayout()
+        self.setupWeatherImageViewLayout()
+        self.setupDegreeLAbelLayout()
+    }
+    
+    func setupCityLabelLayout() {
         self.contentView.addSubview(self.cityLabel)
         self.cityLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Constraints.topBottonInset)
             make.leading.equalToSuperview().offset(Constraints.leadingTrailingCellInset)
             make.centerY.equalToSuperview().priority(.high)
         }
-        
+    }
+    
+    func setupDateLabelLayout() {
         self.contentView.addSubview(self.dateLabel)
         self.dateLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Constraints.topBottonInset)
             make.leading.equalTo(self.cityLabel.snp.trailing).offset(Constraints.horisontalOffset)
             make.centerY.equalToSuperview().priority(.high)
         }
-        
+    }
+    
+    func setupWeatherImageViewLayout() {
         self.contentView.addSubview(self.weatherImageView)
         self.weatherImageView.snp.makeConstraints { make in
             make.leading.equalTo(self.dateLabel.snp.trailing).offset(Constraints.horisontalOffset)
@@ -94,7 +115,9 @@ private extension WeatherNoteCell {
             make.top.bottom.equalToSuperview().inset(Constraints.topBottonInset)
             make.centerY.equalToSuperview().priority(.high)
         }
-
+    }
+    
+    func setupDegreeLAbelLayout() {
         self.degreeLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         self.contentView.addSubview(self.degreeLabel)
         self.degreeLabel.snp.makeConstraints { make in

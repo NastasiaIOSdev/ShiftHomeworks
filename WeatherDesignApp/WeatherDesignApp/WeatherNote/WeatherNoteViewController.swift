@@ -8,7 +8,9 @@
 import UIKit
 import SnapKit
 
-class WeatherNoteViewController: UIViewController {
+final class WeatherNoteViewController: UIViewController {
+    
+    // MARK: - Properties
     
     private enum Constraints {
         static let noteTextFieldNoteHotizontalInset = 30

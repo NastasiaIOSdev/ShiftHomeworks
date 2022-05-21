@@ -8,20 +8,20 @@
 import UIKit
 import SnapKit
 
-class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
+final class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
+    
+    // MARK: - Properties
     
     private let tableView = UITableView()
-
     private enum Constraints {
-       static let tableViewHorizontalOffset = 17
+        static let tableViewHorizontalOffset = 17
     }
     
-    // переопределяем инициализатор
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     
-    //@available(*, unavailable)
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,7 +34,7 @@ class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
     }
 }
 
-// MARK - Navigation
+    // MARK - Navigation
 
 private extension WeatherDiaryViewController {
     func routeToNewNote() {
@@ -57,9 +57,9 @@ private extension WeatherDiaryViewController {
         backgroundImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        setupNavBar()
-        configureTable()
-        setupTableViewLayout()
+        self.setupNavBar()
+        self.configureTable()
+        self.setupTableViewLayout()
     }
     
     func setupNavBar() {
@@ -76,7 +76,7 @@ private extension WeatherDiaryViewController {
         self.tableView.dataSource = self
         self.tableView.register(WeatherNoteCell.self, forCellReuseIdentifier: WeatherNoteCell.id)
     }
-   
+    
     
     func setupTableViewLayout() {
         self.view.addSubview(tableView)
@@ -84,7 +84,7 @@ private extension WeatherDiaryViewController {
         self.tableView.snp.makeConstraints { make in
             make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
-           }
+        }
     }
     
     @objc
@@ -93,7 +93,7 @@ private extension WeatherDiaryViewController {
     }
 }
 
-// MARK: - UITableView Delegate & DataSourse
+    // MARK: - UITableView Delegate & DataSourse
 
 extension WeatherDiaryViewController: UITableViewDataSource {
     

@@ -1,14 +1,19 @@
 //
-//  ViewController.swift
+//  CustomWeatherView.swift
 //  WeatherDesignApp
 //
 //  Created by Анастасия Ларина on 21.05.2022.
 //
 
 import UIKit
-import SnapKit
 
-class CurrentWeatherViewController: UIViewController {
+protocol ICustomWeatherView: AnyObject {
+    var buttonTappedHandler: (() -> ())? { get set }
+}
+
+final class CustomWeatherView: UIView, ICustomWeatherView {
+    
+    // MARK: - Properties
     
     private enum Constancts {
         static let searchHeight = 58
@@ -35,25 +40,23 @@ class CurrentWeatherViewController: UIViewController {
     private let searchTextField = UISearchTextField()
     private let weatherIconImageView = UIImageView()
     private let weatherWidgetView = WeatherWidgetView()
-   
+    
     private lazy var newNoteButton = WeatherButton(settings: .init(
         imageName: Constancts.weatherButtonImage,
         labelText: Texts.buttonImageText,
         font: .regular16,
-        tapHandler: { self.saveButtonTapped() }))
+        tapHandler: { self.buttonTappedHandler?() }))
+    
+    var buttonTappedHandler: (() -> ())?
     
     init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(frame: .zero)
+        self.setupUI()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setupUI()
-        self.displayWeatherData(CurrentWeatherViewModel())
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
@@ -62,33 +65,16 @@ class CurrentWeatherViewController: UIViewController {
     }
 }
 
-// MARK: - Navigation
-
-private extension CurrentWeatherViewController {
-    func saveButtonTapped() {
-        self.present(WeatherNoteViewControllerAssembly.build(), animated: true)
-    }
-}
-
-// MARK: - NetworkRequest
- 
-private extension CurrentWeatherViewController {
-    func requestCurrentWeather(for city: String?) {
-        print(city)
-    }
-}
-
-private extension CurrentWeatherViewController {
+private extension CustomWeatherView {
     func setupUI() {
         self.setupBackgroundView()
-        self.configureWidgetView()
         self.setupSearchField()
-        self.setAccessibilityIdentifier()
+        self.configureWidgetView()
         self.setupLayout()
-        
+        self.setAccessibilityIdentifier()
     }
     func setupBackgroundView() {
-        self.view.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
+        self.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
     }
     func setupSearchField() {
         self.searchTextField.backgroundColor = Colors.white.value
@@ -101,52 +87,65 @@ private extension CurrentWeatherViewController {
                         ]
         )
         let emptyView = UIView(frame: .init(x: .zero, y: .zero, width: Constraints.emptyViewWidth, height: .zero))
-        searchTextField.leftViewMode = .always
-        searchTextField.leftView = emptyView
-        searchTextField.rightViewMode = .always
-        searchTextField.rightView = emptyView
+        self.searchTextField.leftViewMode = .always
+        self.searchTextField.leftView = emptyView
+        self.searchTextField.rightViewMode = .always
+        self.searchTextField.rightView = emptyView
         
         self.weatherIconImageView.image = UIImage(named: "sunny")
     }
     
     func configureWidgetView() {
-        weatherWidgetView.backgroundColor = Colors.whiteBackground.value
-        weatherWidgetView.layer.cornerRadius = Constancts.cornerRadius
-        weatherWidgetView.layer.borderColor = UIColor.white.cgColor
-        weatherWidgetView.layer.borderWidth = 1
+        self.weatherWidgetView.backgroundColor = Colors.whiteBackground.value
+        self.weatherWidgetView.layer.cornerRadius = Constancts.cornerRadius
+        self.weatherWidgetView.layer.borderColor = UIColor.white.cgColor
+        self.weatherWidgetView.layer.borderWidth = 1
     }
     
     func setupLayout() {
-        self.view.addSubview(self.searchTextField)
+        self.setupSearchTFLayout()
+        self.setupWeatherImageViwLayout()
+        self.setupWeatherWidgetViewLayout()
+        self.setupButtonLayout()
+    }
+    
+    func setupSearchTFLayout() {
+        self.addSubview(self.searchTextField)
         self.searchTextField.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview().inset(Constraints.horisontalSearchOffset)
             make.height.equalTo(Constancts.searchHeight)
         }
-        
+    }
+    
+    func setupWeatherImageViwLayout() {
         self.weatherIconImageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         self.weatherIconImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        self.view.addSubview(self.weatherIconImageView)
+        self.addSubview(self.weatherIconImageView)
         self.weatherIconImageView.snp.makeConstraints { make in
             make.top.equalTo(self.searchTextField.snp.bottom).offset(Constraints.topImageViewOffset)
             make.centerX.equalToSuperview()
             make.width.equalTo(self.weatherIconImageView.snp.height)
         }
-        
-        self.view.addSubview(self.weatherWidgetView)
+    }
+    
+    func setupWeatherWidgetViewLayout() {
+        self.addSubview(self.weatherWidgetView)
         self.weatherWidgetView.snp.makeConstraints { make in
             make.top.equalTo(self.weatherIconImageView.snp.bottom).offset(Constraints.topImageViewOffset)
             make.leading.trailing.equalToSuperview().inset(Constraints.horisontalSearchOffset)
         }
-        
-        self.view.addSubview(self.newNoteButton)
-         self.newNoteButton.snp.makeConstraints { make in
-             make.top.equalTo(self.weatherWidgetView.snp.bottom).offset(Constraints.buttonTopOffset)
-             make.centerX.equalToSuperview()
-             make.leading.lessThanOrEqualToSuperview().offset(Constraints.buttonHorisontalOffset)
-             make.trailing.lessThanOrEqualToSuperview().offset(-Constraints.buttonHorisontalOffset).priority(.low)
-             make.bottom.lessThanOrEqualTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(Constraints.buttonBottomOffset)
-         }
+    }
+    
+    func setupButtonLayout() {
+        self.addSubview(self.newNoteButton)
+        self.newNoteButton.snp.makeConstraints { make in
+            make.top.equalTo(self.weatherWidgetView.snp.bottom).offset(Constraints.buttonTopOffset)
+            make.centerX.equalToSuperview()
+            make.leading.lessThanOrEqualToSuperview().offset(Constraints.buttonHorisontalOffset)
+            make.trailing.lessThanOrEqualToSuperview().offset(-Constraints.buttonHorisontalOffset).priority(.low)
+            make.bottom.lessThanOrEqualTo(self.safeAreaLayoutGuide.snp.bottom).offset(Constraints.buttonBottomOffset)
+        }
     }
     
     func setAccessibilityIdentifier() {
@@ -154,9 +153,9 @@ private extension CurrentWeatherViewController {
     }
 }
 
-extension CurrentWeatherViewController: UITextFieldDelegate {
+extension CustomWeatherView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.requestCurrentWeather(for: textField.text)
+        //self.requestCurrentWeather(for: textField.text)
         return true
     }
 }

@@ -17,6 +17,8 @@ class WeatherButton: UIView {
         let tapHandler: () -> Void
     }
     
+    // MARK: - Properties
+    
     private enum Constants {
         static let cornerRadius: CGFloat = 16
         static let borderWidth: CGFloat = 1

@@ -27,12 +27,12 @@ private extension WeatherDiaryViewModel {
     static func convertDate(_ date: Date) -> String {
         return DateConverter.showShortDay(date)
     }
-
+    
     static func convertTemperature(_ temperature: Int) -> String {
         let temperature = String(describing: Int.random(in: -20...30))
         return WeatherConverter.convertTemperature(temperature)
     }
-
+    
     static func randomCity() -> String {
         return ["Novosibirsk", "Tomsk", "St.Petersburg"].randomElement() ?? "Moscow"
     }

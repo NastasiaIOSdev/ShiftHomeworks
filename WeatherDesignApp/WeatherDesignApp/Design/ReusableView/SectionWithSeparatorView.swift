@@ -29,6 +29,8 @@ class SectionWithSeparatorView: UIView {
         }
     }
     
+    // MARK: - Properties
+    
     private enum Constants {
        static let imageViewVerticalOffset = 5
     }

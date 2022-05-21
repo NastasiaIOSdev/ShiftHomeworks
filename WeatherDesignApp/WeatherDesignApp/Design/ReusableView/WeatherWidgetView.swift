@@ -12,6 +12,8 @@ import SnapKit
 
 class WeatherWidgetView: UIView {
    
+    // MARK: - Properties
+    
     private enum Constraints {
         static let dateLabelTopOffset = 17
         static let separatorSectionTopOffset = 37

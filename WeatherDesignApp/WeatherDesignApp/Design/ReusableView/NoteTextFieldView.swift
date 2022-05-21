@@ -20,6 +20,8 @@ class NoteTextFieldView: UIView {
         }
     }
     
+    // MARK: - Properties
+    
     private enum Constraints {
         static let textFieldtopOffset: CGFloat = 8
     }
