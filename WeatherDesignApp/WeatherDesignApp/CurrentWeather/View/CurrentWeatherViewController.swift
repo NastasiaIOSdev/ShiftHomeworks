@@ -30,15 +30,6 @@ final class CurrentWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ui.displayWeatherData(CurrentWeatherViewModel())
         self.presenter?.viewDidLoad(ui: self.ui)
-    }
-}
-
-// MARK: - NetworkRequest
-
-private extension CurrentWeatherViewController {
-    func requestCurrentWeather(for city: String?) {
-        print(city)
     }
 }

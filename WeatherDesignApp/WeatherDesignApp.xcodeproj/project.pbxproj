@@ -128,14 +128,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E05040D283914DC007D25CB /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				2E05041028392419007D25CB /* CurrentWeatherPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		2E05040E283914E0007D25CB /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,14 +135,6 @@
 				2E6278932838D78600927C12 /* CurrentWeatherViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		2E05040F283914E6007D25CB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2E6278DA2838E17C00927C12 /* CurrentWeatherViewModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		2E6278832838D78500927C12 = {
@@ -179,7 +163,7 @@
 				2E62789D2838D78A00927C12 /* Info.plist */,
 				2E6278C22838DE9F00927C12 /* SupportingFiles */,
 				2E6278C32838DEC100927C12 /* Converters */,
-				2E6278C42838DEC600927C12 /* CurrentWeather-MVP */,
+				2E6278C42838DEC600927C12 /* CurrentWeather */,
 				2E6278C52838DECA00927C12 /* WeatherDiary */,
 				2E6278C62838DECD00927C12 /* WeatherNote */,
 				2E6278C72838DF1400927C12 /* Tabbar */,
@@ -224,17 +208,17 @@
 			path = Converters;
 			sourceTree = "<group>";
 		};
-		2E6278C42838DEC600927C12 /* CurrentWeather-MVP */ = {
+		2E6278C42838DEC600927C12 /* CurrentWeather */ = {
 			isa = PBXGroup;
 			children = (
-				2E05040F283914E6007D25CB /* Model */,
-				2E05040E283914E0007D25CB /* View */,
-				2E05040D283914DC007D25CB /* Presenter */,
 				2E6278DC2838E1DB00927C12 /* CurrentWeatherAssembly.swift */,
+				2E05040E283914E0007D25CB /* View */,
+				2E6278DA2838E17C00927C12 /* CurrentWeatherViewModel.swift */,
+				2E05041028392419007D25CB /* CurrentWeatherPresenter.swift */,
 				2E6278DE2838E20500927C12 /* WeatherAsset.swift */,
 				2E6278E02838E23200927C12 /* WeatherType.swift */,
 			);
-			path = "CurrentWeather-MVP";
+			path = CurrentWeather;
 			sourceTree = "<group>";
 		};
 		2E6278C52838DECA00927C12 /* WeatherDiary */ = {

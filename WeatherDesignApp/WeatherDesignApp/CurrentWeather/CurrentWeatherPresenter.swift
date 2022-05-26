@@ -13,15 +13,18 @@ protocol ICurrentWeatherPresenter: AnyObject {
 
 final class CurrentWeatherPresenter: ICurrentWeatherPresenter {
     weak var ui: ICustomWeatherView?
-    let model:  CurrentWeatherViewModel?
+    let model:  CurrentWeatherViewModel
     
     init(model: CurrentWeatherViewModel) {
         self.model = model
     }
+    
     func viewDidLoad(ui: ICustomWeatherView) {
         self.ui = ui
         self.ui?.buttonTappedHandler = {
-          //self.present(WeatherNoteViewControllerAssembly.build(), animated: true)
+            //вынести в роутер
+        //self.present(WeatherNoteViewControllerAssembly.build(), animated: true)
         }
+        self.ui?.displayWeatherData(model)
     }
 }

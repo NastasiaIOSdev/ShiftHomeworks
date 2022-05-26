@@ -9,6 +9,7 @@ import UIKit
 
 protocol ICustomWeatherView: AnyObject {
     var buttonTappedHandler: (() -> ())? { get set }
+    func displayWeatherData(_ viewModel: CurrentWeatherViewModel)
 }
 
 final class CustomWeatherView: UIView, ICustomWeatherView {
@@ -150,12 +151,5 @@ private extension CustomWeatherView {
     
     func setAccessibilityIdentifier() {
         self.weatherIconImageView.accessibilityIdentifier = "weatherIconImageView"
-    }
-}
-
-extension CustomWeatherView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //self.requestCurrentWeather(for: textField.text)
-        return true
     }
 }
