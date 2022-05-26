@@ -22,8 +22,7 @@ final class CurrentWeatherPresenter: ICurrentWeatherPresenter {
     func viewDidLoad(ui: ICustomWeatherView) {
         self.ui = ui
         self.ui?.buttonTappedHandler = {
-            //вынести в роутер
-        //self.present(WeatherNoteViewControllerAssembly.build(), animated: true)
+            
         }
         self.ui?.displayWeatherData(model)
     }
