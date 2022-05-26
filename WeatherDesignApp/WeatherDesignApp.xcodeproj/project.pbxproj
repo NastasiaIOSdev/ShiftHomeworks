@@ -16,7 +16,6 @@
 		2E62789C2838D78A00927C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E62789A2838D78A00927C12 /* LaunchScreen.storyboard */; };
 		2E6278A72838D78B00927C12 /* WeatherDesignAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278A62838D78B00927C12 /* WeatherDesignAppTests.swift */; };
 		2E6278B12838D78B00927C12 /* WeatherDesignAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278B02838D78B00927C12 /* WeatherDesignAppUITests.swift */; };
-		2E6278B32838D78B00927C12 /* WeatherDesignAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278B22838D78B00927C12 /* WeatherDesignAppUITestsLaunchTests.swift */; };
 		2E6278C12838DC9800927C12 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2E6278C02838DC9800927C12 /* SnapKit */; };
 		2E6278CE2838DFEB00927C12 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278CD2838DFEB00927C12 /* AppFonts.swift */; };
 		2E6278D02838E00500927C12 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278CF2838E00500927C12 /* Colors.swift */; };
@@ -75,7 +74,6 @@
 		2E6278A62838D78B00927C12 /* WeatherDesignAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDesignAppTests.swift; sourceTree = "<group>"; };
 		2E6278AC2838D78B00927C12 /* WeatherDesignAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherDesignAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6278B02838D78B00927C12 /* WeatherDesignAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDesignAppUITests.swift; sourceTree = "<group>"; };
-		2E6278B22838D78B00927C12 /* WeatherDesignAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDesignAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2E6278C92838DF9600927C12 /* Overpass-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Bold.ttf"; sourceTree = "<group>"; };
 		2E6278CA2838DF9D00927C12 /* Overpass-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Light.ttf"; sourceTree = "<group>"; };
 		2E6278CB2838DFA300927C12 /* Overpass-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Overpass-Regular.ttf"; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				2E6278B02838D78B00927C12 /* WeatherDesignAppUITests.swift */,
-				2E6278B22838D78B00927C12 /* WeatherDesignAppUITestsLaunchTests.swift */,
 			);
 			path = WeatherDesignAppUITests;
 			sourceTree = "<group>";
@@ -465,7 +462,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6278B12838D78B00927C12 /* WeatherDesignAppUITests.swift in Sources */,
-				2E6278B32838D78B00927C12 /* WeatherDesignAppUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +529,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -594,6 +591,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
