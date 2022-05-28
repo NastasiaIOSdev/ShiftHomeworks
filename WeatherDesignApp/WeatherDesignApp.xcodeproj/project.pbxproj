@@ -223,8 +223,8 @@
 			children = (
 				2E6278EA2838E34E00927C12 /* WeatherDiaryAssembly.swift */,
 				2E6278EC2838E36F00927C12 /* WeatherDiaryViewController.swift */,
+				2EB6A90828423E610053F44F /* View */,
 				2E6278EE2838E46600927C12 /* WeatherDiaryViewModel.swift */,
-				2E6278F02838E48600927C12 /* WeatherNoteCell.swift */,
 			);
 			path = WeatherDiary;
 			sourceTree = "<group>";
@@ -279,6 +279,14 @@
 				2E6278E82838E2C200927C12 /* NoteTextFieldView.swift */,
 			);
 			path = ReusableView;
+			sourceTree = "<group>";
+		};
+		2EB6A90828423E610053F44F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E6278F02838E48600927C12 /* WeatherNoteCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
