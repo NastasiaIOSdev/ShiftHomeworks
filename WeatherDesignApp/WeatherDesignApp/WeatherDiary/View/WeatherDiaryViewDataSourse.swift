@@ -8,7 +8,7 @@
 import UIKit
 
 class WeatherDiaryViewDataSourse: NSObject {
-    
+    var data = [WeatherDiaryEntity]()
 }
 
 extension WeatherDiaryViewDataSourse: UITableViewDataSource {
@@ -18,7 +18,7 @@ extension WeatherDiaryViewDataSourse: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell =  tableView.dequeueReusableCell(withIdentifier: WeatherNoteCell.id, for: indexPath) as? WeatherNoteCell else { return UITableViewCell()}
-        cell.displayData(WeatherDiaryViewModel())
+        cell.displayData(data[indexPath.row])
         return cell
     }
     

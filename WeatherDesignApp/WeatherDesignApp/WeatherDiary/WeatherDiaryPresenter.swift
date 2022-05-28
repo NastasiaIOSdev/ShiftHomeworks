@@ -14,6 +14,11 @@ protocol IWeatherDiaryPresenter: AnyObject {
 final class WeatherDiaryPresenter {
     private var ui: IWeatherDiaryView?
     private var delegate = WeatherDiaryViewDelegate()
+    private var interactor: IWeatherDiaryInteractor?
+    
+    init(interactor: IWeatherDiaryInteractor) {
+        self.interactor = interactor
+    }
 }
 
 extension WeatherDiaryPresenter: IWeatherDiaryPresenter {

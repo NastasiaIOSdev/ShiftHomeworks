@@ -10,13 +10,14 @@ import UIKit
 import SnapKit
 
 protocol IWeatherDiaryView: AnyObject {
-    
+    func getData(data: [WeatherDiaryEntity])
 }
 
 final class WeatherDiaryView: UIView {
     let delegate = WeatherDiaryViewDelegate()
     private let dataSource = WeatherDiaryViewDataSourse()
     private let tableView = UITableView()
+    public var data: [WeatherDiaryEntity]?
     
     init() {
         super.init(frame: .zero)
@@ -56,5 +57,11 @@ extension WeatherDiaryView {
             make.leading.trailing.equalToSuperview()
         }
     }
-    
+}
+
+extension WeatherDiaryView: IWeatherDiaryView {
+    func getData(data: [WeatherDiaryEntity]) {
+        self.dataSource.data = data
+        self.tableView.reloadData()
+    }
 }

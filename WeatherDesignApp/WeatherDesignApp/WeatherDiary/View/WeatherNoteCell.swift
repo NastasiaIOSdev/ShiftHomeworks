@@ -63,7 +63,7 @@ final class WeatherNoteCell: UITableViewCell {
 }
 
 extension WeatherNoteCell {
-    func displayData(_ viewModel: WeatherDiaryViewModel) {
+    func displayData(_ viewModel: WeatherDiaryEntity) {
         self.cityLabel.text = viewModel.town
         self.dateLabel.text = viewModel.date
         self.weatherImageView.image = viewModel.weatherImage.image
