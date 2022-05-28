@@ -12,7 +12,7 @@ final class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
     
     // MARK: - Properties
     
-    private let tableView = UITableView()
+   
     private enum Constraints {
         static let tableViewHorizontalOffset = 17
     }
@@ -30,7 +30,7 @@ final class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        self.setupNavBar()
     }
 }
 
@@ -51,16 +51,7 @@ private extension WeatherDiaryViewController {
 
 private extension WeatherDiaryViewController {
     
-    func setupUI() {
-        let backgroundImage = UIImageView(image: UIImage(named: "background"))
-        self.view.addSubview(backgroundImage)
-        backgroundImage.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        self.setupNavBar()
-        self.configureTable()
-        self.setupTableViewLayout()
-    }
+    
     
     func setupNavBar() {
         let image = UIImage(named: "edit")
@@ -69,46 +60,9 @@ private extension WeatherDiaryViewController {
         self.navigationItem.setRightBarButton(uiBArButtonItem, animated: true)
     }
     
-    func configureTable() {
-        self.tableView.backgroundColor = .clear
-        self.tableView.separatorStyle = .none
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(WeatherNoteCell.self, forCellReuseIdentifier: WeatherNoteCell.id)
-    }
-    
-    
-    func setupTableViewLayout() {
-        self.view.addSubview(tableView)
-        self.view.backgroundColor = .clear
-        self.tableView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-        }
-    }
     
     @objc
     func onNewNoteButtonPressed() {
         self.routeToNewNote()
-    }
-}
-
-    // MARK: - UITableView Delegate & DataSourse
-
-extension WeatherDiaryViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell =  tableView.dequeueReusableCell(withIdentifier: WeatherNoteCell.id, for: indexPath) as? WeatherNoteCell else { return UITableViewCell()}
-        cell.displayData(WeatherDiaryViewModel())
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        self.routeToEditNote(forIndexPath: indexPath.row)
     }
 }
