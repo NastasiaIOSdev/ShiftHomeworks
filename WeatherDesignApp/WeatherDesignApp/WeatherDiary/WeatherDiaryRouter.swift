@@ -13,7 +13,7 @@ protocol IWeatherDiaryRouter {
     func routeToEditNote(forIndexPath: Int)
 }
 
-class  WeatherDiaryRouter {
+final class  WeatherDiaryRouter {
     weak var vc: UIViewController?
 }
 

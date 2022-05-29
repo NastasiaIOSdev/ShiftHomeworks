@@ -8,13 +8,12 @@
 import Foundation
 import UIKit
 
-class WeatherDiaryViewDelegate: NSObject {
+final class WeatherDiaryViewDelegate: NSObject {
     var delegate: ((Int) -> ())?
 }
 
 extension WeatherDiaryViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        //self.routeToEditNote(forIndexPath: indexPath.row)
     }
 }

@@ -11,23 +11,21 @@ import SnapKit
 
 protocol IWeatherDiaryView: AnyObject {
     func getData(data: [WeatherDiaryEntity])
-    var didSelectRowHandler: (() -> ())? { get set }
+    var didSelectRowHandler: ((Int) -> ())? { get set }
 }
 
 final class WeatherDiaryView: UIView {
     // MARK: - Properties
-   
-    private enum Constraints {
-        static let tableViewHorizontalOffset = 17
-    }
-    public var didSelectRowHandler: (() -> ())?
-    public var data: [WeatherDiaryEntity]?
-    
     let delegate = WeatherDiaryViewDelegate()
+    public var didSelectRowHandler: ((Int) -> ())?
+    public var data: [WeatherDiaryEntity]?
     private let dataSource = WeatherDiaryViewDataSourse()
     private let tableView = UITableView()
     
-    
+    private enum Constraints {
+        static let tableViewHorizontalOffset = 17
+    }
+
     init() {
         super.init(frame: .zero)
         self.setupUI()

@@ -10,7 +10,6 @@ import Foundation
 protocol IWeatherDiaryPresenter: AnyObject {
     func viewDidload(ui: IWeatherDiaryView )
     func routeToNewNote()
-
 }
 
 final class WeatherDiaryPresenter {

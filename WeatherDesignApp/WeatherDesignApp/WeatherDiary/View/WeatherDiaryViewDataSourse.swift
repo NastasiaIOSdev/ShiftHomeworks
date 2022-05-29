@@ -21,6 +21,4 @@ extension WeatherDiaryViewDataSourse: UITableViewDataSource {
         cell.displayData(data[indexPath.row])
         return cell
     }
-    
-    
 }

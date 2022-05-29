@@ -238,8 +238,8 @@
 				2EB6A90828423E610053F44F /* View */,
 				2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */,
 				2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */,
-				2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */,
 				2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */,
+				2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */,
 			);
 			path = WeatherDiary;
 			sourceTree = "<group>";
