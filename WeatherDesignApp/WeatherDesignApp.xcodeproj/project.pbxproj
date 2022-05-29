@@ -46,6 +46,7 @@
 		2EB6A91228426EDD0053F44F /* WeatherDiaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */; };
 		2EB6A91428427A880053F44F /* WeatherDiaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */; };
 		2EB6A91628427AC70053F44F /* WeatherDiaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */; };
+		2EB6A9182842B31F0053F44F /* WeatherDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryPresenter.swift; sourceTree = "<group>"; };
 		2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryInteractor.swift; sourceTree = "<group>"; };
 		2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryEntity.swift; sourceTree = "<group>"; };
+		2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 				2EB6A90828423E610053F44F /* View */,
 				2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */,
 				2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */,
+				2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */,
 				2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */,
 			);
 			path = WeatherDiary;
@@ -472,6 +475,7 @@
 				2E6278DB2838E17C00927C12 /* CurrentWeatherViewModel.swift in Sources */,
 				2E6278D22838E02800927C12 /* Weather.swift in Sources */,
 				2E6278E12838E23200927C12 /* WeatherType.swift in Sources */,
+				2EB6A9182842B31F0053F44F /* WeatherDiaryRouter.swift in Sources */,
 				2E6278DD2838E1DB00927C12 /* CurrentWeatherAssembly.swift in Sources */,
 				2E6278922838D78600927C12 /* SceneDelegate.swift in Sources */,
 			);

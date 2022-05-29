@@ -11,19 +11,27 @@ import SnapKit
 
 protocol IWeatherDiaryView: AnyObject {
     func getData(data: [WeatherDiaryEntity])
+    var didSelectRowHandler: (() -> ())? { get set }
 }
 
 final class WeatherDiaryView: UIView {
+    // MARK: - Properties
+   
+    private enum Constraints {
+        static let tableViewHorizontalOffset = 17
+    }
+    public var didSelectRowHandler: (() -> ())?
+    public var data: [WeatherDiaryEntity]?
+    
     let delegate = WeatherDiaryViewDelegate()
     private let dataSource = WeatherDiaryViewDataSourse()
     private let tableView = UITableView()
-    public var data: [WeatherDiaryEntity]?
+    
     
     init() {
         super.init(frame: .zero)
         self.setupUI()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -47,7 +55,6 @@ extension WeatherDiaryView {
         self.tableView.dataSource = dataSource
         self.tableView.register(WeatherNoteCell.self, forCellReuseIdentifier: WeatherNoteCell.id)
     }
-    
     
     func setupTableViewLayout() {
         self.addSubview(tableView)

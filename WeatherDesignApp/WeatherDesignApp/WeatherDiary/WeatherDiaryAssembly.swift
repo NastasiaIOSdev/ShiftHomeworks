@@ -8,8 +8,11 @@
 import UIKit
 
 enum WeatherDaiaryAssembly {
-    
     static func build() -> WeatherDiaryViewController {
-        return WeatherDiaryViewController()
+        let router = WeatherDiaryRouter()
+        let interactor = WeatherDiaryInteractor()
+        let presenter = WeatherDiaryPresenter(interactor: interactor, router: router)
+        let vc = WeatherDiaryViewController(presenter: presenter)
+        return vc
     }
 }

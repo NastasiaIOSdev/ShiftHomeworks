@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class WeatherDiaryViewDelegate: NSObject {
-    
+    var delegate: ((Int) -> ())?
 }
 
 extension WeatherDiaryViewDelegate: UITableViewDelegate {

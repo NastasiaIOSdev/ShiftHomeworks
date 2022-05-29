@@ -8,17 +8,14 @@
 import UIKit
 import SnapKit
 
-final class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
-    
-    // MARK: - Properties
-    
+final class WeatherDiaryViewController: UIViewController {
    
-    private enum Constraints {
-        static let tableViewHorizontalOffset = 17
-    }
+    var presenter: IWeatherDiaryPresenter?
+    private var customView = WeatherDiaryView()
     
-    init() {
+    init(presenter: IWeatherDiaryPresenter) {
         super.init(nibName: nil, bundle: nil)
+        self.presenter = presenter
     }
     
     @available(*, unavailable)
@@ -26,33 +23,21 @@ final class WeatherDiaryViewController: UIViewController, UITableViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        self.view = self.customView
+    }
     // MARK - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavBar()
+        presenter?.viewDidload(ui: customView)
     }
 }
 
     // MARK - Navigation
 
 private extension WeatherDiaryViewController {
-    func routeToNewNote() {
-        let nextVC = WeatherNoteViewControllerAssembly.build()
-        self.navigationController?.pushViewController(nextVC, animated: true)
-        self.navigationController?.navigationBar.tintColor = .white
-    }
-    func routeToEditNote(forIndexPath: Int) {
-        let vc = WeatherNoteViewController()
-        self.present(vc, animated: true)
-    }
-}
-
-
-private extension WeatherDiaryViewController {
-    
-    
-    
     func setupNavBar() {
         let image = UIImage(named: "edit")
         let uiBArButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(self.onNewNoteButtonPressed))
@@ -60,9 +45,8 @@ private extension WeatherDiaryViewController {
         self.navigationItem.setRightBarButton(uiBArButtonItem, animated: true)
     }
     
-    
     @objc
     func onNewNoteButtonPressed() {
-        self.routeToNewNote()
+        presenter?.routeToNewNote()
     }
 }

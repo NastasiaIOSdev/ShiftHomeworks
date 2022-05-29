@@ -13,7 +13,7 @@ class WeatherDiaryViewDataSourse: NSObject {
 
 extension WeatherDiaryViewDataSourse: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
