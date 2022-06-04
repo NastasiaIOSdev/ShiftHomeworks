@@ -42,7 +42,7 @@ class WeatherWidgetView: UIView {
     func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
         self.dateLabel.text = viewModel.date
         self.bigTemperatureLabel.text = viewModel.temp
-        self.weatherDescription.text = viewModel.weatherType.description.capitalized
+//        self.weatherDescription.text = viewModel.weatherType.description.capitalized
         self.windSectionView.setData(viewModel.wind)
         self.humiditySectionView.setData(viewModel.humidity)
     }
@@ -51,7 +51,6 @@ class WeatherWidgetView: UIView {
 private extension WeatherWidgetView {
  
     func setupWeatherWidgetView() {
-        self.displayWeatherData(CurrentWeatherViewModel())
         self.setupCommonData()
         self.setupCommonLabelLayout()
     }

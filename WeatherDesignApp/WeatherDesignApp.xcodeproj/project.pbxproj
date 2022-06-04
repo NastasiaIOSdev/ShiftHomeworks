@@ -50,6 +50,7 @@
 		2ECAC217284BBF4100320A1E /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC216284BBF4100320A1E /* WeatherDTO.swift */; };
 		2ECAC219284BC15300320A1E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC218284BC15300320A1E /* NetworkService.swift */; };
 		2ECAC21C284BC2FE00320A1E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC21B284BC2FE00320A1E /* Constants.swift */; };
+		2ECAC220284BD4F200320A1E /* CurrentWeatherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC21F284BD4F200320A1E /* CurrentWeatherRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		2ECAC216284BBF4100320A1E /* WeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
 		2ECAC218284BC15300320A1E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2ECAC21B284BC2FE00320A1E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2ECAC21F284BD4F200320A1E /* CurrentWeatherRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 				2E05040E283914E0007D25CB /* View */,
 				2E6278DA2838E17C00927C12 /* CurrentWeatherViewModel.swift */,
 				2E05041028392419007D25CB /* CurrentWeatherPresenter.swift */,
+				2ECAC21F284BD4F200320A1E /* CurrentWeatherRouter.swift */,
 				2E6278DE2838E20500927C12 /* WeatherAsset.swift */,
 				2E6278E02838E23200927C12 /* WeatherType.swift */,
 			);
@@ -508,6 +511,7 @@
 				2E6278E72838E2A500927C12 /* WeatherButton.swift in Sources */,
 				2EB6A91628427AC70053F44F /* WeatherDiaryEntity.swift in Sources */,
 				2E05040C283914AC007D25CB /* CustomWeatherView.swift in Sources */,
+				2ECAC220284BD4F200320A1E /* CurrentWeatherRouter.swift in Sources */,
 				2E6278DB2838E17C00927C12 /* CurrentWeatherViewModel.swift in Sources */,
 				2E6278D22838E02800927C12 /* Weather.swift in Sources */,
 				2E6278E12838E23200927C12 /* WeatherType.swift in Sources */,

@@ -9,10 +9,11 @@ import UIKit
 
 protocol ICustomWeatherView: AnyObject {
     var buttonTappedHandler: (() -> ())? { get set }
-    func displayWeatherData(_ viewModel: CurrentWeatherViewModel)
+    func displayWeatherData(data: CurrentWeatherViewModel)
+    func setImage(imageData: Data)
 }
 
-final class CustomWeatherView: UIView, ICustomWeatherView {
+final class CustomWeatherView: UIView {
     
     // MARK: - Properties
     
@@ -39,7 +40,10 @@ final class CustomWeatherView: UIView, ICustomWeatherView {
     }
     
     private let searchTextField = UISearchTextField()
-    private let weatherIconImageView = UIImageView()
+    private let weatherIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
     private let weatherWidgetView = WeatherWidgetView()
     
     private lazy var newNoteButton = WeatherButton(settings: .init(
@@ -59,11 +63,18 @@ final class CustomWeatherView: UIView, ICustomWeatherView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+extension CustomWeatherView: ICustomWeatherView {
     
-    func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
-        self.weatherIconImageView.image = viewModel.weatherType.image
-        self.weatherWidgetView.displayWeatherData(viewModel)
+    func setImage(imageData: Data) {
+        self.weatherIconImageView.image = UIImage(data: imageData)
     }
+    
+    func displayWeatherData(data: CurrentWeatherViewModel) {
+        self.weatherWidgetView.displayWeatherData(data)
+    }
+    
 }
 
 private extension CustomWeatherView {
