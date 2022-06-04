@@ -10,18 +10,23 @@ import Foundation
 struct CurrentWeatherViewModel {
     let date: String
     let temp: String
-    let weatherType: WeatherType
+    let weatherType: Data?
     let wind: String
     let humidity: String
 }
 
 extension CurrentWeatherViewModel {
-    init() {
+    init(from dtoModel: WeatherDTO) {
+        guard
+            let tempC = dtoModel.current?.tempC,
+            let wind = dtoModel.current?.windKph,
+            let humidity = dtoModel.current?.humidity else { assert(false) }
+            
         self.date = Self.convertDate(Date.now)
-        self.temp = Self.convertTemperature(0)
-        self.weatherType = WeatherType.allCases.randomElement() ?? .sunny
-        self.wind = Self.convertWind(0)
-        self.humidity = Self.convertHumidity(0)
+        self.temp = String(tempC)
+        self.weatherType = nil
+        self.wind = String(wind)
+        self.humidity = String(humidity)
     }
 }
 
