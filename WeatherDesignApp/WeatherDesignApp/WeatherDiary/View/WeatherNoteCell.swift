@@ -81,6 +81,7 @@ private extension WeatherNoteCell {
         self.backgroundColor = .clear
         self.selectionStyle = .none
     }
+    
     func setupLayout() {
         self.setupCityLabelLayout()
         self.setupDateLabelLayout()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol IWeatherDiaryInteractor {
+protocol IWeatherDiaryInteractor: AnyObject {
     func generateData() -> [WeatherDiaryEntity]
 }
 

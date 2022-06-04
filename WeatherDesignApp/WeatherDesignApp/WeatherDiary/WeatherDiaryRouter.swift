@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol IWeatherDiaryRouter {
+protocol IWeatherDiaryRouter: AnyObject {
     func routeToNewNote()
     func routeToEditNote(forIndexPath: Int)
 }

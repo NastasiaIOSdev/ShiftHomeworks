@@ -50,6 +50,7 @@ class WeatherButton: UIView {
         self.configureView()
         self.configureUI(with: settings)
         self.setupLayout()
+        
     }
     
     @available(*, unavailable)

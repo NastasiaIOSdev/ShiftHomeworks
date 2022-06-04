@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherDiaryViewDataSourse: NSObject {
+final class WeatherDiaryViewDataSourse: NSObject {
     var data = [WeatherDiaryEntity]()
 }
 

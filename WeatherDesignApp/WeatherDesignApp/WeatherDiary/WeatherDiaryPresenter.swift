@@ -13,10 +13,11 @@ protocol IWeatherDiaryPresenter: AnyObject {
 }
 
 final class WeatherDiaryPresenter {
-    private var ui: IWeatherDiaryView?
+    private weak var ui: IWeatherDiaryView?
     private var delegate = WeatherDiaryViewDelegate()
     private var interactor: IWeatherDiaryInteractor?
     private var router: IWeatherDiaryRouter?
+    
     init(interactor: IWeatherDiaryInteractor, router: IWeatherDiaryRouter) {
         self.interactor = interactor
         self.router = router
@@ -36,6 +37,7 @@ extension WeatherDiaryPresenter: IWeatherDiaryPresenter {
             self.router?.routeToEditNote(forIndexPath: index)
         }
     }
+    
     func routeToNewNote() {
         router?.routeToNewNote()
     }
