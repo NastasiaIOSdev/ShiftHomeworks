@@ -15,6 +15,12 @@ final class WeatherDiaryInteractor {
 }
 
 extension WeatherDiaryInteractor: IWeatherDiaryInteractor {
+    func generateData() -> [WeatherDiaryEntity]? {
+        self.generateData()
+    }
+}
+
+extension WeatherDiaryInteractor {
     func generateData() -> [WeatherDiaryEntity] {
         let town = randomCity()
         let date = convertDate(Date.now)

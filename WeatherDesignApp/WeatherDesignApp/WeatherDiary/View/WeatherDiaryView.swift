@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 protocol IWeatherDiaryView: AnyObject {
-    func getData(data: [WeatherDiaryEntity])
     var didSelectRowHandler: ((Int) -> ())? { get set }
+    func getData(data: [WeatherDiaryEntity])
 }
 
 final class WeatherDiaryView: UIView {

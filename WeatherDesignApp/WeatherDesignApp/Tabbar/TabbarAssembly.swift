@@ -13,7 +13,7 @@ enum TabbarAssembly {
         let tabBar = UITabBarController()
         let weatherViewController = CurrentWeatherAssembly.build()
         let weatheNavigationBar = UINavigationController(rootViewController: weatherViewController)
-        let weatherDiaryViewController = WeatherDaiaryAssembly.build()
+        let weatherDiaryViewController = WeatherDiaryBuilder().settitle("Weather Diary").build()
         let weatherNavDiaryViewController = UINavigationController(rootViewController: weatherDiaryViewController)
        
         tabBar.setViewControllers([weatheNavigationBar, weatherNavDiaryViewController], animated: true)
