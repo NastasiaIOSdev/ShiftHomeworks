@@ -173,6 +173,7 @@
 				2E62789D2838D78A00927C12 /* Info.plist */,
 				2E6278C22838DE9F00927C12 /* SupportingFiles */,
 				2E6278C32838DEC100927C12 /* Converters */,
+				2ECAC214284BB7C400320A1E /* Services */,
 				2E6278C42838DEC600927C12 /* CurrentWeather */,
 				2E6278C52838DECA00927C12 /* WeatherDiary */,
 				2E6278C62838DECD00927C12 /* WeatherNote */,
@@ -305,6 +306,13 @@
 				2E6278F02838E48600927C12 /* WeatherNoteCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2ECAC214284BB7C400320A1E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
