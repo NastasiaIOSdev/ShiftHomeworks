@@ -51,6 +51,10 @@
 		2ECAC219284BC15300320A1E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC218284BC15300320A1E /* NetworkService.swift */; };
 		2ECAC21C284BC2FE00320A1E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC21B284BC2FE00320A1E /* Constants.swift */; };
 		2ECAC220284BD4F200320A1E /* CurrentWeatherRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC21F284BD4F200320A1E /* CurrentWeatherRouter.swift */; };
+		2ECAC228284E0EC900320A1E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC227284E0EC900320A1E /* Location.swift */; };
+		2ECAC22A284E0EE000320A1E /* ConditionWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC229284E0EE000320A1E /* ConditionWeather.swift */; };
+		2ECAC22C284E132500320A1E /* NetworkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC22B284E132500320A1E /* NetworkProcessor.swift */; };
+		2ECAC22E284E1B9500320A1E /* WeatherNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC22D284E1B9500320A1E /* WeatherNetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +122,10 @@
 		2ECAC218284BC15300320A1E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2ECAC21B284BC2FE00320A1E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2ECAC21F284BD4F200320A1E /* CurrentWeatherRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherRouter.swift; sourceTree = "<group>"; };
+		2ECAC227284E0EC900320A1E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		2ECAC229284E0EE000320A1E /* ConditionWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionWeather.swift; sourceTree = "<group>"; };
+		2ECAC22B284E132500320A1E /* NetworkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProcessor.swift; sourceTree = "<group>"; };
+		2ECAC22D284E1B9500320A1E /* WeatherNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				2E6278DC2838E1DB00927C12 /* CurrentWeatherAssembly.swift */,
+				2ECAC227284E0EC900320A1E /* Location.swift */,
+				2ECAC229284E0EE000320A1E /* ConditionWeather.swift */,
 				2E05040E283914E0007D25CB /* View */,
 				2E6278DA2838E17C00927C12 /* CurrentWeatherViewModel.swift */,
 				2E05041028392419007D25CB /* CurrentWeatherPresenter.swift */,
@@ -321,7 +331,9 @@
 		2ECAC214284BB7C400320A1E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2ECAC22D284E1B9500320A1E /* WeatherNetworkService.swift */,
 				2ECAC218284BC15300320A1E /* NetworkService.swift */,
+				2ECAC22B284E132500320A1E /* NetworkProcessor.swift */,
 				2ECAC215284BBF1D00320A1E /* DTO */,
 			);
 			path = Services;
@@ -497,6 +509,7 @@
 				2E6278F72838E4F100927C12 /* WeatherNoteViewModel.swift in Sources */,
 				2ECAC217284BBF4100320A1E /* WeatherDTO.swift in Sources */,
 				2EB6A91428427A880053F44F /* WeatherDiaryInteractor.swift in Sources */,
+				2ECAC228284E0EC900320A1E /* Location.swift in Sources */,
 				2E6278D62838E0EE00927C12 /* WeatherConverter.swift in Sources */,
 				2E6278CE2838DFEB00927C12 /* AppFonts.swift in Sources */,
 				2E6278D02838E00500927C12 /* Colors.swift in Sources */,
@@ -506,7 +519,10 @@
 				2E6278D82838E11C00927C12 /* TabbarAssembly.swift in Sources */,
 				2ECAC219284BC15300320A1E /* NetworkService.swift in Sources */,
 				2E6278902838D78600927C12 /* AppDelegate.swift in Sources */,
+				2ECAC22E284E1B9500320A1E /* WeatherNetworkService.swift in Sources */,
 				2E6278ED2838E36F00927C12 /* WeatherDiaryViewController.swift in Sources */,
+				2ECAC22A284E0EE000320A1E /* ConditionWeather.swift in Sources */,
+				2ECAC22C284E132500320A1E /* NetworkProcessor.swift in Sources */,
 				2ECAC21C284BC2FE00320A1E /* Constants.swift in Sources */,
 				2E6278E72838E2A500927C12 /* WeatherButton.swift in Sources */,
 				2EB6A91628427AC70053F44F /* WeatherDiaryEntity.swift in Sources */,
