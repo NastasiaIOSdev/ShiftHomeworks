@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ICurrentWeatherPresenter: AnyObject {
-    func viewDidLoad(ui: ICustomWeatherView)
+    func viewDidLoad(ui: ICustomWeatherView, viewController: UIViewController)
 }
 
 final class CurrentWeatherPresenter{
@@ -22,8 +23,12 @@ final class CurrentWeatherPresenter{
 }
 
 extension CurrentWeatherPresenter: ICurrentWeatherPresenter {
-    func viewDidLoad(ui: ICustomWeatherView) {
+    func viewDidLoad(ui: ICustomWeatherView, viewController: UIViewController) {
         self.ui = ui
+        self.fetchDataFromNetworkingService()
+        self.ui?.buttonTappedHandler = {
+            self.router?.navToNextVC(viewController)
+        }
     }
 }
 

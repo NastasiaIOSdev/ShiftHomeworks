@@ -11,15 +11,11 @@ protocol INetworkservice: AnyObject {
     func loadCurrentWeatherData<T: Codable>(completion: @escaping(Result<T, Error>) -> ())
 }
 
-final class NetworkService {
-    enum Endpoints {
-        static let currentwaetherUrlString = "https://api.weatherapi.com/v1/current.json?key=1fbe35f21a364f7a9a384308220406&q=London&aqi=yes"
-    }
-}
+final class NetworkService { }
 
 extension NetworkService: INetworkservice {
     func loadCurrentWeatherData<T:Decodable>(completion: @escaping (Result<T, Error>) -> ()) {
-        guard let url = URL(string: Endpoints.currentwaetherUrlString) else {
+        guard let url = Constants.weatherUrl else {
             assert(false) }
         
         let request = URLRequest(url: url)

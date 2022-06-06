@@ -85,9 +85,15 @@ private extension CustomWeatherView {
         self.setupLayout()
         self.setAccessibilityIdentifier()
     }
+    
+    func requestCurrentWeather(for city: String?) {
+        print(city)
+    }
+    
     func setupBackgroundView() {
         self.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
     }
+    
     func setupSearchField() {
         self.searchTextField.backgroundColor = Colors.white.value
         self.searchTextField.layer.cornerRadius = Constancts.cornerRadius
