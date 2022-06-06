@@ -27,18 +27,29 @@ class SectionWithSeparatorView: UIView {
             case .humidity: return UIImage(named: "hum")
             }
         }
+        
+        var unit: String {
+            switch self {
+            case .wind:
+                return " km/h"
+            case .humidity:
+                return " %"
+            }
+        }
     }
     
     // MARK: - Properties
     
     private enum Constants {
        static let imageViewVerticalOffset = 5
+       static let separatorLabel = "|"
     }
     
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
     private let separatorLabel = UILabel()
     private let dataLabel = UILabel()
+    private let unitLabel = UILabel()
     
     init(type: Atmosphere) {
         super.init(frame: .zero)
@@ -59,9 +70,10 @@ class SectionWithSeparatorView: UIView {
 
 private extension SectionWithSeparatorView {
     
-    func configureView(with type: Atmosphere) { self.imageView.image = type.image
+    func configureView(with type: Atmosphere) {
+        self.imageView.image = type.image
         self.nameLabel.text = type.description
-        
+        self.unitLabel.text = type.unit
     }
     
     func setupHumiditydSectionView() {
@@ -71,7 +83,7 @@ private extension SectionWithSeparatorView {
     }
     
     func displayData() {
-        separatorLabel.text = "|"
+        separatorLabel.text = Constants.separatorLabel
     }
     
     func setupCommonLabel() {
@@ -94,6 +106,12 @@ private extension SectionWithSeparatorView {
         dataLabel.textAlignment = .left
         dataLabel.adjustsFontSizeToFitWidth = true
         dataLabel.textColor = .white
+        
+        unitLabel.numberOfLines = 1
+        unitLabel.font = AppFonts.regular20.font
+        unitLabel.textAlignment = .left
+        unitLabel.adjustsFontSizeToFitWidth = true
+        unitLabel.textColor = .white
     }
     
     func setupLayout() {
@@ -119,6 +137,12 @@ private extension SectionWithSeparatorView {
         self.dataLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Constants.imageViewVerticalOffset)
             make.leading.equalTo(self.separatorLabel.snp.trailing)
+        }
+        
+        self.addSubview(self.unitLabel)
+        self.unitLabel.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(Constants.imageViewVerticalOffset)
+            make.leading.equalTo(self.dataLabel.snp.trailing)
             make.trailing.equalToSuperview()
         }
     }

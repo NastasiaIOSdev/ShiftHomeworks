@@ -27,4 +27,5 @@ struct Current: Codable {
 
 struct Condition: Codable {
     let icon: String?
+    let text: String?
 }

@@ -14,6 +14,10 @@ class WeatherWidgetView: UIView {
    
     // MARK: - Properties
     
+    private enum Constants {
+        static let unitTempreratureLabel = "°"
+    }
+    
     private enum Constraints {
         static let dateLabelTopOffset = 17
         static let separatorSectionTopOffset = 37
@@ -41,7 +45,7 @@ class WeatherWidgetView: UIView {
     
     func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
         self.dateLabel.text = viewModel.date
-        self.bigTemperatureLabel.text = viewModel.temp
+        self.bigTemperatureLabel.text = viewModel.temp + Constants.unitTempreratureLabel
 //        self.weatherDescription.text = viewModel.weatherType.description.capitalized
         self.windSectionView.setData(viewModel.wind)
         self.humiditySectionView.setData(viewModel.humidity)

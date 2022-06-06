@@ -34,19 +34,4 @@ private extension CurrentWeatherViewModel {
     static func convertDate(_ date: Date) -> String {
         return DateConverter.showDayWithWeekDay(date)
     }
-
-    static func convertTemperature(_ temperature: Int) -> String {
-        let temperature = String(describing: Int.random(in: -20...30))
-        return WeatherConverter.convertTemperature(temperature)
-    }
-
-    static func convertWind(_ wind: Int) -> String {
-        let wind = String(describing: Int.random(in: 0...20))
-        return WeatherConverter.convertWind(wind)
-    }
-
-    static func convertHumidity(_ humidity: Int) -> String {
-        let humidity = String(describing: Int.random(in: 20...80))
-        return WeatherConverter.convertHumidity(humidity)
-    }
 }
