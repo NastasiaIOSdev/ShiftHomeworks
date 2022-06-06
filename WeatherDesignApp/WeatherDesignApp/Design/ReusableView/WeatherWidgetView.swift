@@ -46,7 +46,7 @@ class WeatherWidgetView: UIView {
     func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
         self.dateLabel.text = viewModel.date
         self.bigTemperatureLabel.text = viewModel.temp + Constants.unitTempreratureLabel
-//        self.weatherDescription.text = viewModel.weatherType.description.capitalized
+        self.weatherDescription.text = viewModel.text
         self.windSectionView.setData(viewModel.wind)
         self.humiditySectionView.setData(viewModel.humidity)
     }

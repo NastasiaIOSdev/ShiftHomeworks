@@ -16,6 +16,7 @@ protocol ICustomWeatherView: AnyObject {
 final class CustomWeatherView: UIView {
     
     // MARK: - Properties
+    private let weatherSearchServise = NetworkService()
     
     private enum Constancts {
         static let searchHeight = 58
@@ -39,7 +40,8 @@ final class CustomWeatherView: UIView {
         static let buttonImageText = "New wether note"
     }
     
-    private let searchTextField = UISearchTextField()
+    let searchTextField = UITextField()
+    
     private let weatherIconImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -57,15 +59,17 @@ final class CustomWeatherView: UIView {
     init() {
         super.init(frame: .zero)
         self.setupUI()
+        searchTextField.delegate = self
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
     }
 }
 
-extension CustomWeatherView: ICustomWeatherView {
+extension CustomWeatherView: ICustomWeatherView, UITextFieldDelegate {
     
     func setImage(imageData: Data) {
         self.weatherIconImageView.image = UIImage(data: imageData)
@@ -75,6 +79,14 @@ extension CustomWeatherView: ICustomWeatherView {
         self.weatherWidgetView.displayWeatherData(data)
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text, !text.isEmpty else { return }
+        print(text)
+    }
 }
 
 private extension CustomWeatherView {
@@ -84,10 +96,6 @@ private extension CustomWeatherView {
         self.configureWidgetView()
         self.setupLayout()
         self.setAccessibilityIdentifier()
-    }
-    
-    func requestCurrentWeather(for city: String?) {
-        print(city)
     }
     
     func setupBackgroundView() {

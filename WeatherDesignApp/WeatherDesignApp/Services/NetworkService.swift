@@ -9,6 +9,7 @@ import Foundation
 
 protocol INetworkservice: AnyObject {
     func loadCurrentWeatherData<T: Codable>(completion: @escaping(Result<T, Error>) -> ())
+    func loadSearchWeatherData<T:Codable>(with searchText: String, completion: @escaping (Result<T, Error>) -> ())
 }
 
 final class NetworkService { }
@@ -50,4 +51,29 @@ extension NetworkService: INetworkservice {
                 }
             }.resume()
         }
+    
+    func loadSearchWeatherData<T:Decodable>(with searchText: String, completion: @escaping (Result<T, Error>) -> ()) {
+        guard !searchText.trimmingCharacters(in: .whitespaces) .isEmpty else { return }
+        let urlString = Constants.searchUrl + searchText
+        guard let url = URL(string: urlString) else {
+            assert(false) }
+        
+        let request = URLRequest(url: url)
+        
+            URLSession.shared.dataTask(with: request) { data, responce, error in
+                if let error = error {
+                    completion(.failure(error))
+                }
+                guard let data = data else { return }
+                print(data)
+                do {
+                    let newData = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(newData))
+                }
+                catch let error {
+                    completion(.failure(error))
+                }
+            }.resume()
+        }
+    
     }
