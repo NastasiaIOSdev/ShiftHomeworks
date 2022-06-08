@@ -8,24 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		2ECAC30D2850753200320A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC30C2850753200320A1E /* AppDelegate.swift */; };
-		2ECAC30F2850753200320A1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC30E2850753200320A1E /* SceneDelegate.swift */; };
 		2ECAC3112850753200320A1E /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3102850753200320A1E /* CompanyViewController.swift */; };
 		2ECAC3172850753200320A1E /* CompanyList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3152850753200320A1E /* CompanyList.xcdatamodeld */; };
 		2ECAC3192850753600320A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECAC3182850753600320A1E /* Assets.xcassets */; };
 		2ECAC31C2850753600320A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ECAC31A2850753600320A1E /* LaunchScreen.storyboard */; };
 		2ECAC326285082F000320A1E /* CompaniesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC325285082F000320A1E /* CompaniesAssembly.swift */; };
+		2ECAC3282850924E00320A1E /* CompaniesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3272850924E00320A1E /* CompaniesModel.swift */; };
+		2ECAC32B28509B8100320A1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ECAC32A28509B8100320A1E /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2ECAC3092850753200320A1E /* CompanyList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompanyList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECAC30C2850753200320A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2ECAC30E2850753200320A1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2ECAC3102850753200320A1E /* CompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewController.swift; sourceTree = "<group>"; };
 		2ECAC3162850753200320A1E /* CompanyList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompanyList.xcdatamodel; sourceTree = "<group>"; };
 		2ECAC3182850753600320A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ECAC31B2850753600320A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ECAC31D2850753600320A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECAC325285082F000320A1E /* CompaniesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesAssembly.swift; sourceTree = "<group>"; };
+		2ECAC3272850924E00320A1E /* CompaniesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ECAC32B28509B8100320A1E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +62,6 @@
 			children = (
 				2ECAC31D2850753600320A1E /* Info.plist */,
 				2ECAC30C2850753200320A1E /* AppDelegate.swift */,
-				2ECAC30E2850753200320A1E /* SceneDelegate.swift */,
 				2ECAC323285081CB00320A1E /* CompaniesModule */,
 				2ECAC324285081D900320A1E /* EmployeesModule */,
 				2ECAC3182850753600320A1E /* Assets.xcassets */,
@@ -75,6 +76,7 @@
 			children = (
 				2ECAC3102850753200320A1E /* CompanyViewController.swift */,
 				2ECAC325285082F000320A1E /* CompaniesAssembly.swift */,
+				2ECAC3272850924E00320A1E /* CompaniesModel.swift */,
 			);
 			path = CompaniesModule;
 			sourceTree = "<group>";
@@ -102,6 +104,9 @@
 			dependencies = (
 			);
 			name = CompanyList;
+			packageProductDependencies = (
+				2ECAC32A28509B8100320A1E /* SnapKit */,
+			);
 			productName = CompanyList;
 			productReference = 2ECAC3092850753200320A1E /* CompanyList.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +135,9 @@
 				Base,
 			);
 			mainGroup = 2ECAC3002850753200320A1E;
+			packageReferences = (
+				2ECAC32928509B8100320A1E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 2ECAC30A2850753200320A1E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -159,8 +167,8 @@
 				2ECAC3112850753200320A1E /* CompanyViewController.swift in Sources */,
 				2ECAC30D2850753200320A1E /* AppDelegate.swift in Sources */,
 				2ECAC326285082F000320A1E /* CompaniesAssembly.swift in Sources */,
-				2ECAC30F2850753200320A1E /* SceneDelegate.swift in Sources */,
 				2ECAC3172850753200320A1E /* CompanyList.xcdatamodeld in Sources */,
+				2ECAC3282850924E00320A1E /* CompaniesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +376,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2ECAC32928509B8100320A1E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2ECAC32A28509B8100320A1E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ECAC32928509B8100320A1E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2ECAC3152850753200320A1E /* CompanyList.xcdatamodeld */ = {
