@@ -36,9 +36,32 @@ class SectionWithSeparatorView: UIView {
     }
     
     private let imageView = UIImageView()
-    private let nameLabel = UILabel()
-    private let separatorLabel = UILabel()
-    private let dataLabel = UILabel()
+    
+    private let nameLabel = LabelBuilder()
+        .setupNumberOfLines(1)
+        .setupFont(AppFonts.regular20.font)
+        .setupTextAligment(.center)
+        .setupLineBreakMode(.byClipping)
+        .setupadjustsFontSizeToFitWidth(true)
+        .setupsizeToFit()
+        .setupMinimumScaleFactor(0.3)
+        .setupTextColor(.white)
+        .build()
+    
+    private let separatorLabel = LabelBuilder()
+        .setupNumberOfLines(1)
+        .setupFont(AppFonts.light18.font)
+        .setupTextAligment(.center)
+        .setupTextColor(.white)
+        .build()
+    
+    private let dataLabel = LabelBuilder()
+        .setupNumberOfLines(1)
+        .setupFont(AppFonts.regular20.font)
+        .setupTextAligment(.left)
+        .setupadjustsFontSizeToFitWidth(true)
+        .setupTextColor(.white)
+        .build()
     
     init(type: Atmosphere) {
         super.init(frame: .zero)
@@ -65,35 +88,12 @@ private extension SectionWithSeparatorView {
     }
     
     func setupHumiditydSectionView() {
-        setupCommonLabel()
-        setupLayout()
-        displayData()
+        self.setupLayout()
+        self.displayData()
     }
     
     func displayData() {
-        separatorLabel.text = "|"
-    }
-    
-    func setupCommonLabel() {
-        nameLabel.numberOfLines = 1
-        nameLabel.font = AppFonts.regular20.font
-        nameLabel.textAlignment = .center
-        nameLabel.lineBreakMode = .byClipping
-        nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.sizeToFit()
-        nameLabel.minimumScaleFactor = 0.3
-        nameLabel.textColor = .white
-        
-        separatorLabel.numberOfLines = 1
-        separatorLabel.font = AppFonts.light18.font
-        nameLabel.textAlignment = .center
-        separatorLabel.textColor = .white
-        
-        dataLabel.numberOfLines = 1
-        dataLabel.font = AppFonts.regular20.font
-        dataLabel.textAlignment = .left
-        dataLabel.adjustsFontSizeToFitWidth = true
-        dataLabel.textColor = .white
+        self.separatorLabel.text = "|"
     }
     
     func setupLayout() {

@@ -25,9 +25,30 @@ class WeatherWidgetView: UIView {
     let windSectionView = SectionWithSeparatorView(type: .wind)
     let humiditySectionView = SectionWithSeparatorView(type: .humidity)
     
-    private let dateLabel = UILabel()
-    private let bigTemperatureLabel = UILabel()
-    private let weatherDescription = UILabel()
+    private let dateLabel = LabelBuilder()
+        .setupNumberOfLines(1)
+        .setupadjustsFontSizeToFitWidth(true)
+        .setupTextAligment(.center)
+        .setupMinimumScaleFactor(0.5)
+        .setupFont(AppFonts.regular18.font)
+        .setupTextColor(.white)
+        .build()
+    
+    private let bigTemperatureLabel = LabelBuilder()
+        .setupNumberOfLines(1)
+        .setupadjustsFontSizeToFitWidth(true)
+        .setupTextAligment(.center)
+        .setupFont(AppFonts.regular100.font)
+        .setupTextColor(.white)
+        .build()
+    
+    private let weatherDescription = LabelBuilder()
+        .setupNumberOfLines(1)
+        .setupadjustsFontSizeToFitWidth(true)
+        .setupTextAligment(.center)
+        .setupFont(AppFonts.bold24.font)
+        .setupTextColor(.white)
+        .build()
     
     init() {
         super.init(frame: .zero)
@@ -52,31 +73,9 @@ private extension WeatherWidgetView {
  
     func setupWeatherWidgetView() {
         self.displayWeatherData(CurrentWeatherViewModel())
-        self.setupCommonData()
         self.setupCommonLabelLayout()
     }
    
-    func setupCommonData() {
-        self.dateLabel.numberOfLines = 1
-        self.dateLabel.adjustsFontSizeToFitWidth = true
-        self.dateLabel.textAlignment = .center
-        self.dateLabel.minimumScaleFactor = 0.5
-        self.dateLabel.font = AppFonts.regular18.font
-        self.dateLabel.textColor = .white
-        
-        self.bigTemperatureLabel.numberOfLines = 1
-        self.bigTemperatureLabel.adjustsFontSizeToFitWidth = true
-        self.bigTemperatureLabel.textAlignment = .center
-        self.bigTemperatureLabel.font = AppFonts.regular100.font
-        self.bigTemperatureLabel.textColor = .white
-        
-        self.weatherDescription.numberOfLines = 1
-        self.weatherDescription.adjustsFontSizeToFitWidth = true
-        self.weatherDescription.textAlignment = .center
-        self.weatherDescription.font = AppFonts.bold24.font
-        self.weatherDescription.textColor = .white
-    }
-    
     func setupCommonLabelLayout() {
         
         self.addSubview(self.dateLabel)

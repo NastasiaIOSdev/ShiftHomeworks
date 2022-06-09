@@ -21,31 +21,24 @@ final class WeatherNoteCell: UITableViewCell {
         static let leadingTrailingCellInset: CGFloat = 16
         static let degreeLabelWidth = 40
     }
+    private let cityLabel = LabelBuilder()
+        .setupFont(AppFonts.bold24.font)
+        .setupTextColor(.white)
+        .setupTextAligment(.left)
+        .setupadjustsFontSizeToFitWidth(true)
+        .build()
+
+    private let dateLabel = LabelBuilder()
+        .setupFont(AppFonts.regular20.font)
+        .setupTextColor(.white)
+        .setupTextAligment(.center)
+        .build()
     
-    private let cityLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = AppFonts.bold24.font
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private let dateLabel: UILabel = {
-        let label =  UILabel()
-        label.font = AppFonts.regular20.font
-        label.textColor = .white
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let degreeLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = AppFonts.regular20.font
-        label.textAlignment = .right
-        return label
-    }()
+    private let degreeLabel = LabelBuilder()
+        .setupFont(AppFonts.regular20.font)
+        .setupTextColor(.white)
+        .setupTextAligment(.right)
+        .build()
     
     private let weatherImageView = UIImageView()
     

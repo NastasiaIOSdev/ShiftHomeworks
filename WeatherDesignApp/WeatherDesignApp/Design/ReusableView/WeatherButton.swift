@@ -32,11 +32,9 @@ class WeatherButton: UIView {
     private let tapHandler: () -> Void
     private var image: UIImage?
     
-    private let label: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        return label
-    }()
+    private let label = LabelBuilder()
+        .setupTextColor(.white)
+        .build()
     
     private lazy var imageView: UIImageView = {
        let imageView = UIImageView()

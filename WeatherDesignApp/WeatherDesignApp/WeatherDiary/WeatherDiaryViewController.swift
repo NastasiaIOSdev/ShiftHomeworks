@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 final class WeatherDiaryViewController: UIViewController {
    
@@ -31,7 +30,7 @@ final class WeatherDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavBar()
-        presenter?.viewDidload(ui: customView)
+        self.presenter?.viewDidload(ui: self.customView, viewController: self)
     }
 }
 
@@ -47,6 +46,6 @@ private extension WeatherDiaryViewController {
     
     @objc
     func onNewNoteButtonPressed() {
-        presenter?.routeToNewNote()
+       // presenter?.routeToNewNote()
     }
 }
