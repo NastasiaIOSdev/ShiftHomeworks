@@ -12,10 +12,9 @@ final class WeatherDiaryViewController: UIViewController {
     var presenter: IWeatherDiaryPresenter?
     private var customView = WeatherDiaryView()
     
-    init(title: String?,presenter: IWeatherDiaryPresenter) {
+    init(presenter: IWeatherDiaryPresenter) {
         super.init(nibName: nil, bundle: nil)
         self.presenter = presenter
-        self.title = title
     }
     
     @available(*, unavailable)

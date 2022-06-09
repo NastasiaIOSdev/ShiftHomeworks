@@ -15,6 +15,7 @@ protocol IWeatherDiaryView: AnyObject {
 }
 
 final class WeatherDiaryView: UIView {
+   
     // MARK: - Properties
     let delegate = WeatherDiaryViewDelegate()
     public var didSelectRowHandler: ((Int) -> ())?
