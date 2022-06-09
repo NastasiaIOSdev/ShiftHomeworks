@@ -9,11 +9,13 @@ import UIKit
 import SnapKit
 import CoreData
 
-class CompanyViewController: UIViewController{
-
-    var companyies: [NSManagedObject] = []
-    let cellID = "cellID"
+final class CompanyViewController: UIViewController{
     
+    private enum Constraints {
+        static let topOffsetLabel: CGFloat = 180
+    }
+    var companyies: [NSManagedObject] = []
+
     private let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -22,12 +24,13 @@ class CompanyViewController: UIViewController{
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.title = "Список компаний"
+        self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addCompany))
         self.navigationItem.rightBarButtonItem?.tintColor = .white
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = .white
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        self.tableView.register(CompanyTableViewCell.self, forCellReuseIdentifier: CompanyTableViewCell.identifier)
         self.setupLayout()
     }
 
@@ -77,7 +80,7 @@ class CompanyViewController: UIViewController{
 extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CompanyTableViewCell.identifier, for: indexPath)
         let company = companyies[indexPath.row]
         cell.textLabel?.text = company.value(forKeyPath: "companyName") as? String
         return cell
@@ -86,13 +89,47 @@ extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return companyies.count
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.navigationController?.pushViewController(EmployeesAssembly.build(), animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        let company = companyies[indexPath.row]
+//         let name = company.value(forKeyPath: "companyName") as? String
+//        
+//        companyies.remove(at: indexPath.row)
+//        deleteData(name: name!)
+    }
+}
+
+extension CompanyViewController {
+    func deleteData(name: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Company")
+        fetchRequest.predicate = NSPredicate(format: "companyName = %@", name)
+        
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            let obbjectToDelete = test[0] as! NSManagedObject
+            managedContext.delete(obbjectToDelete)
+            do {
+                try managedContext.save()
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
 
 private extension CompanyViewController {
     func setupLayout() {
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().offset(150)
+            make.top.bottom.equalToSuperview().offset(Constraints.topOffsetLabel)
             make.leading.trailing.equalToSuperview()
         }
     }

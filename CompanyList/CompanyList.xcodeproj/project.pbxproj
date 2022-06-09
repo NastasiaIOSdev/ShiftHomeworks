@@ -13,8 +13,13 @@
 		2ECAC3192850753600320A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECAC3182850753600320A1E /* Assets.xcassets */; };
 		2ECAC31C2850753600320A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ECAC31A2850753600320A1E /* LaunchScreen.storyboard */; };
 		2ECAC326285082F000320A1E /* CompaniesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC325285082F000320A1E /* CompaniesAssembly.swift */; };
-		2ECAC3282850924E00320A1E /* CompaniesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3272850924E00320A1E /* CompaniesModel.swift */; };
 		2ECAC32B28509B8100320A1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ECAC32A28509B8100320A1E /* SnapKit */; };
+		2ECAC35B2850DC4C00320A1E /* EmployeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC35A2850DC4C00320A1E /* EmployeesViewController.swift */; };
+		2ECAC35D2850DC6B00320A1E /* EmployeesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC35C2850DC6B00320A1E /* EmployeesAssembly.swift */; };
+		2ECAC35F2850E22800320A1E /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC35E2850E22800320A1E /* CompanyTableViewCell.swift */; };
+		2ECAC3612850E26900320A1E /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3602850E26900320A1E /* EmployeeTableViewCell.swift */; };
+		2ECAC3632850E7AA00320A1E /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3622850E7AA00320A1E /* CompanyModel.swift */; };
+		2ECAC3652850E7BD00320A1E /* EmployeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3642850E7BD00320A1E /* EmployeeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +31,12 @@
 		2ECAC31B2850753600320A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ECAC31D2850753600320A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECAC325285082F000320A1E /* CompaniesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesAssembly.swift; sourceTree = "<group>"; };
-		2ECAC3272850924E00320A1E /* CompaniesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesModel.swift; sourceTree = "<group>"; };
+		2ECAC35A2850DC4C00320A1E /* EmployeesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesViewController.swift; sourceTree = "<group>"; };
+		2ECAC35C2850DC6B00320A1E /* EmployeesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesAssembly.swift; sourceTree = "<group>"; };
+		2ECAC35E2850E22800320A1E /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
+		2ECAC3602850E26900320A1E /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
+		2ECAC3622850E7AA00320A1E /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
+		2ECAC3642850E7BD00320A1E /* EmployeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,9 +84,10 @@
 		2ECAC323285081CB00320A1E /* CompaniesModule */ = {
 			isa = PBXGroup;
 			children = (
-				2ECAC3102850753200320A1E /* CompanyViewController.swift */,
 				2ECAC325285082F000320A1E /* CompaniesAssembly.swift */,
-				2ECAC3272850924E00320A1E /* CompaniesModel.swift */,
+				2ECAC3102850753200320A1E /* CompanyViewController.swift */,
+				2ECAC35E2850E22800320A1E /* CompanyTableViewCell.swift */,
+				2ECAC3622850E7AA00320A1E /* CompanyModel.swift */,
 			);
 			path = CompaniesModule;
 			sourceTree = "<group>";
@@ -84,6 +95,10 @@
 		2ECAC324285081D900320A1E /* EmployeesModule */ = {
 			isa = PBXGroup;
 			children = (
+				2ECAC35A2850DC4C00320A1E /* EmployeesViewController.swift */,
+				2ECAC35C2850DC6B00320A1E /* EmployeesAssembly.swift */,
+				2ECAC3602850E26900320A1E /* EmployeeTableViewCell.swift */,
+				2ECAC3642850E7BD00320A1E /* EmployeeModel.swift */,
 			);
 			path = EmployeesModule;
 			sourceTree = "<group>";
@@ -165,10 +180,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECAC3112850753200320A1E /* CompanyViewController.swift in Sources */,
+				2ECAC3612850E26900320A1E /* EmployeeTableViewCell.swift in Sources */,
 				2ECAC30D2850753200320A1E /* AppDelegate.swift in Sources */,
+				2ECAC3652850E7BD00320A1E /* EmployeeModel.swift in Sources */,
+				2ECAC35D2850DC6B00320A1E /* EmployeesAssembly.swift in Sources */,
+				2ECAC35F2850E22800320A1E /* CompanyTableViewCell.swift in Sources */,
+				2ECAC3632850E7AA00320A1E /* CompanyModel.swift in Sources */,
+				2ECAC35B2850DC4C00320A1E /* EmployeesViewController.swift in Sources */,
 				2ECAC326285082F000320A1E /* CompaniesAssembly.swift in Sources */,
 				2ECAC3172850753200320A1E /* CompanyList.xcdatamodeld in Sources */,
-				2ECAC3282850924E00320A1E /* CompaniesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
