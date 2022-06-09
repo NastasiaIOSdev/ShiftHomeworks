@@ -95,8 +95,8 @@
 		2ECAC324285081D900320A1E /* EmployeesModule */ = {
 			isa = PBXGroup;
 			children = (
-				2ECAC35A2850DC4C00320A1E /* EmployeesViewController.swift */,
 				2ECAC35C2850DC6B00320A1E /* EmployeesAssembly.swift */,
+				2ECAC35A2850DC4C00320A1E /* EmployeesViewController.swift */,
 				2ECAC3602850E26900320A1E /* EmployeeTableViewCell.swift */,
 				2ECAC3642850E7BD00320A1E /* EmployeeModel.swift */,
 			);

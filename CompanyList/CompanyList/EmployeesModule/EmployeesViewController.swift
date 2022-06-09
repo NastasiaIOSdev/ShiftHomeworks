@@ -49,8 +49,8 @@ class EmployeesViewController: UIViewController {
     func addEmployee(_ sender: AnyObject) {
         let alertController = UIAlertController(title: "Добавить сотрудника.", message: "Пожалуйста, введите данные нового сотрудника в поле ниже:", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Добавить", style: .default) { [unowned self] action in
-            guard let textField = alertController.textFields?.first, let nameToAdd = textField.text else { return }
-            self.save(addEmployee)
+            guard let textField = alertController.textFields?.first, let nameToAdd = nameTextField?.text, !nameToAdd.isEmpty  else { return }
+            self.save(nameToAdd)
             self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "Выйти", style: .destructive, handler: nil)
@@ -94,7 +94,6 @@ class EmployeesViewController: UIViewController {
         guard let appDeleagte = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDeleagte.persistentContainer.viewContext
         let employeeEntity = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: managedContext) as! Employee
-
         
         do {
             try managedContext.save()
