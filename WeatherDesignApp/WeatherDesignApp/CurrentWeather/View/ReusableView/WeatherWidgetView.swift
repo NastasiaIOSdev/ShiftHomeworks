@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SnapKit
 
-
 class WeatherWidgetView: UIView {
    
     // MARK: - Properties
@@ -30,8 +29,8 @@ class WeatherWidgetView: UIView {
     let humiditySectionView = SectionWithSeparatorView(type: .humidity)
     
     private let dateLabel = UILabel()
-    private let bigTemperatureLabel = UILabel()
-    private let weatherDescription = UILabel()
+    let bigTemperatureLabel = UILabel()
+    let weatherDescription = UILabel()
     
     init() {
         super.init(frame: .zero)

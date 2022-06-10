@@ -48,7 +48,7 @@ class SectionWithSeparatorView: UIView {
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
     private let separatorLabel = UILabel()
-    private let dataLabel = UILabel()
+    let dataLabel = UILabel()
     private let unitLabel = UILabel()
     
     init(type: Atmosphere) {

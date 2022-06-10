@@ -17,6 +17,10 @@ final class CustomWeatherView: UIView {
     
     // MARK: - Properties
     private let weatherSearchServise = NetworkService()
+    private let weatherService = WeatherService()
+    private let weatherWidgetView = WeatherWidgetView()
+    private let sectionWithSeparatorViewHum = SectionWithSeparatorView(type: .humidity)
+    private let sectionWithSeparatorViewWind = SectionWithSeparatorView(type: .wind)
     
     private enum Constancts {
         static let searchHeight = 58
@@ -46,7 +50,6 @@ final class CustomWeatherView: UIView {
         let imageView = UIImageView()
         return imageView
     }()
-    private let weatherWidgetView = WeatherWidgetView()
     
     private lazy var newNoteButton = WeatherButton(settings: .init(
         imageName: Constancts.weatherButtonImage,
@@ -69,7 +72,91 @@ final class CustomWeatherView: UIView {
     }
 }
 
-extension CustomWeatherView: ICustomWeatherView, UITextFieldDelegate {
+extension CustomWeatherView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        dispalayCondition(textField)
+        displayLocation(textField)
+        dispalayCurrentWeather(textField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension CustomWeatherView {
+    func dispalayCondition(_ textField: UITextField) -> Void {
+        self.weatherService.getCondition(textField.text!) { (condition) in
+            if let condition = condition {
+                DispatchQueue.main.async {
+                    if let icon = URL(string: "https:\(condition.icon!)") {
+                        self.weatherIconImageView.load(url: icon)
+                    }
+                    if let text = URL(string: "\(condition.text!)") {
+                        self.weatherWidgetView.weatherDescription.text = "\(text)"
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.weatherIconImageView.image = nil
+                    self.weatherWidgetView.weatherDescription.text = nil
+                }
+            }
+        }
+    }
+    
+    func dispalayCurrentWeather(_ textField: UITextField) -> Void {
+        self.weatherService.getCurrentweather((textField.text!)) { (currentWeather) in
+            if let currentWeather = currentWeather {
+                DispatchQueue.main.async {
+                    if let temp = currentWeather.temp {
+                        self.weatherWidgetView.bigTemperatureLabel.text = "\(temp)°C"
+                    }
+
+                    if let hun = currentWeather.humidity {
+                        self.weatherWidgetView.humiditySectionView.dataLabel.text = "\(hun) %"
+                    }
+
+                    if let wind = currentWeather.wind {
+                        self.weatherWidgetView.windSectionView.dataLabel.text = "\(wind)"
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.weatherWidgetView.humiditySectionView.dataLabel.text = nil
+                    self.sectionWithSeparatorViewHum.dataLabel.text = nil
+                    self.weatherWidgetView.windSectionView.dataLabel.text = nil
+                }
+            }
+        }
+    }
+    
+    func displayLocation(_ textField: UITextField) -> Void {
+        weatherService.getLocation("\(textField.text!)") { (location) in
+            if let location = location {
+                DispatchQueue.main.async {
+                    var locationText = ""
+                    if let city = location.city {
+                        locationText = "\(city)"
+                    }
+                    self.searchTextField.text = "\(locationText)"
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.searchTextField.text = "Город не найден"
+                }
+            }
+        }
+    }
+}
+
+extension CustomWeatherView: ICustomWeatherView {
     
     func setImage(imageData: Data) {
         self.weatherIconImageView.image = UIImage(data: imageData)
@@ -77,15 +164,6 @@ extension CustomWeatherView: ICustomWeatherView, UITextFieldDelegate {
     
     func displayWeatherData(data: CurrentWeatherViewModel) {
         self.weatherWidgetView.displayWeatherData(data)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text, !text.isEmpty else { return }
-        print(text)
     }
 }
 
@@ -176,5 +254,19 @@ private extension CustomWeatherView {
     
     func setAccessibilityIdentifier() {
         self.weatherIconImageView.accessibilityIdentifier = "weatherIconImageView"
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }

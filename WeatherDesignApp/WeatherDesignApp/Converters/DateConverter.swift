@@ -8,6 +8,18 @@
 import Foundation
 
 enum DateConverter {
+    
+    static func getDateDaysAgo(daysAgo: Int) -> String {
+        let formaler = DateFormatter()
+        let date = Calendar.current.date(
+            byAdding: .day,
+            value: daysAgo,
+            to: Date.now
+        ) ?? Date.now
+        formaler.dateFormat = "yyyy-MM-dd"
+        return formaler.string(from: date)
+    }
+    
     static func showDayWithWeekDay(_ date: Date) -> String {
         var result: String
         let formatter = DateFormatter()

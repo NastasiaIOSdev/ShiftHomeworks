@@ -12,7 +12,30 @@ protocol INetworkservice: AnyObject {
     func loadSearchWeatherData<T:Codable>(with searchText: String, completion: @escaping (Result<T, Error>) -> ())
 }
 
-final class NetworkService { }
+final class NetworkService {
+    private enum EndPoint {
+        static let weatherURL = "https://api.weatherapi.com/v1/history.json?"
+    }
+    
+//    private enum QueryItem {
+//        static let keyQuery =  NSURLQueryItem(name: "key", value: "1fbe35f21a364f7a9a384308220406")
+//        static let dateQuery = NSURLQueryItem(name: "dt", value: DateConverter.getDateDaysAgo(daysAgo: -7))
+//        static let endDateQuery = NSURLQueryItem(name: "end_dt", value: DateConverter.getDateDaysAgo(daysAgo: 0))
+//    }
+//
+//    func weatherURL(with city: String) -> URL {
+//        let queryItems = [
+//            QueryItem.keyQuery,
+//            QueryItem.dateQuery,
+//            QueryItem.endDateQuery,
+//            URLQueryItem(name: "q", value: city)
+//        ]
+//        var components = URLComponents(string: EndPoint.weatherURL)
+//        components?.queryItems = queryItems
+//        guard let url = components?.url else { assert(false, "Введен некорректный url!")}
+//        return url
+//    }
+}
 
 extension NetworkService: INetworkservice {
     func loadCurrentWeatherData<T:Decodable>(completion: @escaping (Result<T, Error>) -> ()) {
@@ -54,7 +77,7 @@ extension NetworkService: INetworkservice {
     
     func loadSearchWeatherData<T:Decodable>(with searchText: String, completion: @escaping (Result<T, Error>) -> ()) {
         guard !searchText.trimmingCharacters(in: .whitespaces) .isEmpty else { return }
-        let urlString = Constants.searchUrl + searchText
+        let urlString = Constants.historyURL + searchText
         guard let url = URL(string: urlString) else {
             assert(false) }
         
