@@ -10,11 +10,14 @@ import Foundation
 class WeatherService {
     let weatherAPIKey: String
     let currentWeatherBaseURL: URL?
+    let historyBaseURL: URL?
     var networkProcessor: NetworkProcessor?
     
     init() {
         self.weatherAPIKey = Constants.apiKeyWeather
         self.currentWeatherBaseURL = URL(string: Constants.currentWeatherBaseURL + weatherAPIKey)
+        self.historyBaseURL = URL(string: Constants.historyBaseURL + weatherAPIKey)
+        // + city + date
     }
     
     func setNetworkProcessor(request networkRequest: String) {
