@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EC0B6F228564D1E00D0916C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0B6F128564D1E00D0916C /* SnapKit */; };
 		2ECAC30D2850753200320A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC30C2850753200320A1E /* AppDelegate.swift */; };
 		2ECAC3112850753200320A1E /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3102850753200320A1E /* CompanyViewController.swift */; };
 		2ECAC3172850753200320A1E /* CompanyList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC3152850753200320A1E /* CompanyList.xcdatamodeld */; };
 		2ECAC3192850753600320A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECAC3182850753600320A1E /* Assets.xcassets */; };
 		2ECAC31C2850753600320A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ECAC31A2850753600320A1E /* LaunchScreen.storyboard */; };
 		2ECAC326285082F000320A1E /* CompaniesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC325285082F000320A1E /* CompaniesAssembly.swift */; };
-		2ECAC32B28509B8100320A1E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2ECAC32A28509B8100320A1E /* SnapKit */; };
 		2ECAC35B2850DC4C00320A1E /* EmployeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC35A2850DC4C00320A1E /* EmployeesViewController.swift */; };
 		2ECAC35D2850DC6B00320A1E /* EmployeesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC35C2850DC6B00320A1E /* EmployeesAssembly.swift */; };
 		2ECAC35F2850E22800320A1E /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC35E2850E22800320A1E /* CompanyTableViewCell.swift */; };
@@ -44,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ECAC32B28509B8100320A1E /* SnapKit in Frameworks */,
+				2EC0B6F228564D1E00D0916C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +120,7 @@
 			);
 			name = CompanyList;
 			packageProductDependencies = (
-				2ECAC32A28509B8100320A1E /* SnapKit */,
+				2EC0B6F128564D1E00D0916C /* SnapKit */,
 			);
 			productName = CompanyList;
 			productReference = 2ECAC3092850753200320A1E /* CompanyList.app */;
@@ -151,7 +151,7 @@
 			);
 			mainGroup = 2ECAC3002850753200320A1E;
 			packageReferences = (
-				2ECAC32928509B8100320A1E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2EC0B6F028564D1E00D0916C /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 2ECAC30A2850753200320A1E /* Products */;
 			projectDirPath = "";
@@ -398,7 +398,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2ECAC32928509B8100320A1E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		2EC0B6F028564D1E00D0916C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
 			requirement = {
@@ -409,9 +409,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2ECAC32A28509B8100320A1E /* SnapKit */ = {
+		2EC0B6F128564D1E00D0916C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2ECAC32928509B8100320A1E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 2EC0B6F028564D1E00D0916C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

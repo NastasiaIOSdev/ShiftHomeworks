@@ -15,7 +15,7 @@ final class CompanyTableViewCell: UITableViewCell {
         static let labelsOffset: CGFloat = 16
         static let labelTopBottomInset = 20
     }
-    private var companyLabel: UILabel = {
+    var companyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: "Arial", size: 15)

@@ -14,7 +14,8 @@ final class CompanyViewController: UIViewController{
     private enum Constraints {
         static let topOffsetLabel: CGFloat = 180
     }
-    var companyies: [NSManagedObject] = []
+    var companyies = [Company]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     private let tableView = UITableView()
     
@@ -32,96 +33,71 @@ final class CompanyViewController: UIViewController{
         self.tableView.backgroundColor = .white
         self.tableView.register(CompanyTableViewCell.self, forCellReuseIdentifier: CompanyTableViewCell.identifier)
         self.setupLayout()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Company")
-        do {
-            companyies = try managedContext.fetch(fetchRequest)
-        } catch let err as NSError {
-            print("Не удалось загрузить список сохраненных компаний", err)
-        }
+        self.fetchCompany()
     }
     
     @objc
-    func addCompany(_ sender: AnyObject) {
-        let alertController = UIAlertController(title: "Добавить компанию.", message: "Пожалуйста, введите имя новой компании в поле ниже:", preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Добавить", style: .default) { [unowned self] action in
-            guard let textField = alertController.textFields?.first, let companyToAdd = textField.text else { return }
-            self.save(companyToAdd)
-            self.tableView.reloadData()
+    func addCompany(_ sender: Any) {
+        var newCompany: String?
+        let alert = UIAlertController(title: "Добавить компанию.", message: "Пожалуйста, введите имя новой компании в поле ниже:", preferredStyle: .alert)
+        alert.addTextField { (nameTF) in
+            nameTF.placeholder = "Имя"
+        }
+        let addAction = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
+            newCompany = alert.textFields![0].text
+            let company = Company(context: self.context)
+            company.companyName = newCompany
+            self.companyies.append(company)
+            self.saveCompany()
         }
         let cancelAction = UIAlertAction(title: "Выйти", style: .destructive, handler: nil)
-        alertController.addTextField(configurationHandler: nil)
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func save(_ companyName: String) {
-        guard let appDeleagte = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDeleagte.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Company", in: managedContext)
-        let company = NSManagedObject(entity: entity!, insertInto: managedContext)
-        company.setValue(companyName, forKey: "companyName")
-        
-        do {
-            try managedContext.save()
-            companyies.append(company)
-        } catch let err as NSError {
-            print("Не получилось сохранить компанию !", err)
-        }
+        alert.addAction(cancelAction)
+        alert.addAction(addAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
 extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CompanyTableViewCell.identifier, for: indexPath)
-        let company = companyies[indexPath.row]
-        cell.textLabel?.text = company.value(forKeyPath: "companyName") as? String
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return companyies.count
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(EmployeesAssembly.build(), animated: true)
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CompanyTableViewCell.identifier, for: indexPath) as! CompanyTableViewCell
+        let company = companyies[indexPath.row]
+        cell.companyLabel.text = company.companyName
+        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        let company = companyies[indexPath.row]
-//         let name = company.value(forKeyPath: "companyName") as? String
-//        
-//        companyies.remove(at: indexPath.row)
-//        deleteData(name: name!)
+        self.context.delete(self.companyies[indexPath.row])
+        self.companyies.remove(at: indexPath.row)
+        self.saveCompany()
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.navigationController?.pushViewController(EmployeesAssembly.build(), animated: true)
     }
 }
 
-extension CompanyViewController {
-    func deleteData(name: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Company")
-        fetchRequest.predicate = NSPredicate(format: "companyName = %@", name)
-        
+
+private extension CompanyViewController {
+    func fetchCompany(with request: NSFetchRequest<Company> = Company.fetchRequest()) {
         do {
-            let test = try managedContext.fetch(fetchRequest)
-            let obbjectToDelete = test[0] as! NSManagedObject
-            managedContext.delete(obbjectToDelete)
-            do {
-                try managedContext.save()
-            } catch {
-                print(error)
-            }
+            companyies = try context.fetch(request)
         } catch {
-            print(error)
+            print("Ошибка при попытке получить Company из database")
         }
+        tableView.reloadData()
+    }
+    
+    func saveCompany() {
+        do {
+            try context.save()
+        } catch {
+            print("Ошибка при попытке сохранить Company")
+        }
+        tableView.reloadData()
     }
 }
 
