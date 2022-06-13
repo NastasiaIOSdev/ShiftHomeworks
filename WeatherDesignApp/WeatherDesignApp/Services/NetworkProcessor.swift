@@ -8,6 +8,7 @@
 import Foundation
 
 class NetworkProcessor {
+    
     lazy var configuretion: URLSessionConfiguration = URLSessionConfiguration.default
     lazy var session: URLSession = URLSession(configuration: self.configuretion)
     let url: URL

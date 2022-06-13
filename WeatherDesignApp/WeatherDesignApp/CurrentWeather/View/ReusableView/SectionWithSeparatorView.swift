@@ -38,23 +38,26 @@ class SectionWithSeparatorView: UIView {
         }
     }
     
-    // MARK: - Properties
-    
     private enum Constants {
        static let imageViewVerticalOffset = 5
        static let separatorLabel = "|"
     }
     
+// MARK: - Properties
+       
+    let dataLabel = UILabel()
     private let imageView = UIImageView()
     private let nameLabel = UILabel()
     private let separatorLabel = UILabel()
-    let dataLabel = UILabel()
     private let unitLabel = UILabel()
+ 
+// MARK: - Init
     
     init(type: Atmosphere) {
         super.init(frame: .zero)
         self.configureView(with: type)
-        self.setupHumiditydSectionView()
+        self.setupLayout()
+        self.setupCommonData() 
         self.backgroundColor = .clear
     }
     
@@ -68,52 +71,9 @@ class SectionWithSeparatorView: UIView {
     }
 }
 
+// MARK: - Setup Layout
+
 private extension SectionWithSeparatorView {
-    
-    func configureView(with type: Atmosphere) {
-        self.imageView.image = type.image
-        self.nameLabel.text = type.description
-        self.unitLabel.text = type.unit
-    }
-    
-    func setupHumiditydSectionView() {
-        setupCommonLabel()
-        setupLayout()
-        displayData()
-    }
-    
-    func displayData() {
-        separatorLabel.text = Constants.separatorLabel
-    }
-    
-    func setupCommonLabel() {
-        nameLabel.numberOfLines = 1
-        nameLabel.font = AppFonts.regular20.font
-        nameLabel.textAlignment = .center
-        nameLabel.lineBreakMode = .byClipping
-        nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.sizeToFit()
-        nameLabel.minimumScaleFactor = 0.3
-        nameLabel.textColor = .white
-        
-        separatorLabel.numberOfLines = 1
-        separatorLabel.font = AppFonts.light18.font
-        nameLabel.textAlignment = .center
-        separatorLabel.textColor = .white
-        
-        dataLabel.numberOfLines = 1
-        dataLabel.font = AppFonts.regular20.font
-        dataLabel.textAlignment = .left
-        dataLabel.adjustsFontSizeToFitWidth = true
-        dataLabel.textColor = .white
-        
-        unitLabel.numberOfLines = 1
-        unitLabel.font = AppFonts.regular20.font
-        unitLabel.textAlignment = .left
-        unitLabel.adjustsFontSizeToFitWidth = true
-        unitLabel.textColor = .white
-    }
-    
     func setupLayout() {
         self.addSubview(self.imageView)
         self.imageView.snp.makeConstraints { make in
@@ -146,4 +106,46 @@ private extension SectionWithSeparatorView {
             make.trailing.equalToSuperview()
         }
     }
+}
+
+// MARK: - Setup Common data
+
+private extension SectionWithSeparatorView {
+    
+    func configureView(with type: Atmosphere) {
+        self.imageView.image = type.image
+        self.nameLabel.text = type.description
+        self.unitLabel.text = type.unit
+    }
+    
+    func setupCommonData() {
+        nameLabel.numberOfLines = 1
+        nameLabel.font = AppFonts.regular20.font
+        nameLabel.textAlignment = .center
+        nameLabel.lineBreakMode = .byClipping
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.sizeToFit()
+        nameLabel.minimumScaleFactor = 0.3
+        nameLabel.textColor = .white
+        
+        separatorLabel.numberOfLines = 1
+        separatorLabel.font = AppFonts.light18.font
+        separatorLabel.text = Constants.separatorLabel
+        separatorLabel.textAlignment = .center
+        separatorLabel.textColor = .white
+        
+        dataLabel.numberOfLines = 1
+        dataLabel.font = AppFonts.regular20.font
+        dataLabel.textAlignment = .left
+        dataLabel.adjustsFontSizeToFitWidth = true
+        dataLabel.textColor = .white
+        
+        unitLabel.numberOfLines = 1
+        unitLabel.font = AppFonts.regular20.font
+        unitLabel.textAlignment = .left
+        unitLabel.adjustsFontSizeToFitWidth = true
+        unitLabel.textColor = .white
+    }
+    
+    
 }

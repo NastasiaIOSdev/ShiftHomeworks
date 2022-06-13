@@ -15,12 +15,28 @@ protocol ICustomWeatherView: AnyObject {
 
 final class CustomWeatherView: UIView {
     
-    // MARK: - Properties
+// MARK: - Properties
+    let searchTextField = UITextField()
+    var buttonTappedHandler: (() -> ())?
+    
+    private let weatherIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
+    private lazy var newNoteButton = WeatherButton(settings: .init(
+        imageName: Constancts.weatherButtonImage,
+        labelText: Texts.buttonImageText,
+        font: .regular16,
+        tapHandler: { self.buttonTappedHandler?() }))
+    
     private let weatherSearchServise = NetworkService()
     private let weatherService = WeatherService()
     private let weatherWidgetView = WeatherWidgetView()
     private let sectionWithSeparatorViewHum = SectionWithSeparatorView(type: .humidity)
     private let sectionWithSeparatorViewWind = SectionWithSeparatorView(type: .wind)
+
+// MARK: -
     
     private enum Constancts {
         static let searchHeight = 58
@@ -43,25 +59,13 @@ final class CustomWeatherView: UIView {
         static let searchTFPlaceholder = "Search here"
         static let buttonImageText = "New wether note"
     }
-    
-    let searchTextField = UITextField()
-    
-    private let weatherIconImageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-    
-    private lazy var newNoteButton = WeatherButton(settings: .init(
-        imageName: Constancts.weatherButtonImage,
-        labelText: Texts.buttonImageText,
-        font: .regular16,
-        tapHandler: { self.buttonTappedHandler?() }))
-    
-    var buttonTappedHandler: (() -> ())?
+
+    // MARK: - Init
     
     init() {
         super.init(frame: .zero)
-        self.setupUI()
+        self.setupCommonDataUI()
+        self.setupLayout()
         searchTextField.delegate = self
     }
     
@@ -71,6 +75,8 @@ final class CustomWeatherView: UIView {
         
     }
 }
+
+// MARK: - TextFieldDelegate
 
 extension CustomWeatherView: UITextFieldDelegate {
     
@@ -89,6 +95,8 @@ extension CustomWeatherView: UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: -
 
 extension CustomWeatherView {
     func dispalayCondition(_ textField: UITextField) -> Void {
@@ -167,45 +175,9 @@ extension CustomWeatherView: ICustomWeatherView {
     }
 }
 
+// MARK: - SetupLayout
+
 private extension CustomWeatherView {
-    func setupUI() {
-        self.setupBackgroundView()
-        self.setupSearchField()
-        self.configureWidgetView()
-        self.setupLayout()
-        self.setAccessibilityIdentifier()
-    }
-    
-    func setupBackgroundView() {
-        self.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
-    }
-    
-    func setupSearchField() {
-        self.searchTextField.backgroundColor = Colors.white.value
-        self.searchTextField.layer.cornerRadius = Constancts.cornerRadius
-        self.searchTextField.layer.masksToBounds = true
-        self.searchTextField.attributedPlaceholder = NSAttributedString(
-            string: Texts.searchTFPlaceholder,
-            attributes: [NSAttributedString.Key.font : AppFonts.regular18.font as Any,
-                         NSAttributedString.Key.foregroundColor : Colors.lightBlue.value
-                        ]
-        )
-        let emptyView = UIView(frame: .init(x: .zero, y: .zero, width: Constraints.emptyViewWidth, height: .zero))
-        self.searchTextField.leftViewMode = .always
-        self.searchTextField.leftView = emptyView
-        self.searchTextField.rightViewMode = .always
-        self.searchTextField.rightView = emptyView
-        
-        self.weatherIconImageView.image = UIImage(named: "sunny")
-    }
-    
-    func configureWidgetView() {
-        self.weatherWidgetView.backgroundColor = Colors.whiteBackground.value
-        self.weatherWidgetView.layer.cornerRadius = Constancts.cornerRadius
-        self.weatherWidgetView.layer.borderColor = UIColor.white.cgColor
-        self.weatherWidgetView.layer.borderWidth = 1
-    }
-    
     func setupLayout() {
         self.setupSearchTFLayout()
         self.setupWeatherImageViwLayout()
@@ -252,6 +224,49 @@ private extension CustomWeatherView {
         }
     }
     
+}
+
+// MARK: - Setup CommonData UI
+
+private extension CustomWeatherView {
+    func setupCommonDataUI() {
+        self.setupBackgroundView()
+        self.setupSearchField()
+        self.configureWidgetView()
+        self.setAccessibilityIdentifier()
+    }
+    
+    func setupBackgroundView() {
+        self.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
+    }
+    
+    func setupSearchField() {
+        self.searchTextField.backgroundColor = Colors.white.value
+        self.searchTextField.layer.cornerRadius = Constancts.cornerRadius
+        self.searchTextField.layer.masksToBounds = true
+        self.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: Texts.searchTFPlaceholder,
+            attributes: [NSAttributedString.Key.font : AppFonts.regular18.font as Any,
+                         NSAttributedString.Key.foregroundColor : Colors.lightBlue.value
+                        ]
+        )
+        let emptyView = UIView(frame: .init(x: .zero, y: .zero, width: Constraints.emptyViewWidth, height: .zero))
+        self.searchTextField.leftViewMode = .always
+        self.searchTextField.leftView = emptyView
+        self.searchTextField.rightViewMode = .always
+        self.searchTextField.rightView = emptyView
+        
+        self.weatherIconImageView.image = UIImage(named: "sunny")
+    }
+    
+    func configureWidgetView() {
+        self.weatherWidgetView.backgroundColor = Colors.whiteBackground.value
+        self.weatherWidgetView.layer.cornerRadius = Constancts.cornerRadius
+        self.weatherWidgetView.layer.borderColor = UIColor.white.cgColor
+        self.weatherWidgetView.layer.borderWidth = 1
+    }
+    
+   
     func setAccessibilityIdentifier() {
         self.weatherIconImageView.accessibilityIdentifier = "weatherIconImageView"
     }

@@ -15,17 +15,21 @@ protocol IWeatherDiaryView: AnyObject {
 }
 
 final class WeatherDiaryView: UIView {
-    // MARK: - Properties
+    
+    private enum Constraints {
+        static let tableViewHorizontalOffset = 17
+    }
+    
+// MARK: - Properties
+    
     let delegate = WeatherDiaryViewDelegate()
     public var didSelectRowHandler: ((Int) -> ())?
     public var data: [WeatherDiaryEntity]?
     private let dataSource = WeatherDiaryViewDataSourse()
     private let tableView = UITableView()
+  
+// MARK: - Init
     
-    private enum Constraints {
-        static let tableViewHorizontalOffset = 17
-    }
-
     init() {
         super.init(frame: .zero)
         self.setupUI()
@@ -34,6 +38,8 @@ final class WeatherDiaryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - Setup CommonData & Layout
 
 extension WeatherDiaryView {
     func setupUI() {
@@ -63,6 +69,8 @@ extension WeatherDiaryView {
         }
     }
 }
+
+// MARK: - 
 
 extension WeatherDiaryView: IWeatherDiaryView {
     func getData(data: [WeatherDiaryEntity]) {

@@ -11,8 +11,6 @@ import SnapKit
 
 class WeatherWidgetView: UIView {
    
-    // MARK: - Properties
-    
     private enum Constants {
         static let unitTempreratureLabel = "°"
     }
@@ -25,22 +23,28 @@ class WeatherWidgetView: UIView {
 
     }
     
+// MARK: - Properties
+
     let windSectionView = SectionWithSeparatorView(type: .wind)
     let humiditySectionView = SectionWithSeparatorView(type: .humidity)
-    
-    private let dateLabel = UILabel()
     let bigTemperatureLabel = UILabel()
     let weatherDescription = UILabel()
+    private let dateLabel = UILabel()
+    
+// MARK: - Init
     
     init() {
         super.init(frame: .zero)
-        self.setupWeatherWidgetView()
+        self.setupCommonData()
+        self.setupCommonLabelLayout()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - Dispalay Data
     
     func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
         self.dateLabel.text = viewModel.date
@@ -51,13 +55,10 @@ class WeatherWidgetView: UIView {
     }
 }
 
+// MARK: - Setup Common Data
+
 private extension WeatherWidgetView {
- 
-    func setupWeatherWidgetView() {
-        self.setupCommonData()
-        self.setupCommonLabelLayout()
-    }
-   
+    
     func setupCommonData() {
         self.dateLabel.numberOfLines = 1
         self.dateLabel.adjustsFontSizeToFitWidth = true
@@ -78,7 +79,11 @@ private extension WeatherWidgetView {
         self.weatherDescription.font = AppFonts.bold24.font
         self.weatherDescription.textColor = .white
     }
-    
+}
+// MARK: - Setup Layout
+
+private extension WeatherWidgetView {
+ 
     func setupCommonLabelLayout() {
         
         self.addSubview(self.dateLabel)

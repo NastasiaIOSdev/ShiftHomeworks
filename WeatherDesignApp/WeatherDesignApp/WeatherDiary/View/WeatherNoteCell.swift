@@ -10,9 +10,7 @@ import SnapKit
 
 final class WeatherNoteCell: UITableViewCell {
     
-    // MARK: - Properties
-    
-    static let id = String(describing: WeatherNoteCell.self)
+// MARK: - Constraints
     
     private enum Constraints {
         static let topBottonInset: CGFloat = 18
@@ -21,6 +19,10 @@ final class WeatherNoteCell: UITableViewCell {
         static let leadingTrailingCellInset: CGFloat = 16
         static let degreeLabelWidth = 40
     }
+    
+// MARK: - Properties
+    
+    static let id = String(describing: WeatherNoteCell.self)
     
     private let cityLabel: UILabel = {
         let label = UILabel()
@@ -49,6 +51,8 @@ final class WeatherNoteCell: UITableViewCell {
     
     private let weatherImageView = UIImageView()
     
+// MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,6 +65,8 @@ final class WeatherNoteCell: UITableViewCell {
     }
 }
 
+// MARK: - Dispalay Data
+
 extension WeatherNoteCell {
     func displayData(_ viewModel: WeatherDiaryEntity) {
         self.cityLabel.text = viewModel.town
@@ -69,6 +75,8 @@ extension WeatherNoteCell {
         self.degreeLabel.text = viewModel.temperature
     }
 }
+
+// MARK: - Setup Layout & Commondata
 
 private extension WeatherNoteCell {
     

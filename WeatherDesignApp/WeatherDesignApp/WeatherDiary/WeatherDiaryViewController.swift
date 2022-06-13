@@ -9,9 +9,13 @@ import UIKit
 import SnapKit
 
 final class WeatherDiaryViewController: UIViewController {
-   
+
+// MARK: - Properties
+    
     var presenter: IWeatherDiaryPresenter?
     private var customView = WeatherDiaryView()
+    
+// MARK: - Init
     
     init(presenter: IWeatherDiaryPresenter) {
         super.init(nibName: nil, bundle: nil)
@@ -26,7 +30,8 @@ final class WeatherDiaryViewController: UIViewController {
     override func loadView() {
         self.view = self.customView
     }
-    // MARK - Life cycles
+    
+// MARK - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +40,7 @@ final class WeatherDiaryViewController: UIViewController {
     }
 }
 
-    // MARK - Navigation
+// MARK - Navigation
 
 private extension WeatherDiaryViewController {
     func setupNavBar() {

@@ -12,6 +12,8 @@ final class WeatherDiaryViewDelegate: NSObject {
     var delegate: ((Int) -> ())?
 }
 
+// MARK: - TableView Delegate
+
 extension WeatherDiaryViewDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
