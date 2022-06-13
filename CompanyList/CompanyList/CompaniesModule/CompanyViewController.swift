@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import CoreData
 
-final class CompanyViewController: UIViewController{
+final class CompanyViewController: UIViewController {
     
     private enum Constraints {
         static let topOffsetLabel: CGFloat = 180
@@ -63,16 +63,16 @@ extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        //        let destinationVC: Void? = self.navigationController?.pushViewController(EmployeesAssembly.build(), animated: true)
-        //        if let index = tableView.indexPathsForSelectedRows?[0] {
-        //            destinationVC.setectedCompany = self.companyies[indexPath.row]
-        //        }
+               let destinationVC = EmployeesAssembly.build()
+               let company = companyies[indexPath.row]
+               destinationVC.setectedCompany = company
+               navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
 // MARK: - Fetch & Save cellData
 
-private extension CompanyViewController {
+extension CompanyViewController {
     func fetchCompany(with request: NSFetchRequest<Company> = Company.fetchRequest()) {
         do {
             companyies = try context.fetch(request)
@@ -104,7 +104,7 @@ private extension CompanyViewController {
     }
 }
 
-private extension CompanyViewController {
+extension CompanyViewController {
     func setupNavigation() {
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -132,7 +132,7 @@ private extension CompanyViewController {
 
 // MARK: - Setup Alert
 
-private extension CompanyViewController {
+extension CompanyViewController: UITextFieldDelegate {
     @objc
     func addCompany(_ sender: Any) {
         var newCompany: String?

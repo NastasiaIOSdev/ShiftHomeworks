@@ -18,6 +18,8 @@ class EmployeesViewController: UITableViewController {
     var setectedCompany: Company? {
         didSet {
             fetchEmployee()
+            guard let companyNAme = setectedCompany?.companyName else { return }
+            self.title = companyNAme
         }
     }
     
@@ -25,6 +27,7 @@ class EmployeesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(red: 209/255, green: 32/255, blue: 35/255, alpha: 1)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .add,
             style: .plain,
@@ -36,7 +39,6 @@ class EmployeesViewController: UITableViewController {
         EmployeeTableViewCell.self,
         forCellReuseIdentifier: EmployeeTableViewCell.identifier
        )
-        self.setupLayout()
     }
 }
 
@@ -49,7 +51,7 @@ extension EmployeesViewController {
         predicate: NSPredicate? = nil
     ) {
         let companyPredicate = NSPredicate(
-            format: "parentCategory.name MATCHES %@",
+            format: "company.companyName MATCHES %@",
             setectedCompany!.companyName!
         )
         if let additionalPredicate = predicate {
@@ -111,28 +113,9 @@ extension EmployeesViewController {
     }
 }
 
-extension EmployeesViewController {
-    
-//    private func configure(cell: EmployeeTableViewCell, indexPath: IndexPath) {
-//      
-//        }
-}
-
-// MARK: - TableViewLAYOUT
-
-private extension EmployeesViewController {
-    func setupLayout() {
-        self.view.addSubview(self.tableView)
-        self.tableView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().offset(150)
-            make.leading.trailing.equalToSuperview()
-        }
-    }
-}
-
 // MARK - Setup Alert
 
-private extension EmployeesViewController {
+ extension EmployeesViewController: UITextFieldDelegate {
     @objc
     func addEmployeeButtonTap(_ sender: UIBarButtonItem) {
         var model: EmployeeModel?
@@ -161,11 +144,11 @@ private extension EmployeesViewController {
         }
         
         let saveAction = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
-            model?.name = alert.textFields![0].text ?? " "
-            model?.age = alert.textFields![1].text ?? " "
-            model?.position = alert.textFields![2].text ?? " "
-            model?.experience = alert.textFields?[3].text
-            model?.education = alert.textFields?[4].text
+            model?.name = alert.textFields![0].text ?? " 1"
+            model?.age = alert.textFields![1].text ?? " 2"
+            model?.position = alert.textFields![2].text ?? " 3"
+            model?.experience = alert.textFields![3].text ?? "4"
+            model?.education = alert.textFields![4].text ?? "5"
             let employeeToAdd = Employee(context: self.context)
             employeeToAdd.name =  model?.name
             employeeToAdd.age = model?.age

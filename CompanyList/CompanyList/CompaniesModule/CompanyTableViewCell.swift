@@ -50,15 +50,6 @@ final class CompanyTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Display cell Data
-
-extension CompanyTableViewCell {
-    func displayData(_ viewModel: CompanyModel) {
-        self.companyLabel.text = viewModel.name
-        self.numberOfEmployeeLabel.text = viewModel.numberOfEmployee
-    }
-}
-
 // MARK: - Setup Layout
 
 private extension CompanyTableViewCell {
