@@ -8,9 +8,9 @@
 import Foundation
 
 struct EmployeeModel {
-    let name: String
-    let age: String
-    let position: String
-    let experience: String?
-    let education: String?
+    var name: String
+    var age: String
+    var position: String
+    var experience: String?
+    var education: String?
 }

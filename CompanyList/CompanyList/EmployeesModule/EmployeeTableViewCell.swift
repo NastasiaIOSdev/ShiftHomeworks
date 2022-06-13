@@ -16,6 +16,8 @@ final class EmployeeTableViewCell: UITableViewCell {
         static let labelTopBottomInset = 20
     }
     
+// MARK: - Property
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -51,7 +53,12 @@ final class EmployeeTableViewCell: UITableViewCell {
         return label
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+ // MARK - Init Cell
+    
+    override init(
+        style: UITableViewCell.CellStyle,
+        reuseIdentifier: String?
+    ) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         self.setupUI()
@@ -63,6 +70,8 @@ final class EmployeeTableViewCell: UITableViewCell {
     }
 }
 
+// MARK - Dispaly Data
+
 extension EmployeeTableViewCell {
     func displayData(_ viewModel: EmployeeModel) {
         self.nameLabel.text = viewModel.name
@@ -72,6 +81,9 @@ extension EmployeeTableViewCell {
         self.educationalLabel.text = viewModel.education
     }
 }
+
+// MARK: - Setup Cell Layout
+
 private extension EmployeeTableViewCell {
     func setupUI() {
         self.setupLayout()

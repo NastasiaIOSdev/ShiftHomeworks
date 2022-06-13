@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CompanyTableViewCell: UITableViewCell {
 
@@ -15,6 +16,9 @@ final class CompanyTableViewCell: UITableViewCell {
         static let labelsOffset: CGFloat = 16
         static let labelTopBottomInset = 20
     }
+    
+// MARK: - Property
+    
     var companyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -32,6 +36,8 @@ final class CompanyTableViewCell: UITableViewCell {
        return label
     }()
 
+// MARK: - Init Cell
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -44,12 +50,16 @@ final class CompanyTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Display cell Data
+
 extension CompanyTableViewCell {
     func displayData(_ viewModel: CompanyModel) {
         self.companyLabel.text = viewModel.name
         self.numberOfEmployeeLabel.text = viewModel.numberOfEmployee
     }
 }
+
+// MARK: - Setup Layout
 
 private extension CompanyTableViewCell {
     func setupUI() {

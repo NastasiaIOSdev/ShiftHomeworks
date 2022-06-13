@@ -9,130 +9,116 @@ import UIKit
 import SnapKit
 import CoreData
 
-class EmployeesViewController: UIViewController {
+class EmployeesViewController: UITableViewController {
 
-    var getEmployeeInfo: Employee?
-    var arrayOfEmployees : [Employee] = []{
+// MARK: - Property
+    
+    var arrayEmployee = [Employee]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var setectedCompany: Company? {
         didSet {
-            self.tableView.reloadData()
+            fetchEmployee()
         }
     }
     
-    var nameTextField: UITextField?
-    var ageTextField: UITextField?
-    var positionTextField: UITextField?
-    var experienceTextField: UITextField?
-    var educationTextField: UITextField?
-    
-    private let tableView = UITableView()
+// MARK - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 209/255, green: 32/255, blue: 35/255, alpha: 1)
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "Список сотрудников"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .plain, target: self, action: #selector(addEmployee))
-        self.navigationItem.rightBarButtonItem?.tintColor = .white
-        self.tableView.backgroundColor = .white
-        self.tableView.register(EmployeeTableViewCell.self, forCellReuseIdentifier: EmployeeTableViewCell.identifier)
-        self.setupLayout()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-    }
-    
-    @objc
-    func addEmployee(_ sender: AnyObject) {
-        let alertController = UIAlertController(title: "Добавить сотрудника.", message: "Пожалуйста, введите данные нового сотрудника в поле ниже:", preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Добавить", style: .default) { [unowned self] action in
-            guard let textField = alertController.textFields?.first, let nameToAdd = nameTextField?.text, !nameToAdd.isEmpty  else { return }
-            self.save(nameToAdd)
-            self.tableView.reloadData()
-        }
-        let cancelAction = UIAlertAction(title: "Выйти", style: .destructive, handler: nil)
-       
-        alertController.addTextField(configurationHandler: nameTextField)
-        alertController.addTextField(configurationHandler: ageTextField)
-        alertController.addTextField(configurationHandler: positionTextField)
-        alertController.addTextField(configurationHandler: experienceTextField)
-        alertController.addTextField(configurationHandler: educationTextField)
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func nameTextField(textField: UITextField!) {
-        nameTextField = textField
-        nameTextField?.placeholder = "Имя"
-    }
-    
-    func ageTextField(textField: UITextField!) {
-        ageTextField = textField
-        ageTextField?.placeholder = "Возраст"
-    }
-    
-    func positionTextField(textField: UITextField!) {
-        positionTextField = textField
-        positionTextField?.placeholder = "Должность"
-    }
-    
-    func experienceTextField(textField: UITextField!) {
-        experienceTextField = textField
-        experienceTextField?.placeholder = "Опыт работы"
-    }
-    
-    func educationTextField(textField: UITextField!) {
-        educationTextField = textField
-        educationTextField?.placeholder = "Образование"
-    }
-    
-    func save(_ sender: Any) {
-        guard let appDeleagte = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDeleagte.persistentContainer.viewContext
-        let employeeEntity = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: managedContext) as! Employee
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: .add,
+            style: .plain,
+            target: self,
+            action: #selector(addEmployeeButtonTap)
+        )
         
-        do {
-            try managedContext.save()
-        } catch let err as NSError {
-            print("Не получилось сохранить компанию !", err)
-        }
+        self.tableView.register(
+        EmployeeTableViewCell.self,
+        forCellReuseIdentifier: EmployeeTableViewCell.identifier
+       )
+        self.setupLayout()
     }
 }
 
-extension EmployeesViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - Feth & Save CellData
+
+extension EmployeesViewController {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: EmployeeTableViewCell.identifier, for: indexPath)
-            configure(cell: cell, indexPath: indexPath)
+    func fetchEmployee(
+        with request: NSFetchRequest<Employee> = Employee.fetchRequest(),
+        predicate: NSPredicate? = nil
+    ) {
+        let companyPredicate = NSPredicate(
+            format: "parentCategory.name MATCHES %@",
+            setectedCompany!.companyName!
+        )
+        if let additionalPredicate = predicate {
+            let compoundPredicate = NSCompoundPredicate(
+                andPredicateWithSubpredicates: [companyPredicate, additionalPredicate]
+            )
+            request.predicate = compoundPredicate
+        } else {
+            request.predicate = companyPredicate
+        }
+        
+        do {
+            arrayEmployee = try context.fetch(request)
+        } catch {
+            print("Щшибка при попытке загрузить Employee из database")
+        }
+        tableView.reloadData()
+    }
+    
+    func saveEmployee() {
+        do {
+            try context.save()
+        } catch {
+            print("Ошибка при сохранении Employee")
+        }
+        tableView.reloadData()
+    }
+}
+
+// MARK - TableViewDataSourse, TableViewDelegate
+
+extension EmployeesViewController {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: EmployeeTableViewCell.identifier,
+            for: indexPath) as? EmployeeTableViewCell else { return UITableViewCell()
+            }
+        let employee = arrayEmployee[indexPath.row]
+        cell.nameLabel.text = employee.name
+        cell.ageLabel.text = employee.age
+        cell.positionLabel.text = employee.position
+        cell.experienceLabel.text = employee.experience
+        cell.educationalLabel.text = employee.experience
         return cell
     }
     
-    private func configure(cell: UITableViewCell, indexPath: IndexPath) {
-        if let cell: EmployeeTableViewCell = cell as? EmployeeTableViewCell {
-            let dict = arrayOfEmployees[indexPath.row] as! Employee
-            cell.nameLabel.text = dict.name
-            cell.ageLabel.text = dict.age
-            cell.positionLabel.text = dict.position
-            cell.experienceLabel.text = dict.experience
-            cell.educationalLabel.text = dict.education
-        }
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfEmployees.count
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrayEmployee.count
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let dict = arrayOfEmployees[indexPath.row] as! Employee
-        let name = dict.name
-        
-        arrayOfEmployees.remove(at: indexPath.row)
-        self.deleteData(name: name!)
+//MARK - Remove Cell
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        self.context.delete(self.arrayEmployee[indexPath.row])
+        self.arrayEmployee.remove(at: indexPath.row)
+        self.saveEmployee()
     }
 }
+
+extension EmployeesViewController {
+    
+//    private func configure(cell: EmployeeTableViewCell, indexPath: IndexPath) {
+//      
+//        }
+}
+
+// MARK: - TableViewLAYOUT
 
 private extension EmployeesViewController {
     func setupLayout() {
@@ -144,31 +130,60 @@ private extension EmployeesViewController {
     }
 }
 
-extension EmployeesViewController {
-    func deleteData(name: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+// MARK - Setup Alert
+
+private extension EmployeesViewController {
+    @objc
+    func addEmployeeButtonTap(_ sender: UIBarButtonItem) {
+        var model: EmployeeModel?
+        let alert = UIAlertController(
+            title: "Добавить сотрудника.",
+            message: "Пожалуйста, введите данные нового сотрудника в поле ниже:",
+            preferredStyle: .alert
+        )
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Employee")
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
-        do
-        {
-            let test = try managedContext.fetch(fetchRequest)
-            let objectToDelete = test[0] as! NSManagedObject
-            managedContext.delete(objectToDelete)
-            
-            do{
-                try managedContext.save()
-            }
-            catch
-            {
-                print(error)
-            }
-            
+        alert.addTextField { (nameTF) in
+            nameTF.placeholder = "Имя"
         }
-        catch
-        {
-            print(error)
+        alert.addTextField { (ageTF) in
+            ageTF.placeholder = "Возраст"
+            ageTF.keyboardType = .numberPad
         }
+        alert.addTextField { (positionTF) in
+            positionTF.placeholder = "Должность"
+        }
+        alert.addTextField { (experienceTF) in
+            experienceTF.placeholder = "Опыт работы"
+            experienceTF.keyboardType = .numberPad
+        }
+        alert.addTextField { (educattionTF) in
+            educattionTF.placeholder = "Образование"
+        }
+        
+        let saveAction = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
+            model?.name = alert.textFields![0].text ?? " "
+            model?.age = alert.textFields![1].text ?? " "
+            model?.position = alert.textFields![2].text ?? " "
+            model?.experience = alert.textFields?[3].text
+            model?.education = alert.textFields?[4].text
+            let employeeToAdd = Employee(context: self.context)
+            employeeToAdd.name =  model?.name
+            employeeToAdd.age = model?.age
+            employeeToAdd.position = model?.position
+            employeeToAdd.experience = model?.experience
+            employeeToAdd.education = model?.education
+            employeeToAdd.company = self.setectedCompany
+            self.arrayEmployee.append(employeeToAdd)
+            self.saveEmployee()
+        }
+        
+        let cancelAction = UIAlertAction(
+            title: "Выйти",
+            style: .destructive, handler: nil
+        )
+        
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        present(alert, animated: true, completion: nil)
     }
 }
