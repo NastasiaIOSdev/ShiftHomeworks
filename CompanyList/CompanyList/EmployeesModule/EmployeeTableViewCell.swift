@@ -22,6 +22,7 @@ final class EmployeeTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.textColor = .brown
         label.font = UIFont(name: "Arial", size: 20)
         return label
     }()
@@ -68,18 +69,6 @@ final class EmployeeTableViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK - Dispaly Data
-
-extension EmployeeTableViewCell {
-    func displayData(_ viewModel: EmployeeModel) {
-        self.nameLabel.text = viewModel.name
-        self.ageLabel.text = viewModel.age
-        self.positionLabel.text = viewModel.position
-        self.experienceLabel.text = viewModel.experience
-        self.educationalLabel.text = viewModel.education
     }
 }
 

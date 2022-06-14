@@ -17,7 +17,8 @@ final class CompanyViewController: UIViewController {
     
     //MARK: - Property
     
-    var companyies = [Company]()
+    private var companyies = [Company]()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private let tableView = UITableView()
     
@@ -47,7 +48,6 @@ extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
             }
         let company = companyies[indexPath.row]
         cell.companyLabel.text = company.name
-        cell.numberOfEmployeeLabel.text = "0"
         return cell
     }
     
@@ -80,7 +80,6 @@ extension CompanyViewController {
         } catch {
             print("Ошибка при попытке получить Company из database")
         }
-       // tableView.reloadData()
     }
     
     func saveCompany() {
@@ -89,9 +88,9 @@ extension CompanyViewController {
         } catch {
             print("Ошибка при попытке сохранить Company")
         }
-       // tableView.reloadData()
     }
 }
+
 
 // MARK: - setup tableView Layout
 

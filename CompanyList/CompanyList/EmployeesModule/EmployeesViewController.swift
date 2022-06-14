@@ -14,21 +14,18 @@ class EmployeesViewController: UITableViewController {
 // MARK: - Property
     
     var arrayEmployee = [Employee]()
- 
-//    func firstCharOfName(_ sort: [String: String]) -> Character {
-//        return sort["name"]!.first!
-//    }
-//
-//    var sortedEmployee = Dictionary<<#Key: Hashable#>, [Employee]>(grouping: arrayEmployee, by: firstCharOfName)
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var setectedCompany: Company? {
-        didSet {
-            fetchEmployee()
-            guard let companyNAme = setectedCompany?.name else { return }
-            self.title = companyNAme
+            didSet {
+                fetchEmployee()
+                guard let companyNAme = setectedCompany?.name else { return }
+                let count = setectedCompany?.employee?.count
+                print("КОЛИЧЕСТВО СОТРУДНИКОВ КОМПАНИИ \(String(describing: count))")
+                self.title = companyNAme
+            }
         }
-    }
     
 // MARK - Life cycles
     
@@ -71,8 +68,12 @@ extension EmployeesViewController {
         }
         
         do {
+            
+// MARK: - Sorting Employee
+            
             let sort = NSSortDescriptor(key: "name", ascending: true)
             request.sortDescriptors = [sort]
+            
             arrayEmployee = try context.fetch(request)
         } catch {
             print("Щшибка при попытке загрузить Employee из database")

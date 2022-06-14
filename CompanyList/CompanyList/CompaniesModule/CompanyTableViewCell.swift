@@ -26,15 +26,6 @@ final class CompanyTableViewCell: UITableViewCell {
         label.textColor = .brown
         return label
     }()
-    
-    let numberOfEmployeeLabel: UILabel = {
-       let label = UILabel()
-        label.textAlignment = .right
-        label.textColor = .brown
-        label.font = UIFont(name: "Arial", size: 15)
-        label.text = "0"
-       return label
-    }()
 
 // MARK: - Init Cell
     
@@ -62,12 +53,6 @@ private extension CompanyTableViewCell {
         self.companyLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Constraints.labelTopBottomInset)
             make.leading.equalToSuperview().offset(Constraints.labelsOffset)
-        }
-        
-        self.contentView.addSubview(self.numberOfEmployeeLabel)
-        self.numberOfEmployeeLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(Constraints.labelTopBottomInset)
-            make.trailing.equalToSuperview().offset(Constraints.labelsOffset)
         }
     }
 }
