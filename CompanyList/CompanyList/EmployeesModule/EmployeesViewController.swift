@@ -18,7 +18,7 @@ class EmployeesViewController: UITableViewController {
     var setectedCompany: Company? {
         didSet {
             fetchEmployee()
-            guard let companyNAme = setectedCompany?.companyName else { return }
+            guard let companyNAme = setectedCompany?.name else { return }
             self.title = companyNAme
         }
     }
@@ -51,8 +51,8 @@ extension EmployeesViewController {
         predicate: NSPredicate? = nil
     ) {
         let companyPredicate = NSPredicate(
-            format: "company.companyName MATCHES %@",
-            setectedCompany!.companyName!
+            format: "parentCompany.name MATCHES %@",
+            setectedCompany!.name!
         )
         if let additionalPredicate = predicate {
             let compoundPredicate = NSCompoundPredicate(
@@ -107,9 +107,11 @@ extension EmployeesViewController {
 //MARK - Remove Cell
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
         self.context.delete(self.arrayEmployee[indexPath.row])
         self.arrayEmployee.remove(at: indexPath.row)
         self.saveEmployee()
+        }
     }
 }
 
@@ -118,15 +120,27 @@ extension EmployeesViewController {
  extension EmployeesViewController: UITextFieldDelegate {
     @objc
     func addEmployeeButtonTap(_ sender: UIBarButtonItem) {
-        var model: EmployeeModel?
+//        var model: EmployeeModel?
+        var textField = UITextField()
         let alert = UIAlertController(
             title: "Добавить сотрудника.",
             message: "Пожалуйста, введите данные нового сотрудника в поле ниже:",
             preferredStyle: .alert
         )
-        
+    
+        let saveAction = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
+            if textField.text != "" {
+                let newEmployee = Employee(context: self.context)
+                newEmployee.name = textField.text!
+                newEmployee.parentCompany = self.setectedCompany
+            self.arrayEmployee.append(newEmployee)
+            self.saveEmployee()
+                self.tableView.reloadData()
+            }
+        }
         alert.addTextField { (nameTF) in
             nameTF.placeholder = "Имя"
+            textField = nameTF
         }
         alert.addTextField { (ageTF) in
             ageTF.placeholder = "Возраст"
@@ -141,23 +155,6 @@ extension EmployeesViewController {
         }
         alert.addTextField { (educattionTF) in
             educattionTF.placeholder = "Образование"
-        }
-        
-        let saveAction = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
-            model?.name = alert.textFields![0].text ?? " 1"
-            model?.age = alert.textFields![1].text ?? " 2"
-            model?.position = alert.textFields![2].text ?? " 3"
-            model?.experience = alert.textFields![3].text ?? "4"
-            model?.education = alert.textFields![4].text ?? "5"
-            let employeeToAdd = Employee(context: self.context)
-            employeeToAdd.name =  model?.name
-            employeeToAdd.age = model?.age
-            employeeToAdd.position = model?.position
-            employeeToAdd.experience = model?.experience
-            employeeToAdd.education = model?.education
-            employeeToAdd.company = self.setectedCompany
-            self.arrayEmployee.append(employeeToAdd)
-            self.saveEmployee()
         }
         
         let cancelAction = UIAlertAction(

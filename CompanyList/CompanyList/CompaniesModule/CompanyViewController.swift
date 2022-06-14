@@ -36,10 +36,7 @@ final class CompanyViewController: UIViewController {
 // MARK: - TableView DataSourse & Delegate
 
 extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return companyies.count
     }
     
@@ -49,16 +46,19 @@ extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
             for: indexPath) as? CompanyTableViewCell else { return UITableViewCell()
             }
         let company = companyies[indexPath.row]
-        cell.companyLabel.text = company.companyName
+        cell.companyLabel.text = company.name
         return cell
     }
     
 // MARK: - delete Cell data
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
         self.context.delete(self.companyies[indexPath.row])
         self.companyies.remove(at: indexPath.row)
         self.saveCompany()
+            self.tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -79,7 +79,7 @@ extension CompanyViewController {
         } catch {
             print("Ошибка при попытке получить Company из database")
         }
-        tableView.reloadData()
+       // tableView.reloadData()
     }
     
     func saveCompany() {
@@ -88,7 +88,7 @@ extension CompanyViewController {
         } catch {
             print("Ошибка при попытке сохранить Company")
         }
-        tableView.reloadData()
+       // tableView.reloadData()
     }
 }
 
@@ -149,10 +149,14 @@ extension CompanyViewController: UITextFieldDelegate {
             style: .default
         ) { (alertAction) in
             newCompany = alert.textFields![0].text
+            if newCompany != "" {
             let company = Company(context: self.context)
-            company.companyName = newCompany
+            company.name = newCompany
+                
             self.companyies.append(company)
             self.saveCompany()
+                self.tableView.reloadData()
+            }
         }
         let cancelAction = UIAlertAction(title: "Выйти", style: .destructive, handler: nil)
         alert.addAction(cancelAction)
