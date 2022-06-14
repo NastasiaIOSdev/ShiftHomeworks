@@ -95,7 +95,7 @@ extension EmployeesViewController {
         cell.ageLabel.text = employee.age
         cell.positionLabel.text = employee.position
         cell.experienceLabel.text = employee.experience
-        cell.educationalLabel.text = employee.experience
+        cell.educationalLabel.text = employee.education
         return cell
     }
     
@@ -121,7 +121,11 @@ extension EmployeesViewController {
     @objc
     func addEmployeeButtonTap(_ sender: UIBarButtonItem) {
 //        var model: EmployeeModel?
-        var textField = UITextField()
+        var textField1 = UITextField()
+        var textField2 = UITextField()
+        var textField3 = UITextField()
+        var textField4 = UITextField()
+        var textField5 = UITextField()
         let alert = UIAlertController(
             title: "Добавить сотрудника.",
             message: "Пожалуйста, введите данные нового сотрудника в поле ниже:",
@@ -129,32 +133,42 @@ extension EmployeesViewController {
         )
     
         let saveAction = UIAlertAction(title: "Добавить", style: .default) { (alertAction) in
-            if textField.text != "" {
+        
                 let newEmployee = Employee(context: self.context)
-                newEmployee.name = textField.text!
+            
+                newEmployee.name = textField1.text!
+                newEmployee.age = textField2.text!
+                newEmployee.position = textField3.text!
+                newEmployee.experience = textField4.text!
+                newEmployee.education = textField5.text!
+            
                 newEmployee.parentCompany = self.setectedCompany
             self.arrayEmployee.append(newEmployee)
             self.saveEmployee()
                 self.tableView.reloadData()
-            }
+
         }
         alert.addTextField { (nameTF) in
             nameTF.placeholder = "Имя"
-            textField = nameTF
+            textField1 = nameTF
         }
         alert.addTextField { (ageTF) in
             ageTF.placeholder = "Возраст"
             ageTF.keyboardType = .numberPad
+            textField2 = ageTF
         }
         alert.addTextField { (positionTF) in
             positionTF.placeholder = "Должность"
+            textField3 = positionTF
         }
         alert.addTextField { (experienceTF) in
             experienceTF.placeholder = "Опыт работы"
             experienceTF.keyboardType = .numberPad
+            textField4 = experienceTF
         }
         alert.addTextField { (educattionTF) in
             educattionTF.placeholder = "Образование"
+            textField5 = educattionTF
         }
         
         let cancelAction = UIAlertAction(

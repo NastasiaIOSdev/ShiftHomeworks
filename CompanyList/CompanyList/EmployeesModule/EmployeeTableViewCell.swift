@@ -21,7 +21,7 @@ final class EmployeeTableViewCell: UITableViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "Arial", size: 15)
+        label.font = UIFont(name: "Arial", size: 20)
         return label
     }()
     
@@ -118,7 +118,7 @@ private extension EmployeeTableViewCell {
         self.educationalLabel.snp.makeConstraints { make in
             make.top.equalTo(self.experienceLabel.snp.bottom).offset(Constraints.labelTopBottomInset)
             make.leading.equalToSuperview().offset(Constraints.labelsOffset)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(Constraints.labelTopBottomInset)
         }
     }
 }
