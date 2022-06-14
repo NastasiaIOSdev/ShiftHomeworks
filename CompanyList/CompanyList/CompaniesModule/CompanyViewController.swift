@@ -47,6 +47,7 @@ extension CompanyViewController: UITableViewDelegate, UITableViewDataSource {
             }
         let company = companyies[indexPath.row]
         cell.companyLabel.text = company.name
+        cell.numberOfEmployeeLabel.text = "0"
         return cell
     }
     

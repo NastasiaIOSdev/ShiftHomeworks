@@ -27,7 +27,7 @@ final class CompanyTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let numberOfEmployeeLabel: UILabel = {
+    let numberOfEmployeeLabel: UILabel = {
        let label = UILabel()
         label.textAlignment = .right
         label.textColor = .brown

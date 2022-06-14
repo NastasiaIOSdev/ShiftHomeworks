@@ -14,6 +14,13 @@ class EmployeesViewController: UITableViewController {
 // MARK: - Property
     
     var arrayEmployee = [Employee]()
+ 
+//    func firstCharOfName(_ sort: [String: String]) -> Character {
+//        return sort["name"]!.first!
+//    }
+//
+//    var sortedEmployee = Dictionary<<#Key: Hashable#>, [Employee]>(grouping: arrayEmployee, by: firstCharOfName)
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var setectedCompany: Company? {
         didSet {

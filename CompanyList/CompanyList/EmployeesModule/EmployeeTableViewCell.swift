@@ -9,14 +9,15 @@ import UIKit
 import SnapKit
 
 final class EmployeeTableViewCell: UITableViewCell {
-    static let identifier = "EmployeeTableViewCell"
     
+// MARK: - Constraints
     private enum Constraints {
         static let labelsOffset: CGFloat = 16
         static let labelTopBottomInset = 20
     }
     
 // MARK: - Property
+    static let identifier = "EmployeeTableViewCell"
     
     let nameLabel: UILabel = {
         let label = UILabel()

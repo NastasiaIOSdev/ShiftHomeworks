@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EmployeeModel {
+struct EmployeeModel: Hashable {
     var name: String?
     var age: String?
     var position: String?
