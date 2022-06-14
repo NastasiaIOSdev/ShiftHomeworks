@@ -71,6 +71,8 @@ extension EmployeesViewController {
         }
         
         do {
+            let sort = NSSortDescriptor(key: "name", ascending: true)
+            request.sortDescriptors = [sort]
             arrayEmployee = try context.fetch(request)
         } catch {
             print("Щшибка при попытке загрузить Employee из database")
