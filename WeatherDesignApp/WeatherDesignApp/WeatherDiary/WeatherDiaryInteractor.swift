@@ -6,16 +6,19 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IWeatherDiaryInteractor: AnyObject {
-    func generateData() -> [WeatherDiaryEntity]
+    func generateData(completion: @escaping ([WeatherDiaryEntity]) -> Void)
 }
 
 final class WeatherDiaryInteractor {
+    var networkService: INetworkservice?
 }
 
 extension WeatherDiaryInteractor: IWeatherDiaryInteractor {
-    func generateData() -> [WeatherDiaryEntity] {
+    func generateData(completion: @escaping ([WeatherDiaryEntity]) -> Void) {
+        
         let town = randomCity()
         let date = convertDate(Date.now)
         let weatherImage = WeatherAsset(weatherType: WeatherType.allCases.randomElement() ?? .sunny)
@@ -24,7 +27,6 @@ extension WeatherDiaryInteractor: IWeatherDiaryInteractor {
         for i in 0...20 {
             entity.append(WeatherDiaryEntity(town: town, date: date, weatherImage: weatherImage, temperature: temperature))
         }
-        return entity
     }
 }
 

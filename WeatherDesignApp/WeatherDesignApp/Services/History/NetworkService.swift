@@ -8,9 +8,8 @@
 import Foundation
 
 protocol INetworkservice: AnyObject {
-    func loadCurrentWeatherData<T: Codable>(completion: @escaping(Result<T, Error>) -> ())
-//    func loadSearchWeatherData<T:Codable>(with searchText: String, completion: @escaping (Result<T, Error>) -> ())
-    func loadHistoryWeatherData<T:Decodable>(completion: @escaping (Result<T, Error>) -> ())
+    func loadCurrentWeatherData<T: Decodable>(completion: @escaping(Result<T, Error>) -> ())
+    func loadHistoryWeatherData<T: Decodable>(city: String, completion: @escaping (Result<T, Error>) -> Void)
 }
 
 final class NetworkService {
@@ -18,35 +17,26 @@ final class NetworkService {
 
 extension NetworkService: INetworkservice {
     
-    func loadHistoryWeatherData<T:Decodable>(completion: @escaping (Result<T, Error>) -> ()) {
-        
-        let weatherAPIKey = Constants.apiKeyWeather
-        let historyURL = Constants.historyBaseURL + weatherAPIKey
-        let city = "Novosibirsk"
-        let startDate = DateConverter.getDateDaysAgo(daysAgo: -7)
-        let currentDate = DateConverter.getDateDaysAgo(daysAgo: 0)
-        let url = URL(string: "\(historyURL)&q=\(city)&dt=\(startDate)&end_dt=\(currentDate)")
-        
-        guard let url = url else {
-            assert(false) }
-        
-        let request = URLRequest(url: url)
-        
-            URLSession.shared.dataTask(with: request) { data, responce, error in
-                if let error = error {
-                    completion(.failure(error))
-                }
-                guard let data = data else { return }
-                print("Получены данные о истории \(data)")
-                do {
-                    let newData = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(newData))
-                }
-                catch let error {
-                    completion(.failure(error))
-                }
-            }.resume()
-        }
+    func loadHistoryWeatherData<T: Decodable>(city: String, completion: @escaping (Result<T, Error>) -> Void) {
+            let url = URLConstants.historyUrl(searchCity: city)
+            
+            let request = URLRequest(url: url)
+            
+                URLSession.shared.dataTask(with: request) { data, responce, error in
+                    if let error = error {
+                        completion(.failure(error))
+                    }
+                    guard let data = data else { return }
+                    print("Получены данные о истории \(data)")
+                    do {
+                        let newData = try JSONDecoder().decode(T.self, from: data)
+                        completion(.success(newData))
+                    }
+                    catch let error {
+                        completion(.failure(error))
+                    }
+                }.resume()
+            }
     
     func loadCurrentWeatherData<T:Decodable>(completion: @escaping (Result<T, Error>) -> ()) {
         guard let url = Constants.weatherUrl else {

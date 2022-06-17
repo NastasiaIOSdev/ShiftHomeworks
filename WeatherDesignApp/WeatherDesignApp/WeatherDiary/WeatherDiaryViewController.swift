@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import SnapKit
 
 final class WeatherDiaryViewController: UIViewController {
 
 // MARK: - Properties
     
-    var presenter: IWeatherDiaryPresenter?
+    private var presenter: IWeatherDiaryPresenter?
     private var customView = WeatherDiaryView()
     
 // MARK: - Init
@@ -26,6 +25,8 @@ final class WeatherDiaryViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - loadView
     
     override func loadView() {
         self.view = self.customView
@@ -52,6 +53,6 @@ private extension WeatherDiaryViewController {
     
     @objc
     func onNewNoteButtonPressed() {
-        presenter?.routeToNewNote()
+        customView.didSelectRowHandler?()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 struct Constants {
     static let apiKeyWeather = "1fbe35f21a364f7a9a384308220406"
     static let currentWeatherBaseURL = "https://api.weatherapi.com/v1/current.json?key="
-    static let historyBaseURL = "https://api.weatherapi.com/v1/history.json?key="
+    static let historyBaseURL = "https://api.weatherapi.com/v1/history.json?"
     
     static let city = "Novosibirsk"
     static let date = "2022-06-9"

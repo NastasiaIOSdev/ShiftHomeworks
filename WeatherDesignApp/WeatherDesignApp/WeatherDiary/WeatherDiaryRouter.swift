@@ -19,13 +19,13 @@ final class  WeatherDiaryRouter {
 
 extension  WeatherDiaryRouter: IWeatherDiaryRouter {
     func routeToNewNote() {
-        let nextVC = WeatherNoteViewControllerAssembly.build()
-        vc?.navigationController?.pushViewController(nextVC, animated: true)
-        vc?.navigationController?.navigationBar.tintColor = .white
+        let nextVC = WeatherNoteViewController()
+        self.vc?.navigationController?.pushViewController(nextVC, animated: true)
+        self.vc?.navigationController?.navigationBar.tintColor = .white
     }
     
     func routeToEditNote(forIndexPath: Int) {
         let vc = WeatherNoteViewController()
-        vc.present(vc, animated: true)
+        self.vc?.present(vc, animated: true)
     }
 }

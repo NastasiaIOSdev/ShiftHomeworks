@@ -8,21 +8,22 @@
 import Foundation
 
 struct HistoryWeatherDTO: Codable {
-    var forecast: Forecast?
+    let forecast: Forecast?
+    let location: LocationCity?
 }
 
 struct Forecast: Codable {
-    var forecastday: [Forecastday]?
+    let forecastday: [Forecastday]?
 }
 
 struct Forecastday: Codable {
-    var date: String?
-    var day: Day?
+    let date: String?
+    let day: Day?
 }
 
 struct Day: Codable {
-    var tempC: Double?
-    var condition: ConditionHistory?
+    let tempC: Double?
+    let condition: ConditionHistory?
     
     enum CodingKeys: String, CodingKey {
         case tempC = "avgtemp_c"
@@ -32,4 +33,8 @@ struct Day: Codable {
 
 struct ConditionHistory: Codable {
     var icon: String?
+}
+
+struct LocationCity: Codable {
+    let name: String?
 }

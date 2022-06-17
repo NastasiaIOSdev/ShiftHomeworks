@@ -10,8 +10,9 @@ import UIKit
 import SnapKit
 
 protocol IWeatherDiaryView: AnyObject {
+    var delegate: WeatherDiaryViewDelegate { get }
+    var didSelectRowHandler: (() -> Void)? { get set }
     func getData(data: [WeatherDiaryEntity])
-    var didSelectRowHandler: ((Int) -> ())? { get set }
 }
 
 final class WeatherDiaryView: UIView {
@@ -22,8 +23,8 @@ final class WeatherDiaryView: UIView {
     
 // MARK: - Properties
     
-    let delegate = WeatherDiaryViewDelegate()
-    public var didSelectRowHandler: ((Int) -> ())?
+    var delegate = WeatherDiaryViewDelegate()
+    public var didSelectRowHandler: (() -> Void)?
     public var data: [WeatherDiaryEntity]?
     private let dataSource = WeatherDiaryViewDataSourse()
     private let tableView = UITableView()

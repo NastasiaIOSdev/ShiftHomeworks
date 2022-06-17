@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class WeatherDiaryViewDelegate: NSObject {
-    var delegate: ((Int) -> ())?
+   var delegate: ((Int) -> Void)?
 }
 
 // MARK: - TableView Delegate

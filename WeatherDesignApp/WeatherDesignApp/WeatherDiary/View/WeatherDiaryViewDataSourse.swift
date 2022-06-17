@@ -8,7 +8,7 @@
 import UIKit
 
 final class WeatherDiaryViewDataSourse: NSObject {
-    var data = [WeatherDiaryEntity]()
+    public var data = [WeatherDiaryEntity]()
 }
 
 // MARK: - TableView DataSourse

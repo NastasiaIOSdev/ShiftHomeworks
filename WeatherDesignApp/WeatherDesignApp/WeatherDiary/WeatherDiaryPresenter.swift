@@ -9,12 +9,10 @@ import Foundation
 
 protocol IWeatherDiaryPresenter: AnyObject {
     func viewDidload(ui: IWeatherDiaryView )
-    func routeToNewNote()
 }
 
 final class WeatherDiaryPresenter {
     private weak var ui: IWeatherDiaryView?
-    private var delegate = WeatherDiaryViewDelegate()
     private var interactor: IWeatherDiaryInteractor?
     private var router: IWeatherDiaryRouter?
     
@@ -26,19 +24,19 @@ final class WeatherDiaryPresenter {
 
 extension WeatherDiaryPresenter: IWeatherDiaryPresenter {
     func viewDidload(ui: IWeatherDiaryView) {
-        let data: [WeatherDiaryEntity]?
+
         self.ui = ui
-        data = self.interactor?.generateData()
-        if let data = data {
+        self.interactor?.generateData(completion: { data in
             self.ui?.getData(data: data)
-        }
-        delegate.delegate = { [weak self] index in
+        })
+     
+        ui.delegate.delegate = { [weak self] index in
             guard let self = self else { return }
             self.router?.routeToEditNote(forIndexPath: index)
         }
-    }
-    
-    func routeToNewNote() {
-        router?.routeToNewNote()
+        
+        ui.didSelectRowHandler = {
+            self.router?.routeToNewNote()
+        }
     }
 }

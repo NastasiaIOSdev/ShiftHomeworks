@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol ICurrentWeatherViewModel {
+    func requestCurrentWeather(for city: String?)
+}
+
 struct CurrentWeatherViewModel {
     let date: String
     let temp: String
@@ -34,5 +38,11 @@ extension CurrentWeatherViewModel {
 private extension CurrentWeatherViewModel {
     static func convertDate(_ date: Date) -> String {
         return DateConverter.showDayWithWeekDay(date)
+    }
+}
+
+extension CurrentWeatherViewModel: ICurrentWeatherViewModel {
+    func requestCurrentWeather(for city: String?) {
+        print(city)
     }
 }
