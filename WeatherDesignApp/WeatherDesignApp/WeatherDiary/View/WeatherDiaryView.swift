@@ -12,7 +12,7 @@ import SnapKit
 protocol IWeatherDiaryView: AnyObject {
     var delegate: WeatherDiaryViewDelegate { get }
     var didSelectRowHandler: (() -> Void)? { get set }
-    func getData(data: [WeatherDiaryEntity])
+    func setData(data: [WeatherDiaryEntity])
 }
 
 final class WeatherDiaryView: UIView {
@@ -74,7 +74,7 @@ extension WeatherDiaryView {
 // MARK: - 
 
 extension WeatherDiaryView: IWeatherDiaryView {
-    func getData(data: [WeatherDiaryEntity]) {
+    func setData(data: [WeatherDiaryEntity]) {
         self.dataSource.data = data
         self.tableView.reloadData()
     }

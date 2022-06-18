@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IWeatherDiaryPresenter: AnyObject {
-    func viewDidload(ui: IWeatherDiaryView )
+    func viewDidload(ui: IWeatherDiaryView, city: String)
 }
 
 final class WeatherDiaryPresenter {
@@ -23,11 +23,11 @@ final class WeatherDiaryPresenter {
 }
 
 extension WeatherDiaryPresenter: IWeatherDiaryPresenter {
-    func viewDidload(ui: IWeatherDiaryView) {
+    func viewDidload(ui: IWeatherDiaryView, city: String) {
 
         self.ui = ui
-        self.interactor?.generateData(completion: { data in
-            self.ui?.getData(data: data)
+        self.interactor?.fetchDataFromNetworkingService(forCity: city, completion: { data in
+            self.ui?.setData(data: data)
         })
      
         ui.delegate.delegate = { [weak self] index in

@@ -13,6 +13,7 @@ final class WeatherDiaryViewController: UIViewController {
     
     private var presenter: IWeatherDiaryPresenter?
     private var customView = WeatherDiaryView()
+    private var cityManager = CityManager.shared
     
 // MARK: - Init
     
@@ -37,7 +38,8 @@ final class WeatherDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavBar()
-        presenter?.viewDidload(ui: customView)
+        guard let city = cityManager.currentCity else { return }
+        presenter?.viewDidload(ui: customView, city: city)
     }
 }
 

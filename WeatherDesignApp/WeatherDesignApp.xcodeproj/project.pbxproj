@@ -43,6 +43,7 @@
 		2E9AC15B28574F4200109028 /* HistoryWeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9AC15A28574F4100109028 /* HistoryWeatherDTO.swift */; };
 		2E9F492B285C87D10024D7C4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2E9F492A285C87D10024D7C4 /* SnapKit */; };
 		2E9F492F285CA0E80024D7C4 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9F492E285CA0E80024D7C4 /* URLConstants.swift */; };
+		2EA59D36285E40E6008EF7BE /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA59D35285E40E6008EF7BE /* CityManager.swift */; };
 		2EAAED4728539EC0003E4E9B /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAAED4628539EC0003E4E9B /* CurrentWeather.swift */; };
 		2EAAED4928539EDC003E4E9B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAAED4828539EDC003E4E9B /* Location.swift */; };
 		2EAAED4B28539EF2003E4E9B /* ConditionWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAAED4A28539EF2003E4E9B /* ConditionWeather.swift */; };
@@ -53,7 +54,7 @@
 		2EB6A910284268C90053F44F /* WeatherDiaryViewDataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A90F284268C90053F44F /* WeatherDiaryViewDataSourse.swift */; };
 		2EB6A91228426EDD0053F44F /* WeatherDiaryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */; };
 		2EB6A91428427A880053F44F /* WeatherDiaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */; };
-		2EB6A91628427AC70053F44F /* WeatherDiaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */; };
+		2EB6A91628427AC70053F44F /* WeatherDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91528427AC70053F44F /* WeatherDiary.swift */; };
 		2EB6A9182842B31F0053F44F /* WeatherDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */; };
 		2ECAC217284BBF4100320A1E /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC216284BBF4100320A1E /* WeatherDTO.swift */; };
 		2ECAC219284BC15300320A1E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC218284BC15300320A1E /* NetworkService.swift */; };
@@ -119,6 +120,7 @@
 		2E9AC1582857425C00109028 /* HistoryForecastDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryForecastDay.swift; sourceTree = "<group>"; };
 		2E9AC15A28574F4100109028 /* HistoryWeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWeatherDTO.swift; sourceTree = "<group>"; };
 		2E9F492E285CA0E80024D7C4 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		2EA59D35285E40E6008EF7BE /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
 		2EAAED4628539EC0003E4E9B /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		2EAAED4828539EDC003E4E9B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2EAAED4A28539EF2003E4E9B /* ConditionWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionWeather.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 		2EB6A90F284268C90053F44F /* WeatherDiaryViewDataSourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryViewDataSourse.swift; sourceTree = "<group>"; };
 		2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryPresenter.swift; sourceTree = "<group>"; };
 		2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryInteractor.swift; sourceTree = "<group>"; };
-		2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryEntity.swift; sourceTree = "<group>"; };
+		2EB6A91528427AC70053F44F /* WeatherDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiary.swift; sourceTree = "<group>"; };
 		2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryRouter.swift; sourceTree = "<group>"; };
 		2ECAC216284BBF4100320A1E /* WeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
 		2ECAC218284BC15300320A1E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -267,7 +269,7 @@
 				2EB6A90828423E610053F44F /* View */,
 				2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */,
 				2EB6A91128426EDD0053F44F /* WeatherDiaryPresenter.swift */,
-				2EB6A91528427AC70053F44F /* WeatherDiaryEntity.swift */,
+				2EB6A91528427AC70053F44F /* WeatherDiary.swift */,
 				2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */,
 			);
 			path = WeatherDiary;
@@ -375,6 +377,7 @@
 		2ECAC214284BB7C400320A1E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2EA59D35285E40E6008EF7BE /* CityManager.swift */,
 				2ECAC215284BBF1D00320A1E /* DTO */,
 				2E9F492D285C9D1D0024D7C4 /* Search */,
 				2E9F492C285C9D0C0024D7C4 /* History */,
@@ -542,6 +545,7 @@
 			files = (
 				2E6278F12838E48600927C12 /* WeatherNoteCell.swift in Sources */,
 				2E6278EB2838E34E00927C12 /* WeatherDiaryAssembly.swift in Sources */,
+				2EA59D36285E40E6008EF7BE /* CityManager.swift in Sources */,
 				2E6278D42838E0D200927C12 /* DateConverter.swift in Sources */,
 				2E6278F32838E4B800927C12 /* WeatherNoteViewControllerAssembly.swift in Sources */,
 				2EB6A90E284268B60053F44F /* WeatherDiaryViewDelegate.swift in Sources */,
@@ -569,7 +573,7 @@
 				2E6278ED2838E36F00927C12 /* WeatherDiaryViewController.swift in Sources */,
 				2ECAC21C284BC2FE00320A1E /* Constants.swift in Sources */,
 				2E6278E72838E2A500927C12 /* WeatherButton.swift in Sources */,
-				2EB6A91628427AC70053F44F /* WeatherDiaryEntity.swift in Sources */,
+				2EB6A91628427AC70053F44F /* WeatherDiary.swift in Sources */,
 				2E05040C283914AC007D25CB /* CustomWeatherView.swift in Sources */,
 				2ECAC220284BD4F200320A1E /* CurrentWeatherRouter.swift in Sources */,
 				2E6278DB2838E17C00927C12 /* CurrentWeatherViewModel.swift in Sources */,

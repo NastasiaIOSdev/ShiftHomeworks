@@ -13,10 +13,14 @@ struct HistoryWeatherDTO: Codable {
 }
 
 struct Forecast: Codable {
-    let forecastday: [Forecastday]?
+    let dayForecasts: [DayForecast]?
+    
+    enum CodingKeys: String, CodingKey {
+        case dayForecasts = "forecastday"
+    }
 }
 
-struct Forecastday: Codable {
+struct DayForecast: Codable {
     let date: String?
     let day: Day?
 }

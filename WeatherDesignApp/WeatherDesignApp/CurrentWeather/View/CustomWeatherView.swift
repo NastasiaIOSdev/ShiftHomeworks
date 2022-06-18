@@ -19,6 +19,8 @@ final class CustomWeatherView: UIView {
     let searchTextField = UITextField()
     var buttonTappedHandler: (() -> ())?
     
+    private let cityManager = CityManager.shared
+    
     private let weatherIconImageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
@@ -88,6 +90,7 @@ extension CustomWeatherView: UITextFieldDelegate {
         dispalayCondition(textField)
         displayLocation(textField)
         dispalayCurrentWeather(textField)
+        cityManager.currentCity = textField.text
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
