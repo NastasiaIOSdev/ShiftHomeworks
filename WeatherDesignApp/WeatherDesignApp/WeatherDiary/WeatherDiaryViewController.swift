@@ -38,6 +38,11 @@ final class WeatherDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavBar()
+      
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard let city = cityManager.currentCity else { return }
         presenter?.viewDidload(ui: customView, city: city)
     }

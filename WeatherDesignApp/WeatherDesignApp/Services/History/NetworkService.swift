@@ -10,6 +10,7 @@ import Foundation
 protocol INetworkservice: AnyObject {
     func loadCurrentWeatherData<T: Decodable>(completion: @escaping(Result<T, Error>) -> ())
     func loadHistoryWeatherData<T: Decodable>(city: String, completion: @escaping (Result<T, Error>) -> Void)
+    func loadCurrentWeatherImage(urlString: String, completion: @escaping(Result<Data, Error>) -> ())
 }
 
 final class NetworkService {

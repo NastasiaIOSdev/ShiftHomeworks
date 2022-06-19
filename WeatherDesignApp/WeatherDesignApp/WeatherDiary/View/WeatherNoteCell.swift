@@ -71,7 +71,7 @@ extension WeatherNoteCell {
     func displayData(_ viewModel: WeatherDiaryEntity) {
         self.cityLabel.text = viewModel.town
         self.dateLabel.text = viewModel.date
-      //  self.weatherImageView.image = viewModel.weatherImage.image
+        self.weatherImageView.image = viewModel.icon
         self.degreeLabel.text = viewModel.temperature
     }
 }
