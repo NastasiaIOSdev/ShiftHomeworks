@@ -12,6 +12,9 @@ protocol IWeatherDiaryPresenter: AnyObject {
 }
 
 final class WeatherDiaryPresenter {
+
+// MARK: - Private properties
+    
     private weak var ui: IWeatherDiaryView?
     private var interactor: IWeatherDiaryInteractor?
     private var router: IWeatherDiaryRouter?
@@ -21,6 +24,8 @@ final class WeatherDiaryPresenter {
         self.router = router
     }
 }
+
+// MARK: - IWeatherDiaryPresenter
 
 extension WeatherDiaryPresenter: IWeatherDiaryPresenter {
     func viewDidload(ui: IWeatherDiaryView, city: String) {

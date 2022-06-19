@@ -71,8 +71,6 @@ extension WeatherDiaryView {
     }
 }
 
-// MARK: - 
-
 extension WeatherDiaryView: IWeatherDiaryView {
     func setData(data: [WeatherDiaryEntity]) {
         self.dataSource.data = data

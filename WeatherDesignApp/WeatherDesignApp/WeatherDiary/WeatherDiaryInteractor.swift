@@ -16,6 +16,8 @@ final class WeatherDiaryInteractor {
     var networkService: INetworkservice?
 }
 
+// MARK: - IWeatherDiaryInteractor
+
 extension WeatherDiaryInteractor: IWeatherDiaryInteractor {
     func fetchDataFromNetworkingService(forCity currentCity: String, completion: @escaping ([WeatherDiaryEntity]) -> Void) {
         

@@ -17,6 +17,8 @@ final class  WeatherDiaryRouter {
     weak var vc: UIViewController?
 }
 
+// MARK: - IWeatherDiaryRouter
+
 extension  WeatherDiaryRouter: IWeatherDiaryRouter {
     func routeToNewNote() {
         let nextVC = WeatherNoteViewController()

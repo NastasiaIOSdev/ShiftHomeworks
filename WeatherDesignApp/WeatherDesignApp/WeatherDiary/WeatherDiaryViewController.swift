@@ -8,8 +8,8 @@
 import UIKit
 
 final class WeatherDiaryViewController: UIViewController {
-
-// MARK: - Properties
+    
+// MARK: - Private Properties
     
     private var presenter: IWeatherDiaryPresenter?
     private var customView = WeatherDiaryView()
@@ -38,7 +38,6 @@ final class WeatherDiaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavBar()
-      
     }
     
     override func viewWillAppear(_ animated: Bool) {
