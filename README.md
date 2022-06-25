@@ -1,3 +1,3 @@
 # ShiftHomeworks
-Ларина Анастасия
-курсы FOCUSSTART, IOS dev
+Ларина Анастасия,
+курсы FOCUSSTART: IOS dev
