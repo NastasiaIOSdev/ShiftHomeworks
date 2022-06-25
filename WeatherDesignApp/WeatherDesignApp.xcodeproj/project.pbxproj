@@ -30,7 +30,6 @@
 		2E6278E52838E28000927C12 /* SectionWithSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278E42838E28000927C12 /* SectionWithSeparatorView.swift */; };
 		2E6278E72838E2A500927C12 /* WeatherButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278E62838E2A500927C12 /* WeatherButton.swift */; };
 		2E6278E92838E2C200927C12 /* NoteTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278E82838E2C200927C12 /* NoteTextFieldView.swift */; };
-		2E6278EB2838E34E00927C12 /* WeatherDiaryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278EA2838E34E00927C12 /* WeatherDiaryAssembly.swift */; };
 		2E6278ED2838E36F00927C12 /* WeatherDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278EC2838E36F00927C12 /* WeatherDiaryViewController.swift */; };
 		2E6278F12838E48600927C12 /* WeatherNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278F02838E48600927C12 /* WeatherNoteCell.swift */; };
 		2E6278F32838E4B800927C12 /* WeatherNoteViewControllerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6278F22838E4B800927C12 /* WeatherNoteViewControllerAssembly.swift */; };
@@ -56,6 +55,8 @@
 		2EB6A91428427A880053F44F /* WeatherDiaryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */; };
 		2EB6A91628427AC70053F44F /* WeatherDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A91528427AC70053F44F /* WeatherDiary.swift */; };
 		2EB6A9182842B31F0053F44F /* WeatherDiaryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */; };
+		2EC6F31A2866E39700AEB092 /* WeatherDiaryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6F3192866E39700AEB092 /* WeatherDiaryAssembly.swift */; };
+		2EC6F31E2866E3D700AEB092 /* LabelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC6F31D2866E3D700AEB092 /* LabelBuilder.swift */; };
 		2ECAC217284BBF4100320A1E /* WeatherDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC216284BBF4100320A1E /* WeatherDTO.swift */; };
 		2ECAC219284BC15300320A1E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC218284BC15300320A1E /* NetworkService.swift */; };
 		2ECAC21C284BC2FE00320A1E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECAC21B284BC2FE00320A1E /* Constants.swift */; };
@@ -110,7 +111,6 @@
 		2E6278E42838E28000927C12 /* SectionWithSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionWithSeparatorView.swift; sourceTree = "<group>"; };
 		2E6278E62838E2A500927C12 /* WeatherButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherButton.swift; sourceTree = "<group>"; };
 		2E6278E82838E2C200927C12 /* NoteTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTextFieldView.swift; sourceTree = "<group>"; };
-		2E6278EA2838E34E00927C12 /* WeatherDiaryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryAssembly.swift; sourceTree = "<group>"; };
 		2E6278EC2838E36F00927C12 /* WeatherDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryViewController.swift; sourceTree = "<group>"; };
 		2E6278F02838E48600927C12 /* WeatherNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNoteCell.swift; sourceTree = "<group>"; };
 		2E6278F22838E4B800927C12 /* WeatherNoteViewControllerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNoteViewControllerAssembly.swift; sourceTree = "<group>"; };
@@ -133,6 +133,8 @@
 		2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryInteractor.swift; sourceTree = "<group>"; };
 		2EB6A91528427AC70053F44F /* WeatherDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiary.swift; sourceTree = "<group>"; };
 		2EB6A9172842B31F0053F44F /* WeatherDiaryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryRouter.swift; sourceTree = "<group>"; };
+		2EC6F3192866E39700AEB092 /* WeatherDiaryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDiaryAssembly.swift; sourceTree = "<group>"; };
+		2EC6F31D2866E3D700AEB092 /* LabelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBuilder.swift; sourceTree = "<group>"; };
 		2ECAC216284BBF4100320A1E /* WeatherDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDTO.swift; sourceTree = "<group>"; };
 		2ECAC218284BC15300320A1E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2ECAC21B284BC2FE00320A1E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		2E6278C22838DE9F00927C12 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2EC6F31C2866E3BF00AEB092 /* Builder */,
 				2E62789A2838D78A00927C12 /* LaunchScreen.storyboard */,
 				2E6278912838D78600927C12 /* SceneDelegate.swift */,
 				2E62788F2838D78600927C12 /* AppDelegate.swift */,
@@ -264,7 +267,7 @@
 		2E6278C52838DECA00927C12 /* WeatherDiary */ = {
 			isa = PBXGroup;
 			children = (
-				2E6278EA2838E34E00927C12 /* WeatherDiaryAssembly.swift */,
+				2EC6F3192866E39700AEB092 /* WeatherDiaryAssembly.swift */,
 				2E6278EC2838E36F00927C12 /* WeatherDiaryViewController.swift */,
 				2EB6A90828423E610053F44F /* View */,
 				2EB6A91328427A880053F44F /* WeatherDiaryInteractor.swift */,
@@ -372,6 +375,15 @@
 				2E6278F02838E48600927C12 /* WeatherNoteCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2EC6F31C2866E3BF00AEB092 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				2EC6F31D2866E3D700AEB092 /* LabelBuilder.swift */,
+			);
+			name = Builder;
+			path = ../Constants/Builder;
 			sourceTree = "<group>";
 		};
 		2ECAC214284BB7C400320A1E /* Services */ = {
@@ -544,7 +556,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6278F12838E48600927C12 /* WeatherNoteCell.swift in Sources */,
-				2E6278EB2838E34E00927C12 /* WeatherDiaryAssembly.swift in Sources */,
 				2EA59D36285E40E6008EF7BE /* CityManager.swift in Sources */,
 				2E6278D42838E0D200927C12 /* DateConverter.swift in Sources */,
 				2E6278F32838E4B800927C12 /* WeatherNoteViewControllerAssembly.swift in Sources */,
@@ -553,6 +564,7 @@
 				2E6278F52838E4DC00927C12 /* WeatherNoteViewController.swift in Sources */,
 				2EB6A91228426EDD0053F44F /* WeatherDiaryPresenter.swift in Sources */,
 				2EB6A910284268C90053F44F /* WeatherDiaryViewDataSourse.swift in Sources */,
+				2EC6F31A2866E39700AEB092 /* WeatherDiaryAssembly.swift in Sources */,
 				2E6278E92838E2C200927C12 /* NoteTextFieldView.swift in Sources */,
 				2EB6A90C2842647D0053F44F /* WeatherDiaryView.swift in Sources */,
 				2E05041128392419007D25CB /* CurrentWeatherPresenter.swift in Sources */,
@@ -569,6 +581,7 @@
 				2E6278E52838E28000927C12 /* SectionWithSeparatorView.swift in Sources */,
 				2E6278D82838E11C00927C12 /* TabbarAssembly.swift in Sources */,
 				2ECAC219284BC15300320A1E /* NetworkService.swift in Sources */,
+				2EC6F31E2866E3D700AEB092 /* LabelBuilder.swift in Sources */,
 				2E6278902838D78600927C12 /* AppDelegate.swift in Sources */,
 				2E6278ED2838E36F00927C12 /* WeatherDiaryViewController.swift in Sources */,
 				2ECAC21C284BC2FE00320A1E /* Constants.swift in Sources */,
