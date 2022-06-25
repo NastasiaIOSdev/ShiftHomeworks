@@ -1,3 +1,3 @@
 # ShiftHomeworks
 Ларина Анастасия
-IOS developer (trainee)
+курсы FOCUSSTART, IOS dev
