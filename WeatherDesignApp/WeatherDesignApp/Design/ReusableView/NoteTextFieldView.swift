@@ -55,14 +55,12 @@ class NoteTextFieldView: UIView {
         }
     }
     
-    private let label: UILabel = {
-        let label = UILabel()
-        label.font = AppFonts.bold28.font
-        label.text = "Start typing here"
-        label.textColor = .white
-        label.textAlignment = .left
-        return label
-    }()
+    private let label = LabelBuilder()
+        .setupFont(AppFonts.bold28.font)
+        .setupTextColor(.white)
+        .setupTextAligment(.left)
+        .setupText("Start typing here")
+        .build()
     
     private let textField: UITextField = {
         let textField = UITextField()
