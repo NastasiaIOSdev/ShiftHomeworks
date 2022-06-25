@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 import SnapKit
 
-
 class WeatherWidgetView: UIView {
    
-    // MARK: - Properties
+    private enum Constants {
+        static let unitTempreratureLabel = "°"
+    }
     
     private enum Constraints {
         static let dateLabelTopOffset = 17
@@ -22,37 +23,20 @@ class WeatherWidgetView: UIView {
 
     }
     
+// MARK: - Properties
+
     let windSectionView = SectionWithSeparatorView(type: .wind)
     let humiditySectionView = SectionWithSeparatorView(type: .humidity)
+    let bigTemperatureLabel = UILabel()
+    let weatherDescription = UILabel()
+    private let dateLabel = UILabel()
     
-    private let dateLabel = LabelBuilder()
-        .setupNumberOfLines(1)
-        .setupadjustsFontSizeToFitWidth(true)
-        .setupTextAligment(.center)
-        .setupMinimumScaleFactor(0.5)
-        .setupFont(AppFonts.regular18.font)
-        .setupTextColor(.white)
-        .build()
-    
-    private let bigTemperatureLabel = LabelBuilder()
-        .setupNumberOfLines(1)
-        .setupadjustsFontSizeToFitWidth(true)
-        .setupTextAligment(.center)
-        .setupFont(AppFonts.regular100.font)
-        .setupTextColor(.white)
-        .build()
-    
-    private let weatherDescription = LabelBuilder()
-        .setupNumberOfLines(1)
-        .setupadjustsFontSizeToFitWidth(true)
-        .setupTextAligment(.center)
-        .setupFont(AppFonts.bold24.font)
-        .setupTextColor(.white)
-        .build()
+// MARK: - Init
     
     init() {
         super.init(frame: .zero)
-        self.setupWeatherWidgetView()
+        self.setupCommonData()
+        self.setupCommonLabelLayout()
     }
     
     @available(*, unavailable)
@@ -60,22 +44,46 @@ class WeatherWidgetView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+// MARK: - Dispalay Data
+    
     func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
         self.dateLabel.text = viewModel.date
-        self.bigTemperatureLabel.text = viewModel.temp
-        self.weatherDescription.text = viewModel.weatherType.description.capitalized
+        self.bigTemperatureLabel.text = viewModel.temp + Constants.unitTempreratureLabel
+        self.weatherDescription.text = viewModel.text
         self.windSectionView.setData(viewModel.wind)
         self.humiditySectionView.setData(viewModel.humidity)
     }
 }
 
+// MARK: - Setup Common Data
+
+private extension WeatherWidgetView {
+    
+    func setupCommonData() {
+        self.dateLabel.numberOfLines = 1
+        self.dateLabel.adjustsFontSizeToFitWidth = true
+        self.dateLabel.textAlignment = .center
+        self.dateLabel.minimumScaleFactor = 0.5
+        self.dateLabel.font = AppFonts.regular18.font
+        self.dateLabel.textColor = .white
+        
+        self.bigTemperatureLabel.numberOfLines = 1
+        self.bigTemperatureLabel.adjustsFontSizeToFitWidth = true
+        self.bigTemperatureLabel.textAlignment = .center
+        self.bigTemperatureLabel.font = AppFonts.regular100.font
+        self.bigTemperatureLabel.textColor = .white
+        
+        self.weatherDescription.numberOfLines = 1
+        self.weatherDescription.adjustsFontSizeToFitWidth = true
+        self.weatherDescription.textAlignment = .center
+        self.weatherDescription.font = AppFonts.bold24.font
+        self.weatherDescription.textColor = .white
+    }
+}
+// MARK: - Setup Layout
+
 private extension WeatherWidgetView {
  
-    func setupWeatherWidgetView() {
-        self.displayWeatherData(CurrentWeatherViewModel())
-        self.setupCommonLabelLayout()
-    }
-   
     func setupCommonLabelLayout() {
         
         self.addSubview(self.dateLabel)

@@ -8,9 +8,14 @@
 import UIKit
 
 final class WeatherDiaryViewController: UIViewController {
-   
-    var presenter: IWeatherDiaryPresenter?
+    
+// MARK: - Private Properties
+    
+    private var presenter: IWeatherDiaryPresenter?
     private var customView = WeatherDiaryView()
+    private var cityManager = CityManager.shared
+    
+// MARK: - Init
     
     init(presenter: IWeatherDiaryPresenter) {
         super.init(nibName: nil, bundle: nil)
@@ -22,19 +27,27 @@ final class WeatherDiaryViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+// MARK: - loadView
+    
     override func loadView() {
         self.view = self.customView
     }
-    // MARK - Life cycles
+    
+// MARK - Life cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavBar()
-        self.presenter?.viewDidload(ui: self.customView, viewController: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let city = cityManager.currentCity else { return }
+        presenter?.viewDidload(ui: customView, city: city)
     }
 }
 
-    // MARK - Navigation
+// MARK - Navigation
 
 private extension WeatherDiaryViewController {
     func setupNavBar() {
@@ -46,6 +59,6 @@ private extension WeatherDiaryViewController {
     
     @objc
     func onNewNoteButtonPressed() {
-       // presenter?.routeToNewNote()
+        customView.didSelectRowHandler?()
     }
 }

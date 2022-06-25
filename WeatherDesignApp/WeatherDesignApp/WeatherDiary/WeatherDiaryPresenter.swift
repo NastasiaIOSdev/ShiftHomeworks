@@ -6,19 +6,18 @@
 //
 
 import Foundation
-import UIKit
 
 protocol IWeatherDiaryPresenter: AnyObject {
-    func viewDidload(ui: IWeatherDiaryView, viewController: UIViewController)
-    var routeToNewNote: (() -> ())? { get set }
+    func viewDidload(ui: IWeatherDiaryView, city: String)
 }
 
 final class WeatherDiaryPresenter {
+
+// MARK: - Private properties
+    
     private weak var ui: IWeatherDiaryView?
-    private var delegate = WeatherDiaryViewDelegate()
     private var interactor: IWeatherDiaryInteractor?
     private var router: IWeatherDiaryRouter?
-    var routeToNewNote: (() -> ())?
     
     init(interactor: IWeatherDiaryInteractor, router: IWeatherDiaryRouter) {
         self.interactor = interactor
@@ -26,15 +25,23 @@ final class WeatherDiaryPresenter {
     }
 }
 
+// MARK: - IWeatherDiaryPresenter
+
 extension WeatherDiaryPresenter: IWeatherDiaryPresenter {
-    func viewDidload(ui: IWeatherDiaryView, viewController: UIViewController) {
+    func viewDidload(ui: IWeatherDiaryView, city: String) {
+
         self.ui = ui
-        ui.getData(data: self.interactor?.generateData() ?? [])
-        self.routeToNewNote = {
-            self.router?.routeToNewNote(viewController: viewController)
+        self.interactor?.fetchDataFromNetworkingService(forCity: city, completion: { data in
+            self.ui?.setData(data: data)
+        })
+     
+        ui.delegate.delegate = { [weak self] index in
+            guard let self = self else { return }
+            self.router?.routeToEditNote(forIndexPath: index)
         }
-        ui.didSelectRowHandler = { [weak self] index in
-            self?.router?.routeToEditNote(fviewController: viewController)
+        
+        ui.didSelectRowHandler = {
+            self.router?.routeToNewNote()
         }
     }
 }

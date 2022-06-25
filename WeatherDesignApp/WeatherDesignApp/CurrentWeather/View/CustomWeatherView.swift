@@ -9,12 +9,36 @@ import UIKit
 
 protocol ICustomWeatherView: AnyObject {
     var buttonTappedHandler: (() -> ())? { get set }
-    func displayWeatherData(_ viewModel: CurrentWeatherViewModel)
+    func displayWeatherData(data: CurrentWeatherViewModel)
+    func setImage(imageData: Data)
 }
 
-final class CustomWeatherView: UIView, ICustomWeatherView {
+final class CustomWeatherView: UIView {
     
-    // MARK: - Properties
+// MARK: - Properties
+    let searchTextField = UITextField()
+    var buttonTappedHandler: (() -> ())?
+    
+    private let cityManager = CityManager.shared
+    
+    private let weatherIconImageView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
+    private lazy var newNoteButton = WeatherButton(settings: .init(
+        imageName: Constancts.weatherButtonImage,
+        labelText: Texts.buttonImageText,
+        font: .regular16,
+        tapHandler: { self.buttonTappedHandler?() }))
+    
+    private let weatherSearchServise = NetworkService()
+    private let weatherService = WeatherService()
+    private let weatherWidgetView = WeatherWidgetView()
+    private let sectionWithSeparatorViewHum = SectionWithSeparatorView(type: .humidity)
+    private let sectionWithSeparatorViewWind = SectionWithSeparatorView(type: .wind)
+
+// MARK: -
     
     private enum Constancts {
         static let searchHeight = 58
@@ -37,72 +61,126 @@ final class CustomWeatherView: UIView, ICustomWeatherView {
         static let searchTFPlaceholder = "Search here"
         static let buttonImageText = "New wether note"
     }
-    
-    private let searchTextField = UISearchTextField()
-    private let weatherIconImageView = UIImageView()
-    private let weatherWidgetView = WeatherWidgetView()
-    
-    private lazy var newNoteButton = WeatherButton(settings: .init(
-        imageName: Constancts.weatherButtonImage,
-        labelText: Texts.buttonImageText,
-        font: .regular16,
-        tapHandler: { self.buttonTappedHandler?() }))
-    
-    var buttonTappedHandler: (() -> ())?
+
+    // MARK: - Init
     
     init() {
         super.init(frame: .zero)
-        self.setupUI()
+        self.setupCommonDataUI()
+        self.setupLayout()
+        searchTextField.delegate = self
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func displayWeatherData(_ viewModel: CurrentWeatherViewModel) {
-        self.weatherIconImageView.image = viewModel.weatherType.image
-        self.weatherWidgetView.displayWeatherData(viewModel)
+        
     }
 }
 
+// MARK: - TextFieldDelegate
+
+extension CustomWeatherView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        dispalayCondition(textField)
+        displayLocation(textField)
+        dispalayCurrentWeather(textField)
+        cityManager.currentCity = textField.text
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+// MARK: -
+
+extension CustomWeatherView {
+    func dispalayCondition(_ textField: UITextField) -> Void {
+        self.weatherService.getCondition(textField.text!) { (condition) in
+            if let condition = condition {
+                DispatchQueue.main.async {
+                    if let icon = URL(string: "https:\(condition.icon!)") {
+                        self.weatherIconImageView.load(url: icon)
+                    }
+                    if let text = URL(string: "\(condition.text!)") {
+                        self.weatherWidgetView.weatherDescription.text = "\(text)"
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.weatherIconImageView.image = nil
+                    self.weatherWidgetView.weatherDescription.text = nil
+                }
+            }
+        }
+    }
+    
+    func dispalayCurrentWeather(_ textField: UITextField) -> Void {
+        self.weatherService.getCurrentweather((textField.text!)) { (currentWeather) in
+            if let currentWeather = currentWeather {
+                DispatchQueue.main.async {
+                    if let temp = currentWeather.temp {
+                        self.weatherWidgetView.bigTemperatureLabel.text = "\(temp)°C"
+                    }
+
+                    if let hun = currentWeather.humidity {
+                        self.weatherWidgetView.humiditySectionView.dataLabel.text = "\(hun) %"
+                    }
+
+                    if let wind = currentWeather.wind {
+                        self.weatherWidgetView.windSectionView.dataLabel.text = "\(wind)"
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.weatherWidgetView.humiditySectionView.dataLabel.text = nil
+                    self.sectionWithSeparatorViewHum.dataLabel.text = nil
+                    self.weatherWidgetView.windSectionView.dataLabel.text = nil
+                }
+            }
+        }
+    }
+    
+    func displayLocation(_ textField: UITextField) -> Void {
+        weatherService.getLocation("\(textField.text!)") { (location) in
+            if let location = location {
+                DispatchQueue.main.async {
+                    var locationText = ""
+                    if let city = location.city {
+                        locationText = "\(city)"
+                    }
+                    self.searchTextField.text = "\(locationText)"
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.searchTextField.text = "Город не найден"
+                }
+            }
+        }
+    }
+}
+
+extension CustomWeatherView: ICustomWeatherView {
+    
+    func setImage(imageData: Data) {
+        self.weatherIconImageView.image = UIImage(data: imageData)
+    }
+    
+    func displayWeatherData(data: CurrentWeatherViewModel) {
+        self.weatherWidgetView.displayWeatherData(data)
+    }
+}
+
+// MARK: - SetupLayout
+
 private extension CustomWeatherView {
-    func setupUI() {
-        self.setupBackgroundView()
-        self.setupSearchField()
-        self.configureWidgetView()
-        self.setupLayout()
-        self.setAccessibilityIdentifier()
-    }
-    func setupBackgroundView() {
-        self.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
-    }
-    func setupSearchField() {
-        self.searchTextField.backgroundColor = Colors.white.value
-        self.searchTextField.layer.cornerRadius = Constancts.cornerRadius
-        self.searchTextField.layer.masksToBounds = true
-        self.searchTextField.attributedPlaceholder = NSAttributedString(
-            string: Texts.searchTFPlaceholder,
-            attributes: [NSAttributedString.Key.font : AppFonts.regular18.font as Any,
-                         NSAttributedString.Key.foregroundColor : Colors.lightBlue.value
-                        ]
-        )
-        let emptyView = UIView(frame: .init(x: .zero, y: .zero, width: Constraints.emptyViewWidth, height: .zero))
-        self.searchTextField.leftViewMode = .always
-        self.searchTextField.leftView = emptyView
-        self.searchTextField.rightViewMode = .always
-        self.searchTextField.rightView = emptyView
-        
-        self.weatherIconImageView.image = UIImage(named: "sunny")
-    }
-    
-    func configureWidgetView() {
-        self.weatherWidgetView.backgroundColor = Colors.whiteBackground.value
-        self.weatherWidgetView.layer.cornerRadius = Constancts.cornerRadius
-        self.weatherWidgetView.layer.borderColor = UIColor.white.cgColor
-        self.weatherWidgetView.layer.borderWidth = 1
-    }
-    
     func setupLayout() {
         self.setupSearchTFLayout()
         self.setupWeatherImageViwLayout()
@@ -149,7 +227,64 @@ private extension CustomWeatherView {
         }
     }
     
+}
+
+// MARK: - Setup CommonData UI
+
+private extension CustomWeatherView {
+    func setupCommonDataUI() {
+        self.setupBackgroundView()
+        self.setupSearchField()
+        self.configureWidgetView()
+        self.setAccessibilityIdentifier()
+    }
+    
+    func setupBackgroundView() {
+        self.insertSubview(UIImageView(image: UIImage(named: "background")), at: 0)
+    }
+    
+    func setupSearchField() {
+        self.searchTextField.backgroundColor = Colors.white.value
+        self.searchTextField.layer.cornerRadius = Constancts.cornerRadius
+        self.searchTextField.layer.masksToBounds = true
+        self.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: Texts.searchTFPlaceholder,
+            attributes: [NSAttributedString.Key.font : AppFonts.regular18.font as Any,
+                         NSAttributedString.Key.foregroundColor : Colors.lightBlue.value
+                        ]
+        )
+        let emptyView = UIView(frame: .init(x: .zero, y: .zero, width: Constraints.emptyViewWidth, height: .zero))
+        self.searchTextField.leftViewMode = .always
+        self.searchTextField.leftView = emptyView
+        self.searchTextField.rightViewMode = .always
+        self.searchTextField.rightView = emptyView
+        
+        self.weatherIconImageView.image = UIImage(named: "sunny")
+    }
+    
+    func configureWidgetView() {
+        self.weatherWidgetView.backgroundColor = Colors.whiteBackground.value
+        self.weatherWidgetView.layer.cornerRadius = Constancts.cornerRadius
+        self.weatherWidgetView.layer.borderColor = UIColor.white.cgColor
+        self.weatherWidgetView.layer.borderWidth = 1
+    }
+    
+   
     func setAccessibilityIdentifier() {
         self.weatherIconImageView.accessibilityIdentifier = "weatherIconImageView"
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }

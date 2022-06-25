@@ -10,9 +10,7 @@ import SnapKit
 
 final class WeatherNoteCell: UITableViewCell {
     
-    // MARK: - Properties
-    
-    static let id = String(describing: WeatherNoteCell.self)
+// MARK: - Constraints
     
     private enum Constraints {
         static let topBottonInset: CGFloat = 18
@@ -21,26 +19,39 @@ final class WeatherNoteCell: UITableViewCell {
         static let leadingTrailingCellInset: CGFloat = 16
         static let degreeLabelWidth = 40
     }
-    private let cityLabel = LabelBuilder()
-        .setupFont(AppFonts.bold24.font)
-        .setupTextColor(.white)
-        .setupTextAligment(.left)
-        .setupadjustsFontSizeToFitWidth(true)
-        .build()
-
-    private let dateLabel = LabelBuilder()
-        .setupFont(AppFonts.regular20.font)
-        .setupTextColor(.white)
-        .setupTextAligment(.center)
-        .build()
     
-    private let degreeLabel = LabelBuilder()
-        .setupFont(AppFonts.regular20.font)
-        .setupTextColor(.white)
-        .setupTextAligment(.right)
-        .build()
+// MARK: - Properties
+    
+    static let id = String(describing: WeatherNoteCell.self)
+    
+    private let cityLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = AppFonts.bold24.font
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let dateLabel: UILabel = {
+        let label =  UILabel()
+        label.font = AppFonts.regular20.font
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let degreeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = AppFonts.regular20.font
+        label.textAlignment = .right
+        return label
+    }()
     
     private let weatherImageView = UIImageView()
+    
+// MARK: - Init
     
     override init(style: UITableViewCell.CellStyle,
                   reuseIdentifier: String?) {
@@ -54,14 +65,18 @@ final class WeatherNoteCell: UITableViewCell {
     }
 }
 
+// MARK: - Dispalay Data
+
 extension WeatherNoteCell {
     func displayData(_ viewModel: WeatherDiaryEntity) {
         self.cityLabel.text = viewModel.town
         self.dateLabel.text = viewModel.date
-        self.weatherImageView.image = viewModel.weatherImage.image
+        self.weatherImageView.image = viewModel.icon
         self.degreeLabel.text = viewModel.temperature
     }
 }
+
+// MARK: - Setup Layout & Commondata
 
 private extension WeatherNoteCell {
     

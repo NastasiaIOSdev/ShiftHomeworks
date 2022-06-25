@@ -8,8 +8,10 @@
 import UIKit
 
 final class WeatherDiaryViewDataSourse: NSObject {
-    var data = [WeatherDiaryEntity]()
+    public var data = [WeatherDiaryEntity]()
 }
+
+// MARK: - TableView DataSourse
 
 extension WeatherDiaryViewDataSourse: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

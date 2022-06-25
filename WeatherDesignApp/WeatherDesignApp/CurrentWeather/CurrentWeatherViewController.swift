@@ -6,18 +6,17 @@
 //
 
 import UIKit
-import SnapKit
 
 final class CurrentWeatherViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var presenter: ICurrentWeatherPresenter?
+    private var presenter: ICurrentWeatherPresenter
     private var ui = CustomWeatherView()
     
     init(presenter: ICurrentWeatherPresenter) {
-        super.init(nibName: nil, bundle: nil)
         self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -30,6 +29,6 @@ final class CurrentWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.presenter?.viewDidLoad(ui: self.ui)
+        self.presenter.viewDidLoad(ui: self.ui, viewController: self)
     }
 }

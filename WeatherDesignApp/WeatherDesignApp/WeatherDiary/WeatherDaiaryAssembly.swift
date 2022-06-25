@@ -11,8 +11,10 @@ enum WeatherDaiaryAssembly {
     static func build() -> WeatherDiaryViewController {
         let router = WeatherDiaryRouter()
         let interactor = WeatherDiaryInteractor()
+        interactor.networkService = NetworkService()
         let presenter = WeatherDiaryPresenter(interactor: interactor, router: router)
         let vc = WeatherDiaryViewController(presenter: presenter)
+        router.vc = vc
         return vc
     }
 }

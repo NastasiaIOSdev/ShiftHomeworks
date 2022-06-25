@@ -9,23 +9,25 @@ import Foundation
 import UIKit
 
 protocol IWeatherDiaryRouter: AnyObject {
-    func routeToNewNote(viewController: UIViewController)
-    func routeToEditNote(fviewController: UIViewController)
+    func routeToNewNote()
+    func routeToEditNote(forIndexPath: Int)
 }
 
 final class  WeatherDiaryRouter {
     weak var vc: UIViewController?
 }
 
+// MARK: - IWeatherDiaryRouter
+
 extension  WeatherDiaryRouter: IWeatherDiaryRouter {
-    func routeToNewNote(viewController: UIViewController) {
-        let nextVC = WeatherNoteViewControllerAssembly.build()
-        vc?.navigationController?.pushViewController(nextVC, animated: true)
-        vc?.navigationController?.navigationBar.tintColor = .white
+    func routeToNewNote() {
+        let nextVC = WeatherNoteViewController()
+        self.vc?.navigationController?.pushViewController(nextVC, animated: true)
+        self.vc?.navigationController?.navigationBar.tintColor = .white
     }
     
-    func routeToEditNote(fviewController viewController: UIViewController) {
+    func routeToEditNote(forIndexPath: Int) {
         let vc = WeatherNoteViewController()
-        vc.present(vc, animated: true)
+        self.vc?.present(vc, animated: true)
     }
 }
