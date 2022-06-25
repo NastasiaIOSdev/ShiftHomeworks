@@ -40,9 +40,3 @@ private extension CurrentWeatherViewModel {
         return DateConverter.showDayWithWeekDay(date)
     }
 }
-
-extension CurrentWeatherViewModel: ICurrentWeatherViewModel {
-    func requestCurrentWeather(for city: String?) {
-        print(city)
-    }
-}

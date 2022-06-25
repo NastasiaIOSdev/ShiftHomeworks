@@ -10,7 +10,7 @@ import SnapKit
 
 final class WeatherNoteViewController: UIViewController {
     
-    // MARK: - Properties
+// MARK: - Properties
     
     private enum Constraints {
         static let noteTextFieldNoteHotizontalInset = 30
@@ -47,7 +47,7 @@ final class WeatherNoteViewController: UIViewController {
         datePicker.backgroundColor = Colors.whiteBackground.value
         return datePicker
     }()
-    //private let weatherImages = Weather.allCases
+   
     private lazy var weatherLabel = self.createLabel(with: Texts.weatherHeader)
     
     private lazy var pickerView: UIPickerView = {
@@ -79,7 +79,7 @@ final class WeatherNoteViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK - Life Cycles
+//MARK: - Life Cycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +100,7 @@ final class WeatherNoteViewController: UIViewController {
     }
 }
 
-extension WeatherNoteViewController {
+private extension WeatherNoteViewController {
     func displayData(_ viewModel: WeatherNoteViewModel) {
         let weather = WeatherType.allCases.firstIndex(of: viewModel.weatherType ?? .sunny) ?? 0
         self.pickerView.selectRow(weather, inComponent: 1, animated: false)
@@ -108,16 +108,6 @@ extension WeatherNoteViewController {
         self.cityNoteTFView.text = viewModel.city
         self.temperatureTFView.text = String(describing: viewModel.temperature)
         self.additionalInfoTFView.text = viewModel.additionalInfo
-        
-    }
-    
-    func saveData(_ viewModel: WeatherNoteViewModel) {
-        let viewModelData = WeatherNoteViewModel(
-            city: self.cityNoteTFView.text,
-            date: self.datePicker.date,
-            weatherType: WeatherType.allCases[self.pickerView.selectedRow(inComponent: 1)],
-            temperature: Int(self.temperatureTFView.text ?? ""),
-            additionalInfo: self.additionalInfoTFView.text)
     }
 }
 
